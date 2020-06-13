@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">agileSynergy</string>
+    <string name="login_number_hint">Enter Phone Number</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password (Upto 4 digits.....)</string>
+</resources>
