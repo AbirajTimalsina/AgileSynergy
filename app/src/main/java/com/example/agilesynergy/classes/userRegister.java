@@ -21,7 +21,7 @@ public class userRegister {
         userapi userAPI = global.getInstance().create(userapi.class);
         Call<ResponseUser> userCall = userAPI.userRegister(user);
 
-        StrictModeClass.StrictMode();
+
         try {
             Response<ResponseUser> userResponse = userCall.execute();
             if (userResponse.isSuccessful()) {
