@@ -57,13 +57,15 @@ android:padding="20dp">
         android:inputType="textPassword"/>
 
 
-<TextView
-    style="@style/viewParent"
-    android:text="Forgot Password?"
-    android:textColor="@color/primaryTextColor"
-    android:textSize="@dimen/newsMoreTextSize"
-    android:layout_gravity="end"
-    android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/txtforgot"
+        style="@style/viewParent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:text="Forgot Password?"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/newsMoreTextSize" />
 
     <Button
         android:layout_width="wrap_content"

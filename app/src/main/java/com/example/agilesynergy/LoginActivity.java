@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agilesynergy.classes.LoginBLL;
@@ -18,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText etnumber, etpass;
     Button loginbutton;
+    TextView txtforgot;
 
     private NotificationManagerCompat notificationManagerCompat;
 
@@ -32,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etnumber = findViewById(R.id.etnumber);
         etpass = findViewById(R.id.etPassword);
+        txtforgot = findViewById(R.id.txtforgot);
         loginbutton = findViewById(R.id.btnuserlogin);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +44,17 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
+
+        txtforgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
 
     private void Userlogin() {
 
@@ -76,4 +90,6 @@ public class LoginActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
 
     }
+
+
 }
