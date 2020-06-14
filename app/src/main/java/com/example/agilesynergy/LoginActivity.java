@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.agilesynergy.classes.LoginBLL;
+import com.example.agilesynergy.classes.StrictModeClass;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void Userlogin() {
+        StrictModeClass.StrictMode();
 
 
         String usrnumber = etnumber.getText().toString();
