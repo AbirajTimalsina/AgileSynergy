@@ -29,4 +29,15 @@ public class RegisterTestCase {
         assertTrue(UpdatePassword);
 
     }
+
+    @Test
+    public void PasswordUpadte(){
+
+        userForgotPassword passwordForgot = new userForgotPassword("suman123@gmail.com","12345");
+
+        forgotPasswordUpdate Updatepsw = new forgotPasswordUpdate(passwordForgot);
+        boolean UpdatePassword = Updatepsw.UpdatePassword();
+        assertTrue(UpdatePassword);
+
+    }
 }
