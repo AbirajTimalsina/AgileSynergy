@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.agilesynergy.classes.StrictModeClass;
 import com.example.agilesynergy.classes.forgotPasswordUpdate;
 
 public class ForgotPassword extends AppCompatActivity implements View.OnClickListener {
@@ -45,6 +46,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
     }
 
     public void PasswordChange() {
+
         if (EditTextForgotPassword.getText().toString().equals(EditTextForgotConfirmPassword.
                 getText().toString())) {
 
