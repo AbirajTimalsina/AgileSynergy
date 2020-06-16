@@ -29,5 +29,6 @@ public class global {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit;
+
     }
 }
