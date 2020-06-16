@@ -33,10 +33,9 @@ public class RegisterTestCase {
     @Test
     public void PasswordUpadte(){
 
-        userForgotPassword passwordForgot = new userForgotPassword("suman123@gmail.com","12345");
+        forgotPasswordUpdate passwordForgot = new forgotPasswordUpdate("s@gmail.com","What is yours first pets name?","tiger","5678");
 
-        forgotPasswordUpdate Updatepsw = new forgotPasswordUpdate(passwordForgot);
-        boolean UpdatePassword = Updatepsw.UpdatePassword();
+        boolean UpdatePassword = passwordForgot.UpdateForgottenPassword();
         assertTrue(UpdatePassword);
 
     }
