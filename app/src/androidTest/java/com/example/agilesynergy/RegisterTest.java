@@ -43,8 +43,5 @@ public class RegisterTest {
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.cirRegisterButton))
                 .perform(click());
-
-
-
     }
 }

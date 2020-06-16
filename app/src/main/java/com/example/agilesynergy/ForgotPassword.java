@@ -46,7 +46,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
     }
 
     public void PasswordChange() {
-
+        StrictModeClass.StrictMode();
         if (EditTextForgotPassword.getText().toString().equals(EditTextForgotConfirmPassword.
                 getText().toString())) {
 
