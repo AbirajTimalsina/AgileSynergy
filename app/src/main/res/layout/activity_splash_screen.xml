@@ -5,7 +5,7 @@
     android:layout_marginLeft="-55dp"
     android:layout_marginTop="-50dp"
     android:layout_width="1379px"
-    android:layout_height="2155px"
+    android:layout_height="2315px"
     android:background="@drawable/splashscreen"
     android:orientation="vertical"
     tools:context=".SplashScreenActivity">
