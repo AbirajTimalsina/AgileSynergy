@@ -33,7 +33,7 @@ public class forgotPasswordUpdate {
 
         Call<user> userCall = userapi.GetForgottenUserData(user);
 
-        StrictModeClass.StrictMode();
+
         try {
             Response<user> response = userCall.execute();
             if (response.isSuccessful()) {
