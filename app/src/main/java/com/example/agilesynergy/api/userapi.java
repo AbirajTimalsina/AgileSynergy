@@ -17,8 +17,7 @@ public interface userapi {
 
     @POST("users/signup")
     Call<ResponseUser> userRegister(@Body user user);
-
-
+    
     @POST("users/userforgotpassword")
     Call<user> GetForgottenUserData(@Body user user);
 

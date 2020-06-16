@@ -8,6 +8,7 @@ public class qa {
         this.answer = answer;
     }
 
+
     public String getQuestion() {
         return question;
     }
