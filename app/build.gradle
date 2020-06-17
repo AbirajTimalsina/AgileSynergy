@@ -34,9 +34,11 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
 
+
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.facebook.android:facebook-login:5.15.3'
     implementation 'br.com.simplepass:loading-button-android:1.14.0'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.1.0'
     androidTestUtil 'androidx.test:orchestrator:1.1.0'
     debugImplementation 'androidx.fragment:fragment-testing:1.2.0'

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agilesynergy.classes.LoginBLL;
@@ -17,6 +18,7 @@ import com.example.agilesynergy.classes.LoginBLL;
 public class LoginActivity extends AppCompatActivity {
 
     EditText etnumber, etpass;
+    TextView tvfpass;
     Button loginbutton;
 
     private NotificationManagerCompat notificationManagerCompat;
@@ -33,6 +35,11 @@ public class LoginActivity extends AppCompatActivity {
         etnumber = findViewById(R.id.etnumber);
         etpass = findViewById(R.id.etPassword);
         loginbutton = findViewById(R.id.btnuserlogin);
+        tvfpass = findViewById(R.id.fpass);
+        tvfpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { startActivity(new Intent(LoginActivity.this, ForgotPassword.class)); }});
+
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
