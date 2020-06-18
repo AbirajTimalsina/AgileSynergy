@@ -1,5 +1,6 @@
 package com.example.agilesynergy.global;
 
+import com.example.agilesynergy.models.item;
 import com.example.agilesynergy.models.user;
 
 import retrofit2.Retrofit;
@@ -13,6 +14,7 @@ public class global {
     public static String imagePath = Base_URL + "uploads/" ;
 
     public static user user;
+    public static item item;
 
     public static Retrofit getInstance() {
         Retrofit retrofit = new Retrofit.Builder()

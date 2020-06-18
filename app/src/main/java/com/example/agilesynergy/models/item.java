@@ -1,6 +1,9 @@
 package com.example.agilesynergy.models;
 
-public class item {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class item implements Parcelable {
 
     private String itemname, itemprice, itemingredient, itempicture;
 
@@ -10,6 +13,25 @@ public class item {
         this.itemingredient = itemingredient;
         this.itempicture = itempicture;
     }
+
+    protected item(Parcel in) {
+        itemname = in.readString();
+        itemprice = in.readString();
+        itemingredient = in.readString();
+        itempicture = in.readString();
+    }
+
+    public static final Creator<item> CREATOR = new Creator<item>() {
+        @Override
+        public item createFromParcel(Parcel in) {
+            return new item(in);
+        }
+
+        @Override
+        public item[] newArray(int size) {
+            return new item[size];
+        }
+    };
 
     public String getItemname() {
         return itemname;
@@ -41,5 +63,19 @@ public class item {
 
     public void setItempicture(String itempicture) {
         this.itempicture = itempicture;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(itemname);
+        parcel.writeString(itemprice);
+        parcel.writeString(itemingredient);
+        parcel.writeString(itempicture);
     }
 }

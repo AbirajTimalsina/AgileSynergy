@@ -1,17 +1,24 @@
 package com.example.agilesynergy.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agilesynergy.R;
+import com.example.agilesynergy.fragments.MenuFragment;
+import com.example.agilesynergy.fragments.innerFragments.ItemFragment;
 import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.item;
 import com.squareup.picasso.Picasso;
@@ -24,10 +31,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     Context mcontext;
     private List<item> listItems;
+    FragmentManager fm;
 
-    public RecyclerAdapter(Context mcontext, List<item> listItems) {
+    public RecyclerAdapter(Context mcontext, List<item> listItems, FragmentManager fm) {
         this.mcontext = mcontext;
         this.listItems = listItems;
+        this.fm = fm;
     }
 
     @NonNull
@@ -36,6 +45,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_items, parent, false);
         return new RecyclerViewHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
@@ -49,7 +59,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         String imagePath = global.imagePath + item.getItempicture();
         Picasso.get().load(imagePath).into(holder.imageitempicture);
 
-
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ItemFragment itemFragment = new ItemFragment();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("itemObject", item);
+                itemFragment.setArguments(bundle);
+                global.item=item;
+                fm.beginTransaction().replace(R.id.frame_container, new ItemFragment()).addToBackStack(null).commit();
+            }
+        });
     }
 
     @Override
@@ -61,6 +81,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         ImageView imageitempicture;
         TextView itemname, itemprice, itemingredient;
+        LinearLayout linearLayout;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,6 +90,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             itemname = itemView.findViewById(R.id.itemmenuname);
             itemprice = itemView.findViewById(R.id.itemmenuprice);
             itemingredient = itemView.findViewById(R.id.itemmenuingredient);
+            linearLayout = itemView.findViewById(R.id.linearmenu);
 
         }
     }
