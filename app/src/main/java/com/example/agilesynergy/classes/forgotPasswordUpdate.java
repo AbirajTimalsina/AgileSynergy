@@ -24,13 +24,10 @@ public class forgotPasswordUpdate {
         this.password = password;
     }
 
-
     public Boolean UpdateForgottenPassword() {
 
         userapi userapi = global.getInstance().create(userapi.class);
         user user = new user(null, null, email, null, null, null);
-
-
         Call<user> userCall = userapi.GetForgottenUserData(user);
 
         StrictModeClass.StrictMode();
@@ -40,9 +37,7 @@ public class forgotPasswordUpdate {
 
                 if (response.body().getQa().getQuestion().equals(question) &&
                         response.body().getQa().getAnswer().equals(answer)) {
-
                     return UpdatePassword();
-
                 } else {
                     return false;
                 }
@@ -67,8 +62,6 @@ public class forgotPasswordUpdate {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return false;
     }
-
 }
