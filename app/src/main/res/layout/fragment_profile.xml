@@ -5,12 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".fragments.fragmentProfile">
 
-    <TextView
+    <Button
+        android:id="@+id/btnProfile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:text="Very carefully articulated profile" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_background_blue"
+        android:text="View Profile"
+        android:textSize="30dp" />
+
 
 </RelativeLayout>

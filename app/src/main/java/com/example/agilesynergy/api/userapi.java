@@ -28,4 +28,6 @@ public interface userapi {
     @FormUrlEncoded
     @POST("users/login")
     Call<ResponseUser> checklogin(@Field("phonenumber") String phonenumber, @Field("password") String password);
+    @GET("users/me")
+    Call<user> getUserDetails(@Header("Authorization") String token);
 }
