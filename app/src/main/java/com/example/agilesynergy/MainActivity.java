@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         layoutParams.setBehavior(new BottomNavigationHider());
 
         // load the store fragment by default
-//        toolbar.setTitle("Home");
         loadFragment(new HomeFragment());
 
     }
@@ -53,23 +52,19 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                  //  toolbar.setTitle("Home");
                     fragment = new HomeFragment();
                     loadFragment(fragment);
                     return true;
 
                 case R.id.navigation_menu:
-                   // toolbar.setTitle("My Order");
                     fragment = new MenuFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigation_favourite:
-                    //toolbar.setTitle("Favourite");
                     fragment = new FavouriteFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigation_profile:
-                   // toolbar.setTitle("Profile");
                     fragment = new ProfileFragment();
                     loadFragment(fragment);
                     return true;
