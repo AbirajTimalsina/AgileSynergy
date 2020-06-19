@@ -7,18 +7,44 @@
     tools:context="fragments.FavouriteFragment">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Fast Food"
-    android:textColor="#000000"
-    android:textSize="30dp"
-    />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fast Food"
+            android:textColor="#000000"
+            android:textSize="30dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fastfoodrecycleview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Popular Food"
+        android:textColor="#000000"
+        android:textSize="30dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/popularfoodrecycleview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Dishes"
+            android:textColor="#000000"
+            android:textSize="30dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/newdishesrecycleview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
