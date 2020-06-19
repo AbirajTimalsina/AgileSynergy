@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.agilesynergy.classes.StrictModeClass;
 import com.example.agilesynergy.fragments.FavouriteFragment;
 import com.example.agilesynergy.fragments.HomeFragment;
 import com.example.agilesynergy.fragments.MenuFragment;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = getSupportActionBar();
 
+
+        StrictModeClass.StrictMode();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
