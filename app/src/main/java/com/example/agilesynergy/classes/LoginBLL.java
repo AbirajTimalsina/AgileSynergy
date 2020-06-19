@@ -23,7 +23,7 @@ public class LoginBLL {
 
     public boolean checkUser(String phonenumber, String password){
 
-        StrictModeClass.StrictMode();
+
         UserLogin userLogin = new UserLogin(phonenumber,password);
 
 
