@@ -2,6 +2,7 @@ package com.example.agilesynergy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -34,6 +35,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         EditTextForgotPassword = findViewById(R.id.EditTextForgotPassword);
         EditTextForgotConfirmPassword = findViewById(R.id.EditTextForgotConfirmPassword);
         ForgotButton=findViewById(R.id.ButtonForgotButton);
+
 
         ArrayAdapter<String> arrayAdapterQuestions = new ArrayAdapter<>(this, android.R.layout.select_dialog_item, questions);
         spinnerForgotQuestion.setAdapter(arrayAdapterQuestions);
