@@ -38,6 +38,8 @@ public class MenuFragment extends Fragment {
         itemapi itemapi = global.getInstance().create(itemapi.class);
         Call<List<item>> itemList = itemapi.getAllItem();
 
+
+
         try {
             Response<List<item>> itemResponse = itemList.execute();
             if (itemResponse.isSuccessful()) {
