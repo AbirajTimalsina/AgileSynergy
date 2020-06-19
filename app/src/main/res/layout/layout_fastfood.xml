@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="157dp"
         android:layout_height="241dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,14 +19,14 @@
 
     <ImageView
         android:id="@+id/fastfoodpicture"
-        android:layout_width="126dp"
-        android:layout_height="78dp"
+        android:layout_width="103dp"
+        android:layout_height="69dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.074"
+        app:layout_constraintVertical_bias="0.127"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
