@@ -17,9 +17,12 @@ import android.widget.Toast;
 import com.example.agilesynergy.classes.LoginBLL;
 import com.example.agilesynergy.classes.StrictModeClass;
 
+import kotlin.jvm.internal.MagicApiIntrinsics;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText etnumber, etpass;
+    TextView etForget;
     Button loginbutton;
     TextView txtForget;
 
@@ -36,6 +39,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etnumber = findViewById(R.id.etnumber);
         etpass = findViewById(R.id.etPassword);
+        etForget=findViewById(R.id.etForget);
+        etForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, ForgotPassword.class));
+            }
+        });
         loginbutton = findViewById(R.id.btnuserlogin);
         txtForget = findViewById(R.id.txtForget);
         loginbutton.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginClick(View View) {
-        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
 
     }
