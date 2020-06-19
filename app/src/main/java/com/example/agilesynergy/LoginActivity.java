@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,9 @@ public class LoginActivity extends AppCompatActivity {
     Button loginbutton;
     TextView txtForget;
 
+    TextView txtforgot;
+
+
     private NotificationManagerCompat notificationManagerCompat;
 
     @Override
@@ -36,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etnumber = findViewById(R.id.etnumber);
         etpass = findViewById(R.id.etPassword);
+        txtforgot = findViewById(R.id.txtforgot);
         loginbutton = findViewById(R.id.btnuserlogin);
         txtForget = findViewById(R.id.txtForget);
         loginbutton.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +67,17 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        txtforgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
 
     private void Userlogin() {
         StrictModeClass.StrictMode();
@@ -98,4 +113,6 @@ public class LoginActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
 
     }
+
+
 }
