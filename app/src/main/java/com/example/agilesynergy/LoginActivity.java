@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etnumber = findViewById(R.id.etnumber);
         etpass = findViewById(R.id.etPassword);
-        txtforgot = findViewById(R.id.txtforgot);
+        txtforgot = findViewById(R.id.txtForget);
         loginbutton = findViewById(R.id.btnuserlogin);
         txtForget = findViewById(R.id.txtForget);
         loginbutton.setOnClickListener(new View.OnClickListener() {
