@@ -1,48 +1,87 @@
 package com.example.agilesynergy;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
-import androidx.viewpager.widget.ViewPager;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 
-
-import com.example.agilesynergy.fragments.fragmentProfile;
-import com.google.android.material.tabs.TabLayout;
-
-import com.example.agilesynergy.adapter.ViewPagerAdapter;
-import com.example.agilesynergy.fragments.fragmentDashboard;
-import com.example.agilesynergy.fragments.fragmentMenu;
+import com.example.agilesynergy.fragments.FavouriteFragment;
+import com.example.agilesynergy.fragments.HomeFragment;
+import com.example.agilesynergy.fragments.MenuFragment;
+import com.example.agilesynergy.fragments.ProfileFragment;
+import com.example.agilesynergy.helper.BottomNavigationHider;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static ViewPager viewPager;
 
-    TabLayout tabLayout;
+    private ActionBar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Fragment Handling
+        toolbar = getSupportActionBar();
 
-        viewPager = findViewById(R.id.viewPager);
-        tabLayout = findViewById(R.id.tabID);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FFFFFF"));
+        // attaching bottom sheet behaviour - hide / show on scroll
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigation.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationHider());
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        // load the store fragment by default
+//        toolbar.setTitle("Home");
+        loadFragment(new HomeFragment());
 
-        viewPagerAdapter.addFragment(new fragmentDashboard(), "Dashboard");
-        viewPagerAdapter.addFragment(new fragmentMenu(), "Menu");
-        viewPagerAdapter.addFragment(new fragmentProfile(), "Profile");
+    }
 
-        viewPagerAdapter.notifyDataSetChanged();
-        viewPager.setAdapter(viewPagerAdapter);
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-        tabLayout.setupWithViewPager(viewPager);
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment;
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                  //  toolbar.setTitle("Home");
+                    fragment = new HomeFragment();
+                    loadFragment(fragment);
+                    return true;
 
+                case R.id.navigation_menu:
+                   // toolbar.setTitle("My Order");
+                    fragment = new MenuFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_favourite:
+                    //toolbar.setTitle("Favourite");
+                    fragment = new FavouriteFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_profile:
+                   // toolbar.setTitle("Profile");
+                    fragment = new ProfileFragment();
+                    loadFragment(fragment);
+                    return true;
+            }
+
+            return false;
+        }
+    };
+
+
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

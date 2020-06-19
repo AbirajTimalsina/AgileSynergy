@@ -3,6 +3,14 @@
     <string name="login_number_hint">Enter Phone Number</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password (Upto 4 digits.....)</string>
+
+
+    <!--   Framengemn-->
+    <string name="title_home">Home</string>
+    <string name="title_menu">Menu</string>
+    <string name="title_favourite">Favourite</string>
+    <string name="title_profile">Profile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -3,15 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.fragmentMenu">
+    tools:context=".fragments.MenuFragment">
 
+    <AutoCompleteTextView
+        android:id="@+id/autocompletetextmenusearch"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="50dp" />
 
-    <TextView
-        android:layout_centerVertical="true"
-        android:gravity="center"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewmenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="30dp"
-        android:text="My work base (ヘ･_･)ヘ┳━┳" />
+        android:layout_below="@+id/autocompletetextmenusearch" />
 
 </RelativeLayout>
