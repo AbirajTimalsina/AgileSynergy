@@ -1,5 +1,6 @@
 package com.example.agilesynergy.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -48,8 +49,6 @@ public class HomeFragment extends Fragment {
     List<newdishesModel> newdishesModelList;
     List<upcomingfoodModel> upcomingfoodModelList;
     List<regularfoodModel> regularfoodModelList;
-
-
     //    Adapter
     fastfoodAdapter fastfoodAdapter;
     popularfoodAdapter popularfoodAdapter;
@@ -79,6 +78,8 @@ public class HomeFragment extends Fragment {
 
         regularrecycleview = view.findViewById(R.id.regularrecycleview);
         regularfood();
+
+        //Refreshing
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -87,13 +88,13 @@ public class HomeFragment extends Fragment {
                         android.R.color.holo_green_light,
                         android.R.color.holo_orange_light,
                         android.R.color.holo_red_light);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         swipeLayout.setRefreshing(false);
                     }
                 }, 5000);
-
             }
 
         });
