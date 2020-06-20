@@ -3,6 +3,7 @@ package com.example.agilesynergy.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,15 +33,20 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
+
         recyclerView = view.findViewById(R.id.recyclerviewmenu);
         itemapi itemapi = global.getInstance().create(itemapi.class);
         Call<List<item>> itemList = itemapi.getAllItem();
+
+
 
         try {
             Response<List<item>> itemResponse = itemList.execute();
             if (itemResponse.isSuccessful()) {
 
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), itemResponse.body());
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), itemResponse.body(), fm);
                 recyclerView.setAdapter(recyclerAdapter);
                 LinearLayoutManager layoutManager
                         = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

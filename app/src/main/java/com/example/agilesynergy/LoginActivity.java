@@ -7,17 +7,29 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+<<<<<<<<< Temporary merge branch 1
+import android.util.Log;
+=========
+import android.text.TextUtils;
+>>>>>>>>> Temporary merge branch 2
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agilesynergy.classes.LoginBLL;
+import com.example.agilesynergy.classes.StrictModeClass;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText etnumber, etpass;
     Button loginbutton;
+<<<<<<<<< Temporary merge branch 1
+    TextView txtforgot;
+=========
+    TextView txtForget;
+>>>>>>>>> Temporary merge branch 2
 
     private NotificationManagerCompat notificationManagerCompat;
 
@@ -32,18 +44,47 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etnumber = findViewById(R.id.etnumber);
         etpass = findViewById(R.id.etPassword);
+        txtforgot = findViewById(R.id.txtforgot);
         loginbutton = findViewById(R.id.btnuserlogin);
+        txtForget = findViewById(R.id.txtForget);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(TextUtils.isEmpty(etnumber.getText())) {
+                    etnumber.setError("Please Enter Your Number");
+                    etnumber.requestFocus();
+                    return;
+                }
+                else if (TextUtils.isEmpty(etpass.getText())) {
+                    etpass.setError("Please Enter Your Password");
+                    etpass.requestFocus();
+                    return;
+                }
                 Userlogin();
             }
+        });
 
+        txtForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
+
+        txtforgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
+                startActivity(intent);
+            }
         });
     }
 
-    private void Userlogin() {
 
+
+    private void Userlogin() {
+        StrictModeClass.StrictMode();
 
         String usrnumber = etnumber.getText().toString();
         String usrpassword = etpass.getText().toString();
@@ -76,4 +117,6 @@ public class LoginActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
 
     }
+
+
 }

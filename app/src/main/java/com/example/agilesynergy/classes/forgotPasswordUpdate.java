@@ -24,13 +24,17 @@ public class forgotPasswordUpdate {
         this.password = password;
     }
 
+<<<<<<<<< Temporary merge branch 1
+    public forgotPasswordUpdate(userForgotPassword passwordForgot) {
+    }
 
+
+=========
+>>>>>>>>> Temporary merge branch 2
     public Boolean UpdateForgottenPassword() {
 
         userapi userapi = global.getInstance().create(userapi.class);
         user user = new user(null, null, email, null, null, null);
-
-
         Call<user> userCall = userapi.GetForgottenUserData(user);
 
 
@@ -40,9 +44,7 @@ public class forgotPasswordUpdate {
 
                 if (response.body().getQa().getQuestion().equals(question) &&
                         response.body().getQa().getAnswer().equals(answer)) {
-
                     return UpdatePassword();
-
                 } else {
                     return false;
                 }
@@ -56,6 +58,7 @@ public class forgotPasswordUpdate {
     public Boolean UpdatePassword() {
 
         userapi userapi = global.getInstance().create(userapi.class);
+
         userForgotPassword userForgotPassword = new userForgotPassword(email, password);
 
         Call<userForgotPassword> UserForgotPasswordCall = userapi.updateForgottenUser(userForgotPassword);
@@ -67,8 +70,6 @@ public class forgotPasswordUpdate {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return false;
     }
-
 }

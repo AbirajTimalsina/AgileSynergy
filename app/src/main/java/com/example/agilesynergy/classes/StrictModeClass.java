@@ -8,5 +8,6 @@ public class StrictModeClass {
                         .permitAll().build();
 
         android.os.StrictMode.setThreadPolicy(policy);
+//        asashas
     }
 }
