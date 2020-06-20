@@ -65,6 +65,8 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
 
     @Override
     public int getItemCount() {
+
+
         return fastfoodModelList.size();
     }
 
