@@ -16,12 +16,14 @@ import com.example.agilesynergy.R;
 import com.example.agilesynergy.adapter.fastfoodAdapter;
 import com.example.agilesynergy.adapter.newdishesAdapter;
 import com.example.agilesynergy.adapter.popularfoodAdapter;
+import com.example.agilesynergy.adapter.upcomingfoodAdapter;
 import com.example.agilesynergy.api.fastfoodApi;
 import com.example.agilesynergy.api.homeApi;
 import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.fastfoodModel;
 import com.example.agilesynergy.models.newdishesModel;
 import com.example.agilesynergy.models.popularfoodModel;
+import com.example.agilesynergy.models.upcomingfoodModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,18 +33,20 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
-    private RecyclerView fastfoodrecycleview, popularfoodrecycleview, newdishesrecycleview;
+    private RecyclerView fastfoodrecycleview, popularfoodrecycleview, newdishesrecycleview, upcomingfoodrecycleview;
 
     //    Models list
     List<fastfoodModel> fastfoodModelList;
     List<popularfoodModel> popularfoodModelList;
     List<newdishesModel> newdishesModelList;
+    List<upcomingfoodModel> upcomingfoodModelList;
 
 
     //    Adapter
     fastfoodAdapter fastfoodAdapter;
     popularfoodAdapter popularfoodAdapter;
     newdishesAdapter newdishesAdapter;
+    upcomingfoodAdapter upcomingfoodAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +63,39 @@ public class HomeFragment extends Fragment {
         newdishesrecycleview= view.findViewById(R.id.newdishesrecycleview);
         newdishes();
 
+        upcomingfoodrecycleview = view.findViewById(R.id.upcomingrecycleview);
+        upcomingfood();
         return view;
+    }
+
+    private void upcomingfood() {
+
+        upcomingfoodModelList = new ArrayList<>();
+        homeApi homeApi = global.getInstance().create(homeApi.class);
+        Call<List<upcomingfoodModel>> upcomingfoodlistcall = homeApi.getupcomingfooddetails();
+        upcomingfoodlistcall.enqueue(new Callback<List<upcomingfoodModel>>() {
+            @Override
+            public void onResponse(Call<List<upcomingfoodModel>> call, Response<List<upcomingfoodModel>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getContext(), "Error" + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                List<upcomingfoodModel> upcomingfoodModelList1 = response.body();
+                upcomingfoodAdapter = new upcomingfoodAdapter(getContext(), upcomingfoodModelList1);
+                upcomingfoodrecycleview.setAdapter(upcomingfoodAdapter);
+                upcomingfoodrecycleview.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+            }
+
+            @Override
+            public void onFailure(Call<List<upcomingfoodModel>> call, Throwable t) {
+                Log.d("Error Message", "Error" + t.getLocalizedMessage());
+                Toast.makeText(getActivity(), "Api error. please check logcat or run", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
     }
 
     private void newdishes() {
