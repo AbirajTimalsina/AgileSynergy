@@ -3,9 +3,12 @@ package com.example.agilesynergy.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +19,7 @@ import com.example.agilesynergy.R;
 import com.example.agilesynergy.adapter.fastfoodAdapter;
 import com.example.agilesynergy.adapter.newdishesAdapter;
 import com.example.agilesynergy.adapter.popularfoodAdapter;
+import com.example.agilesynergy.adapter.regularfoodAdapter;
 import com.example.agilesynergy.adapter.upcomingfoodAdapter;
 import com.example.agilesynergy.api.fastfoodApi;
 import com.example.agilesynergy.api.homeApi;
@@ -23,6 +27,7 @@ import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.fastfoodModel;
 import com.example.agilesynergy.models.newdishesModel;
 import com.example.agilesynergy.models.popularfoodModel;
+import com.example.agilesynergy.models.regularfoodModel;
 import com.example.agilesynergy.models.upcomingfoodModel;
 
 import java.util.ArrayList;
@@ -33,13 +38,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
-    private RecyclerView fastfoodrecycleview, popularfoodrecycleview, newdishesrecycleview, upcomingfoodrecycleview;
+    private RecyclerView fastfoodrecycleview, popularfoodrecycleview, newdishesrecycleview, upcomingfoodrecycleview, regularrecycleview;
 
+    private SwipeRefreshLayout swipeLayout;
     //    Models list
     List<fastfoodModel> fastfoodModelList;
     List<popularfoodModel> popularfoodModelList;
     List<newdishesModel> newdishesModelList;
     List<upcomingfoodModel> upcomingfoodModelList;
+    List<regularfoodModel> regularfoodModelList;
 
 
     //    Adapter
@@ -47,6 +54,8 @@ public class HomeFragment extends Fragment {
     popularfoodAdapter popularfoodAdapter;
     newdishesAdapter newdishesAdapter;
     upcomingfoodAdapter upcomingfoodAdapter;
+    regularfoodAdapter regularfoodAdapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,12 +69,66 @@ public class HomeFragment extends Fragment {
         popularfoodrecycleview = view.findViewById(R.id.popularfoodrecycleview);
         popularfood();
 
-        newdishesrecycleview= view.findViewById(R.id.newdishesrecycleview);
+        newdishesrecycleview = view.findViewById(R.id.newdishesrecycleview);
         newdishes();
 
         upcomingfoodrecycleview = view.findViewById(R.id.upcomingrecycleview);
         upcomingfood();
+
+
+        regularrecycleview = view.findViewById(R.id.regularrecycleview);
+        regularfood();
+        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+                        android.R.color.holo_green_light,
+                        android.R.color.holo_orange_light,
+                        android.R.color.holo_red_light);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeLayout.setRefreshing(false);
+                    }
+                }, 5000);
+
+            }
+
+        });
+
         return view;
+    }
+
+
+    private void regularfood() {
+
+        regularfoodModelList = new ArrayList<>();
+
+        homeApi homeApi = global.getInstance().create(com.example.agilesynergy.api.homeApi.class);
+        Call<List<regularfoodModel>> regularfoodlistcall = homeApi.getregularfooddetails();
+        regularfoodlistcall.enqueue(new Callback<List<regularfoodModel>>() {
+            @Override
+            public void onResponse(Call<List<regularfoodModel>> call, Response<List<regularfoodModel>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getContext(), "Error" + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                List<regularfoodModel> regularfoodModelList1 = response.body();
+                regularfoodAdapter = new regularfoodAdapter(getContext(), regularfoodModelList1);
+                regularrecycleview.setAdapter(regularfoodAdapter);
+                regularrecycleview.setLayoutManager(new GridLayoutManager(getContext(), 3, LinearLayoutManager.VERTICAL, false));
+            }
+
+            @Override
+            public void onFailure(Call<List<regularfoodModel>> call, Throwable t) {
+                Log.d("Error Message", "Error" + t.getLocalizedMessage());
+                Toast.makeText(getActivity(), "Api error. please check logcat or run", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
     private void upcomingfood() {
@@ -93,7 +156,6 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getActivity(), "Api error. please check logcat or run", Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
     }
@@ -127,7 +189,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void popularfood() {
-        popularfoodModelList  = new ArrayList<>();
+        popularfoodModelList = new ArrayList<>();
         homeApi homeApi = global.getInstance().create(homeApi.class);
         Call<List<popularfoodModel>> popularfoodlistcall = homeApi.getpopularfooddetails();
         popularfoodlistcall.enqueue(new Callback<List<popularfoodModel>>() {
