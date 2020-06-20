@@ -3,6 +3,7 @@ package com.example.agilesynergy.adapter;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 
 public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfoodViewHolder> {
 
@@ -38,9 +40,7 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
     @NonNull
     @Override
     public fastfoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_fastfood, parent, false);
-
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_fastfood, parent, false);
         return new fastfoodViewHolder(view);
     }
 
@@ -48,6 +48,10 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
     public void onBindViewHolder(@NonNull fastfoodViewHolder holder, int position) {
 
         fastfoodModel fastfoodModel = fastfoodModelList.get(position);
+
+        Random rnd = new Random();
+        int currentColor = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        holder.imageView.setColorFilter(currentColor);
 
         String imgpath = global.imagePath + fastfoodModel.getFastfoodpicture();
         Log.e("Image path is :", "Image path is" + imgpath);
@@ -61,18 +65,21 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
 
     @Override
     public int getItemCount() {
+
+
         return fastfoodModelList.size();
     }
 
     public class fastfoodViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView fastfoodpicture;
+        ImageView fastfoodpicture,imageView;
         TextView fastfoodname, fastfoodprice;
 
 
         public fastfoodViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            imageView= itemView.findViewById(R.id.imageView);
             fastfoodpicture = itemView.findViewById(R.id.fastfoodpicture);
             fastfoodname = itemView.findViewById(R.id.fastfoodname);
             fastfoodprice = itemView.findViewById(R.id.fastfoodprice);
