@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 
 import com.example.agilesynergy.fragments.FavouriteFragment;
@@ -39,7 +41,12 @@ public class MainActivity extends AppCompatActivity {
         // load the store fragment by default
         loadFragment(new HomeFragment());
 
+
+
+
     }
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -77,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
+        transaction.detach(fragment);
+        transaction.attach(fragment);
         transaction.commit();
+
     }
 }
