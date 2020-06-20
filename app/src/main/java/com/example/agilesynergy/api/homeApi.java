@@ -2,6 +2,7 @@ package com.example.agilesynergy.api;
 
 import com.example.agilesynergy.models.newdishesModel;
 import com.example.agilesynergy.models.popularfoodModel;
+import com.example.agilesynergy.models.regularfoodModel;
 import com.example.agilesynergy.models.upcomingfoodModel;
 
 import java.util.List;
@@ -19,4 +20,9 @@ public interface homeApi {
 
     @GET("upcomingfood")
     Call<List<upcomingfoodModel>> getupcomingfooddetails();
+
+    @GET("regularfood")
+    Call<List<regularfoodModel>> getregularfooddetails();
+
+
 }
