@@ -59,6 +59,7 @@ android:padding="20dp">
 
 <TextView
     style="@style/viewParent"
+    android:id="@+id/etforget"
     android:text="Forgot Password?"
     android:textColor="@color/primaryTextColor"
     android:textSize="@dimen/newsMoreTextSize"
