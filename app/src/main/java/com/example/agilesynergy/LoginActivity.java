@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etnumber = findViewById(R.id.etnumber);
         etpass = findViewById(R.id.etPassword);
-        etForget=findViewById(R.id.etForget);
+        etForget=findViewById(R.id.etforget);
         etForget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         loginbutton = findViewById(R.id.btnuserlogin);
-        txtForget = findViewById(R.id.txtForget);
+
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
