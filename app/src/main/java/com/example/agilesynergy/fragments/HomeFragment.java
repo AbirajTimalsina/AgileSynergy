@@ -1,6 +1,6 @@
 package com.example.agilesynergy.fragments;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -30,10 +30,12 @@ import com.example.agilesynergy.models.newdishesModel;
 import com.example.agilesynergy.models.popularfoodModel;
 import com.example.agilesynergy.models.regularfoodModel;
 import com.example.agilesynergy.models.upcomingfoodModel;
+import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,11 +98,13 @@ public class HomeFragment extends Fragment {
                     }
                 }, 5000);
             }
-
         });
+
+
 
         return view;
     }
+
 
 
     private void regularfood() {

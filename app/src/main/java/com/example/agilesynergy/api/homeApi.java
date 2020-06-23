@@ -25,4 +25,5 @@ public interface homeApi {
     Call<List<regularfoodModel>> getregularfooddetails();
 
 
+
 }
