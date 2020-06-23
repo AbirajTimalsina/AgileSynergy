@@ -59,8 +59,6 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
         Picasso.get().load(imgpath).into(holder.fastfoodpicture);
         holder.fastfoodname.setText(fastfoodModel.getFastfoodname());
         holder.fastfoodprice.setText(fastfoodModel.getFastfoodprice());
-
-
     }
 
     @Override
