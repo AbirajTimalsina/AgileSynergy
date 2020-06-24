@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etnumber = findViewById(R.id.etnumber);
         etpass = findViewById(R.id.etPassword);
-        txtforgot = findViewById(R.id.txtForgot);
+        txtforgot = findViewById(R.id.txtforget);
         loginbutton = findViewById(R.id.btnuserlogin);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
