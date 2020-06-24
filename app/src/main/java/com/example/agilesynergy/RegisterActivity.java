@@ -31,8 +31,10 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextName, editTextEmail, editTextPhonenumber, editTextPassword, editTextAnswer;
     private Spinner spinnerQuestions;
 
+    //Secret Questions
     private String questions[] = {"Please Select a Question","What is yours first pets name?", "What is your spouse name?",
             "Who is your favorite artist?", "What is your favorite holiday location?"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
