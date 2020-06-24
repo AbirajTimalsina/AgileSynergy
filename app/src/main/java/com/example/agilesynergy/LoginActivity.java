@@ -22,8 +22,6 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText etnumber, etpass;
     Button loginbutton;
-    TextView txtForget;
-
     TextView txtforgot;
 
 
@@ -40,9 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etnumber = findViewById(R.id.etnumber);
         etpass = findViewById(R.id.etPassword);
-        txtforgot = findViewById(R.id.txtForget);
+        txtforgot = findViewById(R.id.txtForgot);
         loginbutton = findViewById(R.id.btnuserlogin);
-        txtForget = findViewById(R.id.txtForget);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,14 +57,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        txtForget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
-                startActivity(intent);
-            }
-        });
-
         txtforgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
 
