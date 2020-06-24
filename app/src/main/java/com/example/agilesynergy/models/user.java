@@ -1,9 +1,10 @@
 package com.example.agilesynergy.models;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class user {
+public class user implements Serializable {
 
     private String fullname, phonenumber, email, password, profile_image;
     private qa qa;
@@ -17,6 +18,8 @@ public class user {
         this.qa = qa;
     }
 
+    public user() {
+    }
 
     public String getFullname() {
         return fullname;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.ProfileFragment">
-
+    tools:context=".ProfileActivity">
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_marginTop="50dp"
         android:id="@+id/imguser"
@@ -16,9 +16,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Fullname"
+        android:hint="Full Name"
         android:textSize="20sp"
-        android:id="@+id/tvfullname"
+        android:id="@+id/fullname"
         android:layout_below="@+id/imguser"
         android:gravity="center"
         android:layout_marginTop="30dp"
@@ -27,37 +27,22 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvemail"
-        android:hint="Email"
+        android:id="@+id/phoneno"
+        android:hint="Phone No"
         android:textSize="20sp"
-        android:layout_below="@+id/tvfullname"
+        android:layout_below="@+id/fullname"
         android:gravity="center"
         android:layout_marginTop="10dp"
         />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvphoneno"
-        android:hint="Phone no"
+        android:id="@+id/email"
+        android:hint="Email"
         android:textSize="20sp"
-        android:layout_below="@+id/tvemail"
+        android:layout_below="@+id/phoneno"
         android:gravity="center"
         android:layout_marginTop="10dp"
         />
-
-    <Button
-        android:layout_width="match_parent"
-
-        android:background="@drawable/button_background_blue"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnEdit"
-        android:text="Edit Profile"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_below="@id/tvphoneno"
-        android:layout_marginTop="20dp"
-        />
-
 
 </RelativeLayout>

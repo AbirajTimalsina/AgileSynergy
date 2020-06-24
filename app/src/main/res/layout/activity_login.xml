@@ -11,6 +11,7 @@
     android:layout_gravity="center"
     tools:context=".LoginActivity">
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,12 +19,11 @@
         android:layout_alignParentLeft="true"
         android:layout_centerInParent="true"
         android:paddingTop="20dp">
-
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="20dp">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:padding="20dp">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -34,62 +34,65 @@
         android:text="Already \nhave an \nAccount?"/>
 
     <ImageView
-        android:layout_width="190dp"
-        android:layout_height="178dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_register_hero"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_register_hero" />
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColorHint="@color/black">
 
-        <EditText
-            android:id="@+id/etnumber"
-            style="@style/modifiedEditText"
-            android:textSize="17dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Phone Number" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <EditText
+        android:id="@+id/etnumber"
+        style="@style/modifiedEditText"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:hint="@string/login_number_hint"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColorHint="@color/black">
+    <EditText
+        android:id="@+id/etPassword"
+        style="@style/modifiedEditText"
+        android:hint="@string/login_password_hint"
+        android:maxLines="1"
+        android:inputType="textPassword"/>
 
-        <EditText
-            android:id="@+id/etPassword"
-            style="@style/modifiedEditText"
-            android:textSize="17dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Password"
-            android:textColorHint="@color/black"/>
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+<TextView
     style="@style/viewParent"
-        android:id="@+id/txtForget"
+    android:id="@+id/etforget"
     android:text="Forgot Password?"
-    android:textColor="@color/black"
-    android:textSize="14dp"
+    android:textColor="@color/primaryTextColor"
+    android:textSize="@dimen/newsMoreTextSize"
     android:layout_gravity="end"
-    android:textStyle="bold"
     android:layout_marginTop="10dp"/>
 
     <Button
-        android:id="@+id/btnuserlogin"
-        android:layout_width="156dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="25dp"
-        style="@style/loginButton"
         android:text="Login"
-        android:textSize="16dp"
-        android:textStyle="bold"/>
+        android:id="@+id/btnuserlogin"
+        />
+
+<!--     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton-->
+<!--        android:id="@+id/ciruserLoginbtn"-->
+<!--        style="@style/loginButton"-->
+<!--        app:spinning_bar_width="1dp"-->
+<!--        app:spinning_bar_color="#FFF"-->
+<!--        android:text="Login"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginTop="@dimen/loginViewsMargin"-->
+<!--        app:spinning_bar_padding="30dp"-->
+<!--        app:initialCornerAngle="17dp"/>-->
+
+<TextView
+    style="@style/parent"
+    android:textAlignment="center"
+    android:textStyle="bold"
+    android:textColor="@color/contentTextColor"
+    android:textSize="17sp"
+    android:text="New user? Register Now"
+    android:layout_marginTop="@dimen/loginViewsMargin"
+    android:onClick="onLoginClick"/>
 
 
 <LinearLayout
@@ -111,7 +114,7 @@
         android:layout_height="wrap_content"
         android:text="Use other Methods"
         android:layout_weight="6"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:textAlignment="center"/>
 
     <View
@@ -138,18 +141,7 @@
         android:layout_marginLeft="10dp"/>
 </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginTop="45dp"
-        android:onClick="onLoginClick"
-        android:text="New user? Register Now -->"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        android:layout_gravity="center"
-        android:textStyle="bold" />
 </LinearLayout>
-
     </ScrollView>
 <View
 android:layout_marginTop="20dp"
@@ -159,15 +151,13 @@ android:layout_width="11dp"
 android:layout_height="match_parent"
 android:background="@drawable/ic_side_bg"/>
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="155dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="64dp"
-        android:onClick="onLoginClick"
-        android:src="@drawable/ic_add_img" />
-</RelativeLayout>
-
-
+<ImageView
+android:layout_alignParentBottom="true"
+android:layout_alignParentRight="true"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:src="@drawable/ic_add_img"
+android:layout_marginRight="11dp"
+android:layout_marginBottom="30dp"
+android:onClick="onLoginClick"/>
+    </RelativeLayout>
