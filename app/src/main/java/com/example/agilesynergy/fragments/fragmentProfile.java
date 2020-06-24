@@ -28,7 +28,7 @@ public class fragmentProfile extends Fragment {
     private TextView tvfullname, tvemail,tvphoneno;
 Button btnedit;
     user User;
-
+//sheela
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
