@@ -11,5 +11,4 @@ public interface itemapi {
 
     @GET("item/all")
     Call<List<item>> getAllItem();
-
 }
