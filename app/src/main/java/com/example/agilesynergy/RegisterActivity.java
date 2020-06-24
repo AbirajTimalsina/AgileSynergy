@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.agilesynergy.classes.StrictModeClass;
 import com.example.agilesynergy.classes.userRegister;
 import com.example.agilesynergy.models.qa;
 import com.example.agilesynergy.models.user;
@@ -85,6 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                 editTextEmail.getText().toString(),editTextPassword.getText().toString(),null,qa);
 
         userRegister userRegister= new userRegister(user);
+        StrictModeClass.StrictMode();
         if(userRegister.userRegistration()){
             Intent intent= new Intent(this, MainActivity.class);
             startActivity(intent);

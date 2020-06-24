@@ -4,6 +4,6 @@
     <solid
         android:color="@color/bgBottomNavigation"/>
     <corners
-        android:radius="25dp"/>
+        android:radius="10dp"/>
 
 </shape>

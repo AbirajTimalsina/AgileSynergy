@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.innerFragments.ItemFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <ImageView
+        android:id="@+id/imageviewitempicture"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/common_google_signin_btn_icon_light_normal" />
+
+    <TextView
+        android:id="@+id/textviewitemname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageviewitempicture"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/hello_blank_fragment"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/textviewitempirce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageviewitempicture"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Price"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textviewitemingredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textviewitemname"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="serif-monospace"
+        android:layout_margin="20dp"
+        android:text="@string/hello_blank_fragment"
+        android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+          android:orientation="horizontal"
+            android:layout_below="@id/textviewitemingredient"
+        >
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:text="+"
+                android:textSize="30dp"
+            />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_margin="5dp"
+                android:text="0"/>
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:text="-"
+                android:textSize="30dp"
+                />
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="15dp"
+                android:text="Add to Order"
+                android:textSize="20dp"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
