@@ -15,11 +15,14 @@ import android.widget.TextView;
 import com.example.agilesynergy.R;
 import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.item;
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class ItemFragment extends Fragment implements View.OnClickListener{
 
@@ -27,10 +30,7 @@ public class ItemFragment extends Fragment implements View.OnClickListener{
     private ImageView itemPicture;
     private item item;
     private Button btnAdd,btnSubtract, btnOrder;
-
     private Integer Amount;
-
-    JSONArray itemArray;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,13 +56,9 @@ public class ItemFragment extends Fragment implements View.OnClickListener{
         btnSubtract = view.findViewById(R.id.btnsubtract);
         btnOrder = view.findViewById(R.id.btnorder);
         txtItemAmount=view.findViewById(R.id.txtamount);
-
         btnAdd.setOnClickListener(this);
         btnSubtract.setOnClickListener(this);
         btnOrder.setOnClickListener(this);
-
-//        ViewGroup.LayoutParams parameter = itemPicture.getLayoutParams();
-//        parameter.height=parameter.width;
         itemName.setText(global.item.getItemname());
         itemPrice.setText(global.item.getItemprice());
         itemingredient.setText(global.item.getItemingredient());
@@ -71,7 +67,7 @@ public class ItemFragment extends Fragment implements View.OnClickListener{
         return view;
     }
     private JSONObject itemList=new JSONObject();
-    private JSONArray itemLists= new JSONArray();;
+    private ArrayList<JSONObject> itemLists = new ArrayList<>();
     @Override
     public void onClick(View view) {
         switch(view.getId()){
@@ -85,9 +81,7 @@ public class ItemFragment extends Fragment implements View.OnClickListener{
                 Amount-=1;
                 txtItemAmount.setText(Amount.toString());
                 return;
-
             case R.id.btnorder:
-
                 try {
                     itemList.put("itemid" , global.item.get_id());
                     itemList.put("itemname",global.item.getItemname());
@@ -96,7 +90,8 @@ public class ItemFragment extends Fragment implements View.OnClickListener{
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                itemLists.put(itemList);
+                itemLists.add(itemList);
+                //Creating an object then adding to object and then adding that object to arrayList ....or if you want then JSONArray
                 break;
         }
     }
