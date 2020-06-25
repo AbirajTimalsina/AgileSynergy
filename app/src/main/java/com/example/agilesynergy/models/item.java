@@ -5,9 +5,10 @@ import android.os.Parcelable;
 
 public class item implements Parcelable {
 
-    private String itemname, itemprice, itemingredient, itempicture;
+    private String _id, itemname, itemprice, itemingredient, itempicture;
 
-    public item(String itemname, String itemprice, String itemingredient, String itempicture) {
+    public item(String _id, String itemname, String itemprice, String itemingredient, String itempicture) {
+        this._id = _id;
         this.itemname = itemname;
         this.itemprice = itemprice;
         this.itemingredient = itemingredient;
@@ -15,6 +16,7 @@ public class item implements Parcelable {
     }
 
     protected item(Parcel in) {
+        _id = in.readString();
         itemname = in.readString();
         itemprice = in.readString();
         itemingredient = in.readString();
@@ -32,6 +34,14 @@ public class item implements Parcelable {
             return new item[size];
         }
     };
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
     public String getItemname() {
         return itemname;
@@ -65,7 +75,6 @@ public class item implements Parcelable {
         this.itempicture = itempicture;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -73,6 +82,7 @@ public class item implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(_id);
         parcel.writeString(itemname);
         parcel.writeString(itemprice);
         parcel.writeString(itemingredient);
