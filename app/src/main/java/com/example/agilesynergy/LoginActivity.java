@@ -22,10 +22,8 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText etnumber, etpass;
     Button loginbutton;
-    TextView txtforgot;
+    TextView etforget;
 
-
-    private NotificationManagerCompat notificationManagerCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +36,17 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etnumber = findViewById(R.id.etnumber);
         etpass = findViewById(R.id.etPassword);
-        txtforgot = findViewById(R.id.txtforget);
+        etforget = findViewById(R.id.etforget);
         loginbutton = findViewById(R.id.btnuserlogin);
+        etforget = findViewById(R.id.etforget);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(etnumber.getText())) {
+                if (TextUtils.isEmpty(etnumber.getText())) {
                     etnumber.setError("Please Enter Your Number");
                     etnumber.requestFocus();
                     return;
-                }
-                else if (TextUtils.isEmpty(etpass.getText())) {
+                } else if (TextUtils.isEmpty(etpass.getText())) {
                     etpass.setError("Please Enter Your Password");
                     etpass.requestFocus();
                     return;
@@ -57,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        txtforgot.setOnClickListener(new View.OnClickListener() {
+        etforget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
@@ -67,15 +65,13 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
-
+    
     private void Userlogin() {
         StrictModeClass.StrictMode();
 
         String usrnumber = etnumber.getText().toString();
         String usrpassword = etpass.getText().toString();
         LoginBLL loginBLL = new LoginBLL(usrnumber, usrpassword);
-
 
         if (loginBLL.checkUser(usrnumber, usrpassword)) {
 
