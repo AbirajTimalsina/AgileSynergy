@@ -1,6 +1,7 @@
 package com.example.agilesynergy.fragments;
 
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agilesynergy.R;
@@ -42,7 +45,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
+
     private RecyclerView fastfoodrecycleview, popularfoodrecycleview, newdishesrecycleview, upcomingfoodrecycleview, regularrecycleview;
+
+
 
     private SwipeRefreshLayout swipeLayout;
     //    Models list
@@ -68,6 +74,7 @@ public class HomeFragment extends Fragment {
         fastfoodrecycleview = view.findViewById(R.id.fastfoodrecycleview);
         fastfood();
 
+
         popularfoodrecycleview = view.findViewById(R.id.popularfoodrecycleview);
         popularfood();
 
@@ -80,6 +87,8 @@ public class HomeFragment extends Fragment {
 
         regularrecycleview = view.findViewById(R.id.regularrecycleview);
         regularfood();
+
+
 
         //Refreshing
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
@@ -101,10 +110,8 @@ public class HomeFragment extends Fragment {
         });
 
 
-
         return view;
     }
-
 
 
     private void regularfood() {
@@ -253,4 +260,7 @@ public class HomeFragment extends Fragment {
 
 
     }
+
+
+
 }
