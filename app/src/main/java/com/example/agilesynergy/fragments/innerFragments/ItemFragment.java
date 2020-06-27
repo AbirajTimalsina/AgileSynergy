@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.agilesynergy.R;
 import com.example.agilesynergy.global.global;
@@ -24,13 +25,15 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ItemFragment extends Fragment implements View.OnClickListener{
+public class ItemFragment extends Fragment implements View.OnClickListener {
 
     private TextView itemName, itemPrice, itemingredient, txtItemAmount;
     private ImageView itemPicture;
     private item item;
-    private Button btnAdd,btnSubtract, btnOrder;
+    private Button btnAdd, btnSubtract, btnOrder;
     private Integer Amount;
+
+    private JSONObject itemList = new JSONObject();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class ItemFragment extends Fragment implements View.OnClickListener{
         //bundle arguments not working and onCreate is not being called.
         if (getArguments() != null) {
             item = getArguments().getParcelable("itemObject");
-            String check= item.getItemname();
+            String check = item.getItemname();
         }
     }
 
@@ -55,43 +58,49 @@ public class ItemFragment extends Fragment implements View.OnClickListener{
         btnAdd = view.findViewById(R.id.btnadd);
         btnSubtract = view.findViewById(R.id.btnsubtract);
         btnOrder = view.findViewById(R.id.btnorder);
-        txtItemAmount=view.findViewById(R.id.txtamount);
+        txtItemAmount = view.findViewById(R.id.txtamount);
         btnAdd.setOnClickListener(this);
         btnSubtract.setOnClickListener(this);
         btnOrder.setOnClickListener(this);
         itemName.setText(global.item.getItemname());
         itemPrice.setText(global.item.getItemprice());
         itemingredient.setText(global.item.getItemingredient());
-        String imagePath= global.imagePath+global.item.getItempicture();
-        Picasso.get().load(imagePath).into(itemPicture);;
+        String imagePath = global.imagePath + global.item.getItempicture();
+        Picasso.get().load(imagePath).into(itemPicture);
         return view;
     }
-    private JSONObject itemList=new JSONObject();
-    private ArrayList<JSONObject> itemLists = new ArrayList<>();
+
     @Override
     public void onClick(View view) {
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.btnadd:
-                Amount=Integer.parseInt(txtItemAmount.getText().toString());
-                Amount+=1;
+                Amount = Integer.parseInt(txtItemAmount.getText().toString());
+                Amount += 1;
                 txtItemAmount.setText(Amount.toString());
                 return;
             case R.id.btnsubtract:
-                Amount=Integer.parseInt(txtItemAmount.getText().toString());
-                Amount-=1;
-                txtItemAmount.setText(Amount.toString());
+                Amount = Integer.parseInt(txtItemAmount.getText().toString());
+                while (Amount > 0) {
+                    Amount -= 1;
+                    txtItemAmount.setText(Amount.toString());
+                }
                 return;
             case R.id.btnorder:
+                if (txtItemAmount.getText().toString().equals("0")) {
+                    Toast.makeText(getActivity(), "Please Select Amount.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 try {
-                    itemList.put("itemid" , global.item.get_id());
-                    itemList.put("itemname",global.item.getItemname());
-                    itemList.put("itemprice",global.item.getItemprice());
-                    itemList.put("itemamount",txtItemAmount.getText().toString());
+                    itemList.put("itemid", global.item.get_id());
+                    itemList.put("itemname", global.item.getItemname());
+                    itemList.put("itemprice", global.item.getItemprice());
+                    itemList.put("itemamount", txtItemAmount.getText().toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                itemLists.add(itemList);
-                //Creating an object then adding to object and then adding that object to arrayList ....or if you want then JSONArray
+                global.ItemLists.add(itemList);
+
                 break;
         }
     }

@@ -5,12 +5,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.agilesynergy.classes.StrictModeClass;
+import com.example.agilesynergy.classes.checkoutService;
 import com.example.agilesynergy.fragments.FavouriteFragment;
 import com.example.agilesynergy.fragments.HomeFragment;
 import com.example.agilesynergy.fragments.MenuFragment;
@@ -19,20 +22,15 @@ import com.example.agilesynergy.helper.BottomNavigationHider;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
-
-
-//    abcdef
-    private ActionBar toolbar;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = getSupportActionBar();
-
-
+        checkoutService abc= new checkoutService(this, this.getSupportFragmentManager());
+        abc.startService();
         StrictModeClass.StrictMode();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -57,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new HomeFragment();
                     loadFragment(fragment);
                     return true;
-
                 case R.id.navigation_menu:
                     fragment = new MenuFragment();
                     loadFragment(fragment);
@@ -71,11 +68,9 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(fragment);
                     return true;
             }
-
             return false;
         }
     };
-
 
     private void loadFragment(Fragment fragment) {
         // load fragment
