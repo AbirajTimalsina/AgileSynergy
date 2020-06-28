@@ -65,7 +65,7 @@ RecyclerAdapter recyclerAdapter;
 
                 FragmentManager fm = getActivity().getSupportFragmentManager();
 
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), itemResponse.body(), fm);
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), itemResponse.body(),null, fm, "menu");
                 recyclerView.setAdapter(recyclerAdapter);
                 LinearLayoutManager layoutManager
                         = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
