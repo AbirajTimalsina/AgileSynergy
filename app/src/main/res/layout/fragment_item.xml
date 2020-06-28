@@ -57,6 +57,7 @@
             android:layout_below="@id/textviewitemingredient"
         >
             <Button
+                android:id="@+id/btnadd"
                 android:layout_width="50dp"
                 android:layout_height="70dp"
                 android:text="+"
@@ -64,6 +65,7 @@
             />
 
             <TextView
+                android:id="@+id/txtamount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
@@ -71,12 +73,14 @@
                 android:text="0"/>
 
             <Button
+                android:id="@+id/btnsubtract"
                 android:layout_width="50dp"
                 android:layout_height="70dp"
                 android:text="-"
                 android:textSize="30dp"
                 />
             <Button
+                android:id="@+id/btnorder"
                 android:layout_width="200dp"
                 android:layout_height="70dp"
                 android:layout_marginLeft="15dp"
