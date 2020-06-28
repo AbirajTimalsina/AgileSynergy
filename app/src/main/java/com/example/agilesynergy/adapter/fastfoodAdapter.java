@@ -106,10 +106,12 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
                     return;
                 case R.id.btndes:
                     Amount = Integer.parseInt(txtquanity.getText().toString());
+                       if(Amount > 0){
                         Amount -= 1;
                         txtquanity.setText(Amount.toString());
+                       }
                     return;
-                case R.id.txtquanity:
+                case R.id.btncart:
                     if (txtquanity.getText().toString().equals("0")) {
                         Toast.makeText(view.getContext(), "Please Select Amount.", Toast.LENGTH_SHORT).show();
                         return;
