@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -25,17 +27,20 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> implements Filterable {
 
     Context mcontext;
     private List<item> listItems;
+    List<item> itemFilter;
     FragmentManager fm;
 
     public RecyclerAdapter(Context mcontext, List<item> listItems, FragmentManager fm) {
         this.mcontext = mcontext;
         this.listItems = listItems;
+        this.itemFilter=listItems;
         this.fm = fm;
     }
 
@@ -50,13 +55,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
 
+    System.out.println(position +"");
 
-        final item item = listItems.get(position);
+        String imagePath = global.imagePath + itemFilter.get(position).getItempicture();
+        holder.itemname.setText(itemFilter.get(position) .getItemname());
+        holder.itemprice.setText(itemFilter.get(position).getItemprice());
+        holder.itemingredient.setText(itemFilter.get(position).getItemingredient());
 
-        holder.itemname.setText(item.getItemname());
-        holder.itemprice.setText(item.getItemprice());
-        holder.itemingredient.setText(item.getItemingredient());
-        String imagePath = global.imagePath + item.getItempicture();
+
+        final item item = itemFilter.get(position);
+
+
         Picasso.get().load(imagePath).into(holder.imageitempicture);
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -78,8 +87,43 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     @Override
     public int getItemCount() {
-        return listItems.size();
+        return itemFilter.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String Key = constraint.toString();
+                if(Key.isEmpty()){
+                    itemFilter= listItems;
+                }else {
+                    List<item> itemArrayList= new ArrayList<>();
+                    for(item row: listItems){
+                        if(row.getItemname().toLowerCase().contains(Key.toLowerCase())){
+                            itemArrayList.add(row);
+                        }
+
+                    }
+                    itemFilter=itemArrayList;
+                }
+
+                FilterResults filterResults= new FilterResults();
+                filterResults.values= itemFilter;
+                return filterResults;
+
+
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+               itemFilter= (List<item>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
