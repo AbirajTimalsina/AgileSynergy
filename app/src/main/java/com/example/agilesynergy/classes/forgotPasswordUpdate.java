@@ -24,13 +24,11 @@ public class forgotPasswordUpdate {
         this.password = password;
     }
 
-<<<<<<<<< Temporary merge branch 1
+
     public forgotPasswordUpdate(userForgotPassword passwordForgot) {
     }
 
 
-=========
->>>>>>>>> Temporary merge branch 2
     public Boolean UpdateForgottenPassword() {
 
         userapi userapi = global.getInstance().create(userapi.class);
