@@ -25,7 +25,9 @@ public class checkoutService extends Service {
 
     Activity mActivity;
     FragmentManager fm;
+   //context and activity
 
+    //getcontext   getactivity.
     public checkoutService(Activity mActivity, FragmentManager fm) {
         this.mActivity = mActivity;
         this.fm=fm;
@@ -44,10 +46,10 @@ public class checkoutService extends Service {
             @Override
             public void run() {
                 if (global.ItemLists.size() == 0) {
-                    btnCheckout.setVisibility(View.GONE);
+                    btnCheckout.setVisibility(View.GONE); //if list 0 then don't show me
                 }
                 else if (global.ItemLists.size() > 0) {
-                    btnCheckout.setVisibility(View.VISIBLE);
+                    btnCheckout.setVisibility(View.VISIBLE); //if list is more than zero then show me.
                     btnCheckout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -60,9 +62,4 @@ public class checkoutService extends Service {
         };
         handler.postDelayed(runnable, 500);
     }
-
-    public void checkoutFragment(){
-
-    }
-
 }

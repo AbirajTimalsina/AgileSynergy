@@ -17,9 +17,7 @@ public class global {
     public static String imagePath = Base_URL + "uploads/" ;
 
     public static item item;
-    public static ArrayList<JSONObject> ItemLists= new ArrayList<>();
-
-
+    public static ArrayList<JSONObject> ItemLists= new ArrayList<>(); //0
 
     public static Retrofit getInstance() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -27,6 +25,5 @@ public class global {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit;
-
     }
 }

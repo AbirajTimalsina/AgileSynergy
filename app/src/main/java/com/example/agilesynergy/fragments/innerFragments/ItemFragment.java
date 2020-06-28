@@ -32,7 +32,6 @@ public class ItemFragment extends Fragment implements View.OnClickListener {
     private item item;
     private Button btnAdd, btnSubtract, btnOrder;
     private Integer Amount;
-
     private JSONObject itemList = new JSONObject();
 
     @Override
@@ -80,7 +79,7 @@ public class ItemFragment extends Fragment implements View.OnClickListener {
                 return;
             case R.id.btnsubtract:
                 Amount = Integer.parseInt(txtItemAmount.getText().toString());
-                while (Amount > 0) {
+                if (Amount > 0) {
                     Amount -= 1;
                     txtItemAmount.setText(Amount.toString());
                 }
@@ -90,7 +89,6 @@ public class ItemFragment extends Fragment implements View.OnClickListener {
                     Toast.makeText(getActivity(), "Please Select Amount.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 try {
                     itemList.put("itemid", global.item.get_id());
                     itemList.put("itemname", global.item.getItemname());
@@ -100,7 +98,6 @@ public class ItemFragment extends Fragment implements View.OnClickListener {
                     e.printStackTrace();
                 }
                 global.ItemLists.add(itemList);
-
                 break;
         }
     }
