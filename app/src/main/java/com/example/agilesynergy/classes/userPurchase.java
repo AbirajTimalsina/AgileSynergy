@@ -22,6 +22,7 @@ public class userPurchase {
 
             Call<JSONObject> userCall = userapi.userPurchase(global.token, userCustomObj);
 
+            //Not working for now.
             Response<JSONObject> userResponse = userCall.execute();
             if (userResponse.isSuccessful()) {
                 return true;
