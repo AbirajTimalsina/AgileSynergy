@@ -13,12 +13,21 @@
         android:fontFamily="serif-monospace"
         android:text="CHECKOUT "
         android:textSize="40dp" />
+    <Button
+        android:layout_below="@+id/defaulttextview01"
+        android:id="@+id/purchase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Purchase or something"
+        android:background="@drawable/button_background_blue"
+        android:layout_centerHorizontal="true"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewcheckout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/defaulttextview01"
+        android:layout_below="@id/purchase"
         android:layout_marginTop="10dp" />
 
 </RelativeLayout>
