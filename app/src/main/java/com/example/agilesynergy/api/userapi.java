@@ -4,6 +4,11 @@ import com.example.agilesynergy.models.user;
 import com.example.agilesynergy.models.userForgotPassword;
 import com.example.agilesynergy.response.ResponseUser;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -27,4 +32,7 @@ public interface userapi {
     @FormUrlEncoded
     @POST("users/login")
     Call<ResponseUser> checklogin(@Field("phonenumber") String phonenumber, @Field("password") String password);
+
+    @PUT("users/purchaseupdate")
+    Call<JSONObject> userPurchase(@Header("Authorization") String token, @Body JSONObject CustomUserObj);
 }

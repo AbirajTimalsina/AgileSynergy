@@ -3,7 +3,7 @@ package com.example.agilesynergy.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class item implements Parcelable {
+public class item  {
 
     private String _id, itemname, itemprice, itemingredient, itempicture;
 
@@ -22,18 +22,6 @@ public class item implements Parcelable {
         itemingredient = in.readString();
         itempicture = in.readString();
     }
-
-    public static final Creator<item> CREATOR = new Creator<item>() {
-        @Override
-        public item createFromParcel(Parcel in) {
-            return new item(in);
-        }
-
-        @Override
-        public item[] newArray(int size) {
-            return new item[size];
-        }
-    };
 
     public String get_id() {
         return _id;
@@ -75,17 +63,4 @@ public class item implements Parcelable {
         this.itempicture = itempicture;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(_id);
-        parcel.writeString(itemname);
-        parcel.writeString(itemprice);
-        parcel.writeString(itemingredient);
-        parcel.writeString(itempicture);
-    }
 }

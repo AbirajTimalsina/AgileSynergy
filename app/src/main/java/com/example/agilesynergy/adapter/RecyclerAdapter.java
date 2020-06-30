@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -30,9 +31,9 @@ import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
 
-    private Context mcontext;
+    private Context mcontext;  //Maybe we can find some use in the future?
     private List<item> listItems;
-    private ArrayList<JSONObject> listObjects = new ArrayList<>();
+    private ArrayList<JSONObject> listObjects;
     private FragmentManager fm;
     private String location_Fragment;
 
@@ -63,7 +64,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewHolder holder, final int position) {
 
         switch (location_Fragment) {
             case "menu":
@@ -79,14 +80,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     @Override
                     public void onClick(View view) {
 
-                        //bundle Arguments is not working.
-                        ItemFragment itemFragment = new ItemFragment();
-                        Bundle bundle = new Bundle();
-                        bundle.putParcelable("itemObject", item);
-                        itemFragment.setArguments(bundle);
                         global.item = item;
-
-
                         fm.beginTransaction().replace(R.id.frame_container, new ItemFragment()).addToBackStack(null).commit();
                     }
                 });
@@ -94,14 +88,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             case "checkout":
 
                 JSONObject items = listObjects.get(position);
-                holder.checkoutItemName.setText(items.optString("itemname").toString());
-                holder.checkoutItemPrice.setText(items.optString("itemprice").toString());
-                holder.checkoutItemAmount.setText(items.optString("itemamount").toString());
+                holder.checkoutItemName.setText(items.optString("itemname"));
+                holder.checkoutItemPrice.setText(items.optString("itemprice"));
+                holder.checkoutItemAmount.setText(items.optString("itemamount"));
                 Integer Price, Amount, afterAmount;
-                Price = Integer.parseInt(items.optString("itemprice").toString());
-                Amount = Integer.parseInt(items.optString("itemamount").toString());
+                Price = Integer.parseInt(items.optString("itemprice"));
+                Amount = Integer.parseInt(items.optString("itemamount"));
                 afterAmount = Price * Amount;
                 holder.checkoutItemAfterAmount.setText(Integer.toString(afterAmount));
+
+                holder.btnCheckoutDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        listObjects.remove(position);
+                        global.ItemLists.remove(position);
+                        notifyDataSetChanged();
+                    }
+                });
                 break;
         }
 
@@ -132,6 +135,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         //Checkout Elements
         TextView checkoutItemName, checkoutItemPrice, checkoutItemAmount, checkoutItemAfterAmount;
+        Button btnCheckoutDelete;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -149,6 +153,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     checkoutItemPrice = itemView.findViewById(R.id.txtcheckoutitemprice);
                     checkoutItemAmount = itemView.findViewById(R.id.txtcheckoutitemamount);
                     checkoutItemAfterAmount = itemView.findViewById(R.id.txtcheckoutitemafteramount);
+                    btnCheckoutDelete = itemView.findViewById(R.id.btncheckoutitemdelete);
                     break;
             }
 

@@ -35,17 +35,6 @@ public class ItemFragment extends Fragment implements View.OnClickListener {
     private JSONObject itemList = new JSONObject();
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //bundle arguments not working and onCreate is not being called.
-        if (getArguments() != null) {
-            item = getArguments().getParcelable("itemObject");
-            String check = item.getItemname();
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment

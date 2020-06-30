@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class global {
     public static final String Base_URL = "http://10.0.2.2:3000/";
     //public static final String Base_URL = "http://192.168.1.71:3000/";//localhost ip address
-    public static String token = "Bearer ";
+    public static String token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZWU0NzIwYTdiZWJmYTVhZjhmOTRkZDYiLCJpYXQiOjE1OTM1MTg5MjZ9.Dd6ry6K6ulfHJpqqcmS2soRKpXXL4ib0tWBLfBrTo0M";
     public static String imagePath = Base_URL + "uploads/" ;
 
     public static item item;
