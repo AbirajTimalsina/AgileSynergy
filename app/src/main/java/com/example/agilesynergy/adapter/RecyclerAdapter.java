@@ -68,7 +68,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         switch (location_Fragment) {
             case "menu":
                 final item item = listItems.get(position);
-
                 holder.itemname.setText(item.getItemname());
                 holder.itemprice.setText(item.getItemprice());
                 holder.itemingredient.setText(item.getItemingredient());
@@ -78,15 +77,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                 holder.linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
                         //bundle Arguments is not working.
                         ItemFragment itemFragment = new ItemFragment();
                         Bundle bundle = new Bundle();
-                        bundle.putParcelable("itemObject", item);
                         itemFragment.setArguments(bundle);
                         global.item = item;
-
-
                         fm.beginTransaction().replace(R.id.frame_container, new ItemFragment()).addToBackStack(null).commit();
                     }
                 });

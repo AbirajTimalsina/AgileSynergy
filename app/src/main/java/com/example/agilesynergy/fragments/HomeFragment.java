@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ import com.example.agilesynergy.models.upcomingfoodModel;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +49,6 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
 
     private RecyclerView fastfoodrecycleview, popularfoodrecycleview, newdishesrecycleview, upcomingfoodrecycleview, regularrecycleview;
-
 
 
     private SwipeRefreshLayout swipeLayout;
@@ -63,6 +64,7 @@ public class HomeFragment extends Fragment {
     newdishesAdapter newdishesAdapter;
     upcomingfoodAdapter upcomingfoodAdapter;
     regularfoodAdapter regularfoodAdapter;
+
 
 
     @Override
@@ -87,7 +89,6 @@ public class HomeFragment extends Fragment {
 
         regularrecycleview = view.findViewById(R.id.regularrecycleview);
         regularfood();
-
 
 
         //Refreshing
@@ -245,9 +246,9 @@ public class HomeFragment extends Fragment {
                 }
 
                 List<fastfoodModel> fastfoodModelList1 = response.body();
-                fastfoodAdapter = new fastfoodAdapter(getContext(), fastfoodModelList1);
+                fastfoodAdapter = new fastfoodAdapter(getContext(), fastfoodModelList1, null, "home");
                 fastfoodrecycleview.setAdapter(fastfoodAdapter);
-                fastfoodrecycleview.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                fastfoodrecycleview.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
 
             }
 
@@ -263,4 +264,5 @@ public class HomeFragment extends Fragment {
 
 
 
-}
+
+    }
