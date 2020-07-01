@@ -246,7 +246,7 @@ public class HomeFragment extends Fragment {
                 }
 
                 List<fastfoodModel> fastfoodModelList1 = response.body();
-                fastfoodAdapter = new fastfoodAdapter(getContext(), fastfoodModelList1, null, "home");
+                fastfoodAdapter = new fastfoodAdapter(getContext(), fastfoodModelList1);
                 fastfoodrecycleview.setAdapter(fastfoodAdapter);
                 fastfoodrecycleview.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
 
