@@ -1,6 +1,7 @@
 package com.example.agilesynergy.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agilesynergy.R;
+import com.example.agilesynergy.fragments.HomeFragment;
 import com.example.agilesynergy.fragments.MenuFragment;
 import com.example.agilesynergy.fragments.innerFragments.ItemFragment;
 import com.example.agilesynergy.global.global;
@@ -101,13 +103,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     @Override
                     public void onClick(View view) {
                         listObjects.remove(position);
-                        global.ItemLists.remove(position);
+                        //global.itemlists and listobjects are two different variable created in different class yet
+                        // when executed on 1 the other shows same reaction?
+
                         notifyDataSetChanged();
+                        if (listObjects.size() == 0) {
+                            fm.beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
+                        }
                     }
                 });
                 break;
         }
-
     }
 
     int listCount = 0;

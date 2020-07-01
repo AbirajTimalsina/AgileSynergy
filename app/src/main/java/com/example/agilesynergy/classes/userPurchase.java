@@ -19,7 +19,6 @@ public class userPurchase {
         try {
             userCustomObj.put("purchase", global.ItemLists);
             userapi userapi = global.getInstance().create(userapi.class);
-
             Call<JSONObject> userCall = userapi.userPurchase(global.token, userCustomObj);
 
             //Not working for now.

@@ -3,6 +3,7 @@ package com.example.agilesynergy.fragments.innerFragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,10 +44,12 @@ public class checkoutFragment extends Fragment {
             }
         });
 
+        FragmentManager fm= getActivity().getSupportFragmentManager();
+
         recyclerView = view.findViewById(R.id.recyclerviewcheckout);
         try {
             RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), null,
-                    global.ItemLists, null, "checkout");
+                    global.ItemLists, fm, "checkout");
             recyclerView.setAdapter(recyclerAdapter);
             LinearLayoutManager layoutManager
                     = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
