@@ -1,5 +1,6 @@
 package com.example.agilesynergy.global;
 
+import com.example.agilesynergy.models.fastfoodModel;
 import com.example.agilesynergy.models.item;
 import com.example.agilesynergy.models.user;
 
@@ -17,6 +18,7 @@ public class global {
     public static String imagePath = Base_URL + "uploads/" ;
 
     public static item item;
+    public static fastfoodModel fastfoodModel;
     public static ArrayList<JSONObject> ItemLists= new ArrayList<>(); //0
 
     public static Retrofit getInstance() {

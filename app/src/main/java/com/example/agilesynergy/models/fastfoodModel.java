@@ -2,13 +2,19 @@ package com.example.agilesynergy.models;
 
 public class fastfoodModel {
 
-    private String fastfoodname,fastfoodprice,fastfoodpicture;
+    private String _id, fastfoodname, fastfoodprice, fastfoodpicture;
 
-    public fastfoodModel(String fastfoodname, String fastfoodprice, String fastfoodpicture) {
+
+    public fastfoodModel(String _id, String fastfoodname, String fastfoodprice, String fastfoodpicture) {
+        this._id = _id;
         this.fastfoodname = fastfoodname;
         this.fastfoodprice = fastfoodprice;
         this.fastfoodpicture = fastfoodpicture;
     }
+
+    public String get_id() { return _id; }
+
+    public void set_id(String _id) { this._id = _id; }
 
     public String getFastfoodname() {
         return fastfoodname;

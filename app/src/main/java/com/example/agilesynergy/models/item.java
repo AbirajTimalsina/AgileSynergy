@@ -15,13 +15,6 @@ public class item  {
         this.itempicture = itempicture;
     }
 
-    protected item(Parcel in) {
-        _id = in.readString();
-        itemname = in.readString();
-        itemprice = in.readString();
-        itemingredient = in.readString();
-        itempicture = in.readString();
-    }
 
     public String get_id() {
         return _id;
@@ -62,5 +55,6 @@ public class item  {
     public void setItempicture(String itempicture) {
         this.itempicture = itempicture;
     }
+
 
 }
