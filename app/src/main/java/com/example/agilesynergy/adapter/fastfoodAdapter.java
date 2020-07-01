@@ -83,7 +83,7 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
             }
         });
     }
-
+//ggffgfgg
 
     @Override
     public int getItemCount() {
