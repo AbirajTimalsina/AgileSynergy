@@ -86,7 +86,7 @@ public class ItemFragment extends Fragment implements View.OnClickListener {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                global.ItemLists.add(itemList);
+                global.ItemLists.add(itemList); //onclick the data is saved to global static variable
                 break;
         }
     }

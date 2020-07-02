@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -33,6 +34,6 @@ public interface userapi {
     @POST("users/login")
     Call<ResponseUser> checklogin(@Field("phonenumber") String phonenumber, @Field("password") String password);
 
-    @PUT("users/purchaseupdate")
-    Call<JSONObject> userPurchase(@Header("Authorization") String token, @Body JSONObject CustomUserObj);
+    @PUT("users/purchaseupdate") //Return type Call function so we can use it on offers features.
+    Call<JSONObject> userPurchase(@Header("Authorization") String token, @Body ArrayList<JSONObject> itemLists);
 }

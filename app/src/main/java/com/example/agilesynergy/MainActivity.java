@@ -3,6 +3,7 @@ package com.example.agilesynergy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -11,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+
 
 import com.example.agilesynergy.classes.StrictModeClass;
 import com.example.agilesynergy.classes.checkoutService;
@@ -22,12 +24,13 @@ import com.example.agilesynergy.helper.BottomNavigationHider;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar= findViewById(R.id.toolbar);
 
         checkoutService abc= new checkoutService(this, this.getSupportFragmentManager());
         abc.startService();
