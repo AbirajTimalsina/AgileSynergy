@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -21,7 +22,7 @@ import com.example.agilesynergy.global.global;
 public class checkoutService extends Service {
     Handler handler;
     Runnable runnable;
-    Button btnCheckout;
+    ImageButton btnCheckout;
 
     Activity mActivity;
     FragmentManager fm;
