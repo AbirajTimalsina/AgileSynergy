@@ -61,8 +61,6 @@ public class newdishesAdapter extends RecyclerView.Adapter<newdishesAdapter.newd
         TextView newdishesname,newdishesprice;
         public newdishesviewHolder(@NonNull View itemView) {
             super(itemView);
-
-
             newdishesimage = itemView.findViewById(R.id.newdishesimage);
             newdishesname = itemView.findViewById(R.id.newdishesname);
             newdishesprice = itemView.findViewById(R.id.newdishesprice);
