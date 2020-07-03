@@ -57,6 +57,10 @@ public class regularfoodAdapter extends RecyclerView.Adapter<regularfoodAdapter.
         holder.btncart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (holder.txtquanity.getText().toString().equals("0")) {
+                    Toast.makeText(mcontext, "Please Select Amount.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 try {
                     regularfoodObject.put("itemname", regularfoodModel.getRegularfoodname());
                     regularfoodObject.put("itemprice", regularfoodModel.getRegularfoodprice());
@@ -108,11 +112,7 @@ public class regularfoodAdapter extends RecyclerView.Adapter<regularfoodAdapter.
                     Amount -= 1;
                     txtquanity.setText(Amount.toString());
                     return;
-                case R.id.btncart:
-                    if (txtquanity.getText().toString().equals("0")) {
-                        Toast.makeText(view.getContext(), "Please Select Amount.", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+
             }
         }
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,8 +29,8 @@ public class popularfoodAdapter extends RecyclerView.Adapter<popularfoodAdapter.
     List<popularfoodModel> popularfoodModelList;
     private Integer Amount;
     JSONObject popularfoodObject = new JSONObject();
-    public popularfoodAdapter(Context mcontext,  List<popularfoodModel> popularfoodModelList)
-    {
+
+    public popularfoodAdapter(Context mcontext, List<popularfoodModel> popularfoodModelList) {
         this.mcontext = mcontext;
         this.popularfoodModelList = popularfoodModelList;
     }
@@ -39,16 +40,16 @@ public class popularfoodAdapter extends RecyclerView.Adapter<popularfoodAdapter.
     @Override
     public popularfoodviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_popularfood,parent,false);
+                .inflate(R.layout.layout_popularfood, parent, false);
         return new popularfoodviewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final popularfoodviewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final popularfoodviewHolder holder, final int position) {
 
         final popularfoodModel popularfoodModel = popularfoodModelList.get(position);
         String imgpath = global.imagePath + popularfoodModel.getPopularfoodpicture();
-        Log.e("Image path is :" ,"Image path is" + imgpath);
+        Log.e("Image path is :", "Image path is" + imgpath);
         Picasso.get().load(imgpath).into(holder.popularfoodimage);
         holder.popularfoodname.setText(popularfoodModel.getPopularfoodname());
         holder.popularfoodprice.setText(popularfoodModel.getPopularfoodprice());
@@ -73,10 +74,15 @@ public class popularfoodAdapter extends RecyclerView.Adapter<popularfoodAdapter.
         holder.btncart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (holder.txtquanity.getText().toString().equals("0")) {
+                    Toast.makeText(mcontext, "Please Select Amount.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 try {
-                    popularfoodObject.put("itemname",popularfoodModel.getPopularfoodname());
-                    popularfoodObject.put("itemprice",popularfoodModel.getPopularfoodprice());
-                    popularfoodObject.put("itemamount",holder.txtquanity.getText());
+                    popularfoodObject.put("itemname", popularfoodModel.getPopularfoodname());
+                    popularfoodObject.put("itemprice", popularfoodModel.getPopularfoodprice());
+                    popularfoodObject.put("itemamount", holder.txtquanity.getText());
                     global.ItemLists.add(popularfoodObject);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -91,10 +97,10 @@ public class popularfoodAdapter extends RecyclerView.Adapter<popularfoodAdapter.
         return popularfoodModelList.size();
     }
 
-    public class popularfoodviewHolder extends RecyclerView.ViewHolder{
+    public class popularfoodviewHolder extends RecyclerView.ViewHolder {
 
         ImageView popularfoodimage;
-        TextView popularfoodname,popularfoodprice,txtquanity;
+        TextView popularfoodname, popularfoodprice, txtquanity;
         private Button btnadd, btnminus, btncart;
 
         public popularfoodviewHolder(@NonNull View itemView) {
