@@ -24,6 +24,7 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,6 +35,7 @@ import java.util.Random;
 
 public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfoodViewHolder> {
 
+    TextView txtquanity;
     Context mcontext;
     List<fastfoodModel> fastfoodModelList;
     JSONObject fastfoodObject = new JSONObject();
@@ -72,14 +74,20 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
         holder.btncart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (holder.txtquanity.getText().toString().equals("0")) {
+                    Toast.makeText(mcontext, "Please Select Amount.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 try {
-                    fastfoodObject.put("itemname",fastfoodModel123.getFastfoodname());
-                    fastfoodObject.put("itemprice",fastfoodModel123.getFastfoodprice());
-                    fastfoodObject.put("itemamount",holder.txtquanity.getText());
+                    fastfoodObject.put("itemname", fastfoodModel123.getFastfoodname());
+                    fastfoodObject.put("itemprice", fastfoodModel123.getFastfoodprice());
+                    fastfoodObject.put("itemamount", holder.txtquanity.getText());
                     global.ItemLists.add(fastfoodObject);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         });
     }
@@ -126,11 +134,7 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
                     Amount -= 1;
                     txtquanity.setText(Amount.toString());
                     return;
-                case R.id.btncart:
-                    if (txtquanity.getText().toString().equals("0")) {
-                        Toast.makeText(view.getContext(), "Please Select Amount.", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+
 
             }
         }
