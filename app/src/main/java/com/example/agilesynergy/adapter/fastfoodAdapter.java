@@ -56,7 +56,7 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull fastfoodViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final fastfoodViewHolder holder, int position) {
 
         final fastfoodModel fastfoodModel123 = fastfoodModelList.get(position);
 
@@ -75,7 +75,7 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
                 try {
                     fastfoodObject.put("itemname",fastfoodModel123.getFastfoodname());
                     fastfoodObject.put("itemprice",fastfoodModel123.getFastfoodprice());
-                    fastfoodObject.put("itemamount","2");
+                    fastfoodObject.put("itemamount",holder.txtquanity.getText());
                     global.ItemLists.add(fastfoodObject);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -83,7 +83,6 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
             }
         });
     }
-//ggffgfgg
 
     @Override
     public int getItemCount() {
