@@ -87,9 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginBLL loginBLL = new LoginBLL(usrnumber, usrpassword);
 
 
-        if (loginBLL.checkUser(usrnumber, usrpassword)) {
-
-
+        if (loginBLL.checkUser()) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             Toast.makeText(LoginActivity.this, "Redirecting... ", Toast.LENGTH_SHORT).show();
             startActivity(intent);
@@ -103,7 +101,6 @@ public class LoginActivity extends AppCompatActivity {
             etnumber.setVisibility(View.VISIBLE);
             etnumber.setBackgroundColor(Color.BLUE);
             etpass.setBackgroundColor(Color.BLUE);
-
         }
 
     }
