@@ -12,7 +12,6 @@ import com.example.agilesynergy.R;
 
 public class FavouriteFragment extends Fragment {
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
