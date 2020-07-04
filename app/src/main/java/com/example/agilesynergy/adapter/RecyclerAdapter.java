@@ -1,10 +1,12 @@
 package com.example.agilesynergy.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -17,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agilesynergy.R;
+import com.example.agilesynergy.fragments.HomeFragment;
 import com.example.agilesynergy.fragments.MenuFragment;
 import com.example.agilesynergy.fragments.innerFragments.ItemFragment;
 import com.example.agilesynergy.global.global;
@@ -30,9 +33,9 @@ import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
 
-    private Context mcontext;
+    private Context mcontext;  //Maybe we can find some use in the future?
     private List<item> listItems;
-    private ArrayList<JSONObject> listObjects = new ArrayList<>();
+    private ArrayList<JSONObject> listObjects;
     private FragmentManager fm;
     private String location_Fragment;
 
@@ -63,11 +66,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewHolder holder, final int position) {
 
         switch (location_Fragment) {
             case "menu":
                 final item item = listItems.get(position);
+
                 holder.itemname.setText(item.getItemname());
                 holder.itemprice.setText(item.getItemprice());
                 holder.itemingredient.setText(item.getItemingredient());
@@ -77,10 +81,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                 holder.linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //bundle Arguments is not working.
-                        ItemFragment itemFragment = new ItemFragment();
-                        Bundle bundle = new Bundle();
-                        itemFragment.setArguments(bundle);
+
                         global.item = item;
                         fm.beginTransaction().replace(R.id.frame_container, new ItemFragment()).addToBackStack(null).commit();
                     }
@@ -89,17 +90,30 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             case "checkout":
 
                 JSONObject items = listObjects.get(position);
-                holder.checkoutItemName.setText(items.optString("itemname").toString());
-                holder.checkoutItemPrice.setText(items.optString("itemprice").toString());
-                holder.checkoutItemAmount.setText(items.optString("itemamount").toString());
+                holder.checkoutItemName.setText(items.optString("itemname"));
+                holder.checkoutItemPrice.setText(items.optString("itemprice"));
+                holder.checkoutItemAmount.setText(items.optString("itemamount"));
                 Integer Price, Amount, afterAmount;
-                Price = Integer.parseInt(items.optString("itemprice").toString());
-                Amount = Integer.parseInt(items.optString("itemamount").toString());
+                Price = Integer.parseInt(items.optString("itemprice"));
+                Amount = Integer.parseInt(items.optString("itemamount"));
                 afterAmount = Price * Amount;
                 holder.checkoutItemAfterAmount.setText(Integer.toString(afterAmount));
+
+                holder.btnCheckoutDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        listObjects.remove(position);
+                        //global.itemlists and listobjects are two different variable created in different class yet
+                        // when executed on 1 the other shows same reaction?
+
+                        notifyDataSetChanged();
+                        if (listObjects.size() == 0) {
+                            fm.beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
+                        }
+                    }
+                });
                 break;
         }
-
     }
 
     int listCount = 0;
@@ -127,6 +141,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         //Checkout Elements
         TextView checkoutItemName, checkoutItemPrice, checkoutItemAmount, checkoutItemAfterAmount;
+        Button btnCheckoutDelete;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -144,6 +159,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     checkoutItemPrice = itemView.findViewById(R.id.txtcheckoutitemprice);
                     checkoutItemAmount = itemView.findViewById(R.id.txtcheckoutitemamount);
                     checkoutItemAfterAmount = itemView.findViewById(R.id.txtcheckoutitemafteramount);
+                    btnCheckoutDelete = itemView.findViewById(R.id.btncheckoutitemdelete);
                     break;
             }
 
