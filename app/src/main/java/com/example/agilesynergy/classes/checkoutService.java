@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.agilesynergy.R;
@@ -54,7 +55,8 @@ public class checkoutService extends Service {
                     btnCheckout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            fm.beginTransaction().replace(R.id.frame_container, new checkoutFragment()).addToBackStack(null).commit();
+                            fm.beginTransaction().replace(R.id.frame_container, new checkoutFragment()).addToBackStack(null).
+                                    attach(new checkoutFragment()).detach(new checkoutFragment()).commit();
                         }
                     });
                 }
