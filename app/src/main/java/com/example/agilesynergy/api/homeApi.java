@@ -12,7 +12,7 @@ import retrofit2.http.GET;
 
 public interface homeApi {
 
-    @GET("popularfood")
+    @GET("popularfood/all")
     Call<List<popularfoodModel>> getpopularfooddetails();
 
     @GET("newdishesfood")
@@ -23,7 +23,5 @@ public interface homeApi {
 
     @GET("regularfood")
     Call<List<regularfoodModel>> getregularfooddetails();
-
-
 
 }

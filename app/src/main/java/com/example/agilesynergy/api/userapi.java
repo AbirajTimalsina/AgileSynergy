@@ -6,6 +6,8 @@ import com.example.agilesynergy.response.ResponseUser;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -31,7 +33,7 @@ public interface userapi {
     Call<ResponseUser> checklogin(@Field("phonenumber") String phonenumber, @Field("password") String password);
 
     @PUT("users/purchaseupdate")
-    Call<JSONObject> userPurchase(@Header("Authorization") String token, @Body JSONObject CustomUserObj);
+    Call<JSONObject> userPurchase(@Header("Authorization") String token, @Body ArrayList<JSONObject> CustomUserObj);
 
     @GET("users/me")
     Call<user> getUserDetails(@Header("Authorization") String token);
