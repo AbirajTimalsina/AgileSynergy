@@ -6,6 +6,7 @@ import com.example.agilesynergy.models.user;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -18,6 +19,7 @@ public class global {
     public static String imagePath = Base_URL + "uploads/";
 
     public static item item;
+    public static List<item> itemList;
     public static ArrayList<JSONObject> ItemLists= new ArrayList<>(); //0
 
     public static Retrofit getInstance() {

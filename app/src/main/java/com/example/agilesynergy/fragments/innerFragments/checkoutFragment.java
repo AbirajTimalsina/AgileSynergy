@@ -22,7 +22,7 @@ import com.example.agilesynergy.adapter.RecyclerAdapter;
 public class checkoutFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private Button btnPurchase;
+    private Button purchase;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,9 +31,9 @@ public class checkoutFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_checkout, container, false);
 
-        btnPurchase = view.findViewById(R.id.purchase);
+        purchase = view.findViewById(R.id.purchase);
         final userPurchase userPurchase = new userPurchase();
-        btnPurchase.setOnClickListener(new View.OnClickListener() {
+        purchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (global.ItemLists.size() > 0) {
