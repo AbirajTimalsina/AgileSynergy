@@ -10,11 +10,21 @@
         android:layout_width="match_parent"
         android:layout_margin="20dp"
         android:layout_height="50dp" />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/etName"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/autocompletetextmenusearch"
+        android:id="@+id/searchrecycle"/>
+
+<androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewmenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/autocompletetextmenusearch" />
+        android:layout_below="@+id/searchrecycle" />
 
 </RelativeLayout>
