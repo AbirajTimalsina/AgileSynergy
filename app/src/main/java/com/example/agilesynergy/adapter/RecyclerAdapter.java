@@ -81,7 +81,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                 holder.linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
                         global.item = item;
                         fm.beginTransaction().replace(R.id.frame_container, new ItemFragment()).addToBackStack(null).commit();
                     }
@@ -103,9 +102,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     @Override
                     public void onClick(View view) {
                         listObjects.remove(position);
-                        //global.itemlists and listobjects are two different variable created in different class yet
-                        // when executed on 1 the other shows same reaction?
-
                         notifyDataSetChanged();
                         if (listObjects.size() == 0) {
                             fm.beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
