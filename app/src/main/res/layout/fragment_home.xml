@@ -22,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Fast Food"
+                android:layout_marginTop="15dp"
                 android:layout_marginStart="20dp"
                 android:textColor="#000000"
                 android:textSize="30dp" />
@@ -48,6 +49,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:pageColor="#00000000"
                     app:radius="6dp"
+                    app:indicatorVisibility="invisible"
                     app:slideInterval="3000"
                     app:strokeColor="#FF777777" />
 
