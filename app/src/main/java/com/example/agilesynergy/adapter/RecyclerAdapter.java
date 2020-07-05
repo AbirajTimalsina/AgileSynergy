@@ -2,9 +2,11 @@ package com.example.agilesynergy.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -16,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agilesynergy.R;
+import com.example.agilesynergy.fragments.HomeFragment;
 import com.example.agilesynergy.fragments.innerFragments.ItemFragment;
 import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.item;
@@ -58,7 +61,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         }
 
         @Override
-        public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull RecyclerViewHolder holder, final int position) {
             switch (location_Fragment) {
                 case "menu":
                     final item item = listItems.get(position);
@@ -71,10 +74,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                         @Override
                         public void onClick(View view) {
                             //bundle Arguments is not working.
-                            ItemFragment itemFragment = new ItemFragment();
-                            Bundle bundle = new Bundle();
-                            bundle.putParcelable("itemObject", item);
-                            itemFragment.setArguments(bundle);
+
                             global.item = item;
 
                             fm.beginTransaction().replace(R.id.frame_container, new ItemFragment()).addToBackStack(null).commit();
@@ -91,6 +91,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     Amount = Integer.parseInt(items.optString("itemamount").toString());
                     afterAmount = Price * Amount;
                     holder.checkoutItemAfterAmount.setText(Integer.toString(afterAmount));
+
+                    holder.btnCheckoutDelete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            listObjects.remove(position);
+                            notifyDataSetChanged();
+                            if (listObjects.size() == 0) {
+                                fm.beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
+                            }
+                        }
+                    });
                     break;
             }
         }
@@ -111,6 +122,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             //Menu Elements
             ImageView imageitempicture;
             TextView itemname, itemprice, itemingredient;
+            Button btnCheckoutDelete;
             LinearLayout linearLayout;
             //Checkout Elements
             TextView checkoutItemName, checkoutItemPrice, checkoutItemAmount, checkoutItemAfterAmount;
@@ -129,6 +141,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                         checkoutItemPrice = itemView.findViewById(R.id.txtcheckoutitemprice);
                         checkoutItemAmount = itemView.findViewById(R.id.txtcheckoutitemamount);
                         checkoutItemAfterAmount = itemView.findViewById(R.id.txtcheckoutitemafteramount);
+                        btnCheckoutDelete = itemView.findViewById(R.id.btncheckoutitemdelete);
                         break;
                 }
 
