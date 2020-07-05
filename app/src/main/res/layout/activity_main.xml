@@ -26,6 +26,7 @@
                 android:layout_height="45dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dp"
+                android:layout_marginTop="12dp"
                 android:background="@color/primaryTextRedColor"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/checkout_cart" />
@@ -37,6 +38,7 @@
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="46dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
