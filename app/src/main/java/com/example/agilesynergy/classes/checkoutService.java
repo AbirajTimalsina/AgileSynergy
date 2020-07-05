@@ -8,9 +8,11 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.agilesynergy.R;
@@ -21,7 +23,7 @@ import com.example.agilesynergy.global.global;
 public class checkoutService extends Service {
     Handler handler;
     Runnable runnable;
-    Button btnCheckout;
+    ImageButton btnCheckout;
 
     Activity mActivity;
     FragmentManager fm;
@@ -53,7 +55,8 @@ public class checkoutService extends Service {
                     btnCheckout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            fm.beginTransaction().replace(R.id.frame_container, new checkoutFragment()).addToBackStack(null).commit();
+                            fm.beginTransaction().replace(R.id.frame_container, new checkoutFragment()).addToBackStack(null).
+                                    attach(new checkoutFragment()).detach(new checkoutFragment()).commit();
                         }
                     });
                 }

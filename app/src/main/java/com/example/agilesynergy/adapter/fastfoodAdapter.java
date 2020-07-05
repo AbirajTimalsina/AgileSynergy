@@ -22,16 +22,24 @@ import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.fastfoodModel;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfoodViewHolder> {
 
+    TextView txtquanity;
     Context mcontext;
     List<fastfoodModel> fastfoodModelList;
+    JSONObject fastfoodObject = new JSONObject();
+
 
     public fastfoodAdapter(Context mcontext, List<fastfoodModel> fastfoodModelList) {
         this.mcontext = mcontext;
@@ -42,46 +50,62 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
     @NonNull
     @Override
     public fastfoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_fastfood, parent, false);
+
+
         return new fastfoodViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull fastfoodViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final fastfoodViewHolder holder, int position) {
 
-        fastfoodModel fastfoodModel = fastfoodModelList.get(position);
+        final fastfoodModel fastfoodModel123 = fastfoodModelList.get(position);
 
         Random rnd = new Random();
         int currentColor = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         holder.imageView.setColorFilter(currentColor);
-
-        String imgpath = global.imagePath + fastfoodModel.getFastfoodpicture();
+        String imgpath = global.imagePath + fastfoodModel123.getFastfoodpicture();
         Log.e("Image path is :", "Image path is" + imgpath);
-
         Picasso.get().load(imgpath).into(holder.fastfoodpicture);
-        holder.fastfoodname.setText(fastfoodModel.getFastfoodname());
-        holder.fastfoodprice.setText(fastfoodModel.getFastfoodprice());
+        holder.fastfoodname.setText(fastfoodModel123.getFastfoodname());
+        holder.fastfoodprice.setText(fastfoodModel123.getFastfoodprice());
 
+        holder.btncart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                if (holder.txtquanity.getText().toString().equals("0")) {
+                    Toast.makeText(mcontext, "Please Select Amount.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    fastfoodObject.put("itemname", fastfoodModel123.getFastfoodname());
+                    fastfoodObject.put("itemprice", fastfoodModel123.getFastfoodprice());
+                    fastfoodObject.put("itemamount", holder.txtquanity.getText());
+                    global.ItemLists.add(fastfoodObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-
-
         return fastfoodModelList.size();
     }
 
     public class fastfoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView fastfoodpicture, imageView;
-        Button btnadd, btnminus, btncart;
         TextView fastfoodname, fastfoodprice, txtquanity;
+        private Button btnadd, btnminus, btncart;
         private Integer Amount;
 
         public fastfoodViewHolder(@NonNull final View itemView) {
             super(itemView);
-
             imageView = itemView.findViewById(R.id.imageView);
             fastfoodpicture = itemView.findViewById(R.id.fastfoodpicture);
             fastfoodname = itemView.findViewById(R.id.fastfoodname);
@@ -96,6 +120,7 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
 
         }
 
+
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
@@ -106,22 +131,12 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
                     return;
                 case R.id.btndes:
                     Amount = Integer.parseInt(txtquanity.getText().toString());
-                       if(Amount > 0){
-                        Amount -= 1;
-                        txtquanity.setText(Amount.toString());
-                       }
+                    Amount -= 1;
+                    txtquanity.setText(Amount.toString());
                     return;
-                case R.id.btncart:
-                    if (txtquanity.getText().toString().equals("0")) {
-                        Toast.makeText(view.getContext(), "Please Select Amount.", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
 
 
             }
-
         }
-
-
     }
 }

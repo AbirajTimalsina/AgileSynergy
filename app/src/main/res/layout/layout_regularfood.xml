@@ -9,20 +9,71 @@
     android:layout_marginBottom="15dp"
     android:layout_height="wrap_content">
 
+
+    <Button
+        android:id="@+id/btnadd"
+        android:layout_width="32dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="128dp"
+        android:gravity="bottom"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+    <Button
+        android:id="@+id/btndes"
+        android:layout_width="32dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="128dp"
+        android:text="-"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btncart"
+        android:layout_width="71dp"
+        android:layout_height="14dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/whiteTextColor"
+        android:text="Add to cart"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.598"
+
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="118dp"
-        android:layout_height="136dp"
+        android:layout_width="124dp"
+        android:layout_height="175dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/regulardesign" />
+
+    <TextView
+        android:id="@+id/txtquanity"
+        android:layout_width="16dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginBottom="136dp"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/regularfoodimage"
-        android:layout_width="94dp"
+        android:layout_width="104dp"
         android:layout_height="54dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
@@ -35,25 +86,25 @@
         android:id="@+id/regularfoodname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="58dp"
+        android:text="Name"
         android:textColor="@color/black"
         android:textSize="11dp"
-        android:text="Name"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/regularfoodprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         android:text="Price"
         android:textColor="@color/black"
         android:textSize="11dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintHorizontal_bias="0.232"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 
 import com.example.agilesynergy.R;
 import com.example.agilesynergy.adapter.RecyclerAdapter;
@@ -17,14 +18,15 @@ import com.example.agilesynergy.api.itemapi;
 import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.item;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Response;
 
 
 public class MenuFragment extends Fragment {
-
 
     RecyclerView recyclerView;
 
@@ -35,10 +37,9 @@ public class MenuFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerviewmenu);
+
         itemapi itemapi = global.getInstance().create(itemapi.class);
         Call<List<item>> itemList = itemapi.getAllItem();
-
-
 
         try {
             Response<List<item>> itemResponse = itemList.execute();
@@ -46,7 +47,7 @@ public class MenuFragment extends Fragment {
 
                 FragmentManager fm = getActivity().getSupportFragmentManager();
 
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), itemResponse.body(),null, fm, "menu");
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), itemResponse.body(),null, fm, "menu");
                 recyclerView.setAdapter(recyclerAdapter);
                 LinearLayoutManager layoutManager
                         = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

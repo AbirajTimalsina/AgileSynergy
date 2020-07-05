@@ -8,7 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface fastfoodApi {
-    @GET("fastfood/all")
+    @GET("fastfood")
     Call<List<fastfoodModel>> getfastfooddetails();
 
 }
