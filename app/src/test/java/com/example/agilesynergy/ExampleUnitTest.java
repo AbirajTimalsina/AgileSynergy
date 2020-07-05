@@ -19,5 +19,13 @@ public class ExampleUnitTest {
 
 
 
+    @Test
+    public void checkingForgotPassword(){
 
+        forgotPasswordUpdate forgotPasswordUpdate= new forgotPasswordUpdate("shrestha05@yahoo.com","softwarica college duh",
+                "What is your college name?","5432");
+
+        boolean istrue= forgotPasswordUpdate.UpdateForgottenPassword();
+        assertTrue(istrue);
+    }
 }

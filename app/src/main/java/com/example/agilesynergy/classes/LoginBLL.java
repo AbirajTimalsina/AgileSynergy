@@ -21,12 +21,7 @@ public class LoginBLL {
         this.password = password;
     }
 
-    public boolean checkUser(String phonenumber, String password){
-
-
-        UserLogin userLogin = new UserLogin(phonenumber,password);
-
-
+    public boolean checkUser(){
 
         userapi userApi = global.getInstance().create(userapi.class);
         Call<ResponseUser> usercall = userApi.checklogin(phonenumber,password);
@@ -40,14 +35,6 @@ public class LoginBLL {
             e.printStackTrace();
         }
         return isSuccess;
-
-    }
-
-    public boolean checkUser(){
-        return isSuccess;
-    }
-
-    public LoginBLL(Context context){
 
     }
 }

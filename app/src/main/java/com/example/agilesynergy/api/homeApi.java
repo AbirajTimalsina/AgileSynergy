@@ -24,6 +24,4 @@ public interface homeApi {
     @GET("regularfood")
     Call<List<regularfoodModel>> getregularfooddetails();
 
-
-
 }

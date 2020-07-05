@@ -7,7 +7,6 @@ import com.example.agilesynergy.models.userForgotPassword;
 
 import static junit.framework.Assert.assertTrue;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class RegisterTestCase {
@@ -25,12 +24,12 @@ public class RegisterTestCase {
     }
 
     @Test
-    public void checkingForgotPassword(){
+    public void PasswordUpadte(){
 
-        forgotPasswordUpdate forgotPasswordUpdate= new forgotPasswordUpdate("s@gmail.com","tiger",
-                "What is yours first pets name?","1234");
+        forgotPasswordUpdate passwordForgot = new forgotPasswordUpdate("s@gmail.com","What is yours first pets name?","tiger","5678");
 
-        boolean istrue= forgotPasswordUpdate.UpdateForgottenPassword();
-        Assert.assertTrue(istrue);
+        boolean UpdatePassword = passwordForgot.UpdateForgottenPassword();
+        assertTrue(UpdatePassword);
+
     }
 }
