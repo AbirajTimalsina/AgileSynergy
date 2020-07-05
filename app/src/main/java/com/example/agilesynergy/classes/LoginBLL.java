@@ -16,34 +16,25 @@ public class LoginBLL {
     private String password;
     boolean isSuccess = false;
 
-    public LoginBLL(String phonenumber, String password) {
+    public LoginBLL(String phonenumber, String password){
         this.phonenumber = phonenumber;
         this.password = password;
     }
 
-    public boolean checkUser(String phonenumber, String password) {
-
+    public boolean checkUser(){
 
         userapi userApi = global.getInstance().create(userapi.class);
-        Call<ResponseUser> usercall = userApi.checklogin(phonenumber, password);
-        try {
+        Call<ResponseUser> usercall = userApi.checklogin(phonenumber,password);
+        try{
             Response<ResponseUser> loginResponse = usercall.execute();
-            if (loginResponse.isSuccessful() && loginResponse.body().getStatus().equals("Successfully logged in")) {
+            if(loginResponse.isSuccessful() && loginResponse.body().getStatus().equals("Successfully logged in")){
                 global.token += loginResponse.body().getToken();
-                isSuccess = true;
+                isSuccess=true;
             }
-        } catch (IOException e) {
+        } catch (IOException e){
             e.printStackTrace();
         }
         return isSuccess;
-
-    }
-
-    public boolean checkUser() {
-        return isSuccess;
-    }
-
-    public LoginBLL(Context context) {
 
     }
 }

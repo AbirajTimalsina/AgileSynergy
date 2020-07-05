@@ -47,7 +47,7 @@ public class MenuFragment extends Fragment {
 
                 FragmentManager fm = getActivity().getSupportFragmentManager();
 
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), itemResponse.body(),null, fm, "menu");
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), itemResponse.body(),null, fm, "menu");
                 recyclerView.setAdapter(recyclerAdapter);
                 LinearLayoutManager layoutManager
                         = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

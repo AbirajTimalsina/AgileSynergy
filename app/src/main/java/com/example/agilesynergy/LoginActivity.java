@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     Button loginbutton;
     TextView etforget;
 
+    private NotificationManagerCompat notificationManagerCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +39,15 @@ public class LoginActivity extends AppCompatActivity {
         etpass = findViewById(R.id.etPassword);
         etforget = findViewById(R.id.etforget);
         loginbutton = findViewById(R.id.btnuserlogin);
-        etforget = findViewById(R.id.etforget);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(etnumber.getText())) {
+                if(TextUtils.isEmpty(etnumber.getText())) {
                     etnumber.setError("Please Enter Your Number");
                     etnumber.requestFocus();
                     return;
-                } else if (TextUtils.isEmpty(etpass.getText())) {
+                }
+                else if (TextUtils.isEmpty(etpass.getText())) {
                     etpass.setError("Please Enter Your Password");
                     etpass.requestFocus();
                     return;
@@ -65,7 +66,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    
+
+
     private void Userlogin() {
         StrictModeClass.StrictMode();
 
@@ -73,9 +75,8 @@ public class LoginActivity extends AppCompatActivity {
         String usrpassword = etpass.getText().toString();
         LoginBLL loginBLL = new LoginBLL(usrnumber, usrpassword);
 
-        if (loginBLL.checkUser(usrnumber, usrpassword)) {
 
-
+        if (loginBLL.checkUser()) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             Toast.makeText(LoginActivity.this, "Redirecting... ", Toast.LENGTH_SHORT).show();
             startActivity(intent);
@@ -89,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
             etnumber.setVisibility(View.VISIBLE);
             etnumber.setBackgroundColor(Color.BLUE);
             etpass.setBackgroundColor(Color.BLUE);
-
         }
 
     }
