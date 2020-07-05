@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 
 public interface itemapi {
 
-    @GET("item/all")
+    @GET("item")
     Call<List<item>> getAllItem();
 }
