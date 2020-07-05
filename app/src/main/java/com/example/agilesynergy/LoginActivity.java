@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,12 +17,16 @@ import android.widget.Toast;
 import com.example.agilesynergy.classes.LoginBLL;
 import com.example.agilesynergy.classes.StrictModeClass;
 
+import kotlin.jvm.internal.MagicApiIntrinsics;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText etnumber, etpass;
+    TextView etForget;
     Button loginbutton;
-    TextView etforget;
+    TextView txtForget;
 
+    private NotificationManagerCompat notificationManagerCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +39,24 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etnumber = findViewById(R.id.etnumber);
         etpass = findViewById(R.id.etPassword);
-        etforget = findViewById(R.id.etforget);
+        etForget=findViewById(R.id.etforget);
+        etForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, ForgotPassword.class));
+            }
+        });
         loginbutton = findViewById(R.id.btnuserlogin);
-        etforget = findViewById(R.id.etforget);
+
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(etnumber.getText())) {
+                if(TextUtils.isEmpty(etnumber.getText())) {
                     etnumber.setError("Please Enter Your Number");
                     etnumber.requestFocus();
                     return;
-                } else if (TextUtils.isEmpty(etpass.getText())) {
+                }
+                else if (TextUtils.isEmpty(etpass.getText())) {
                     etpass.setError("Please Enter Your Password");
                     etpass.requestFocus();
                     return;
@@ -55,23 +65,16 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        etforget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
-                startActivity(intent);
-            }
-        });
 
     }
 
-    
     private void Userlogin() {
         StrictModeClass.StrictMode();
 
         String usrnumber = etnumber.getText().toString();
         String usrpassword = etpass.getText().toString();
         LoginBLL loginBLL = new LoginBLL(usrnumber, usrpassword);
+
 
         if (loginBLL.checkUser(usrnumber, usrpassword)) {
 
@@ -99,6 +102,4 @@ public class LoginActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
 
     }
-
-
 }

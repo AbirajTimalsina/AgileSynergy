@@ -1,6 +1,7 @@
 package com.example.agilesynergy.fragments;
 
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agilesynergy.R;
@@ -33,6 +37,10 @@ import com.example.agilesynergy.models.upcomingfoodModel;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
+import com.squareup.picasso.Picasso;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageClickListener;
+import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +50,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
+
     private RecyclerView fastfoodrecycleview, popularfoodrecycleview, newdishesrecycleview, upcomingfoodrecycleview, regularrecycleview;
+
 
     private SwipeRefreshLayout swipeLayout;
     //    Models list
@@ -58,6 +68,8 @@ public class HomeFragment extends Fragment {
     upcomingfoodAdapter upcomingfoodAdapter;
     regularfoodAdapter regularfoodAdapter;
 
+    CarouselView carouselView;
+    int[] sampleImages = {R.drawable.ad1, R.drawable.ad2, R.drawable.ad3,R.drawable.ad4};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +79,9 @@ public class HomeFragment extends Fragment {
 
         fastfoodrecycleview = view.findViewById(R.id.fastfoodrecycleview);
         fastfood();
+
+        carouselView = view.findViewById(R.id.carouselView);
+        imageSlider();
 
         popularfoodrecycleview = view.findViewById(R.id.popularfoodrecycleview);
         popularfood();
@@ -80,6 +95,7 @@ public class HomeFragment extends Fragment {
 
         regularrecycleview = view.findViewById(R.id.regularrecycleview);
         regularfood();
+
 
         //Refreshing
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
@@ -101,11 +117,20 @@ public class HomeFragment extends Fragment {
         });
 
 
-
         return view;
     }
 
+    private void imageSlider() {
 
+        carouselView.setPageCount(sampleImages.length);
+        carouselView.setImageListener(new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(sampleImages[position]);
+            }
+        });
+
+    }
 
     private void regularfood() {
 
@@ -240,7 +265,7 @@ public class HomeFragment extends Fragment {
                 List<fastfoodModel> fastfoodModelList1 = response.body();
                 fastfoodAdapter = new fastfoodAdapter(getContext(), fastfoodModelList1);
                 fastfoodrecycleview.setAdapter(fastfoodAdapter);
-                fastfoodrecycleview.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                fastfoodrecycleview.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
 
             }
 
@@ -253,4 +278,8 @@ public class HomeFragment extends Fragment {
 
 
     }
-}
+
+
+
+
+    }
