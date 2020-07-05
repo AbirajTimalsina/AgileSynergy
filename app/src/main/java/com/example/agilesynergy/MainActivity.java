@@ -3,6 +3,7 @@ package com.example.agilesynergy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 
+
 import com.example.agilesynergy.classes.StrictModeClass;
 import com.example.agilesynergy.classes.checkoutService;
 import com.example.agilesynergy.fragments.FavouriteFragment;
@@ -24,7 +26,6 @@ import com.example.agilesynergy.helper.BottomNavigationHider;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +38,12 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        // attaching bottom sheet behaviour - hide / show on scroll
-        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigation.getLayoutParams();
-        layoutParams.setBehavior(new BottomNavigationHider());
+//        // attaching bottom sheet behaviour - hide / show on scroll
+//        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigation.getLayoutParams();
+//        layoutParams.setBehavior(new BottomNavigationHider());
 
         // load the store fragment by default
         loadFragment(new HomeFragment());
-
-
-
-
     }
 
 
