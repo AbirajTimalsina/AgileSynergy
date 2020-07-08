@@ -4,6 +4,13 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
 
+
+    //Added testOptions due to mock error on put of JSONObject in orderingTest
+        testOptions {
+            unitTests.returnDefaultValues = true
+        }
+
+
     defaultConfig {
         applicationId "com.example.agilesynergy"
         minSdkVersion 22
@@ -60,6 +67,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
-
 
 }
