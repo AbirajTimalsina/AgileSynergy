@@ -1,78 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<TableLayout android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="10dp">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TableRow>
+        <TextView
+            android:id="@+id/txtcheckoutitemname"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_marginTop="05dp"
+            android:padding="05dp"
+            android:layout_marginLeft="5dp"
+            android:text="Name"
+            android:textColor="#000000" />
 
-    <TextView
-        android:id="@+id/txtcheckoutitemname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="itemName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/txtcheckoutitemprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:textColor="#000000"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginTop="05dp"
+            android:text="Price" />
 
-    <TextView
-        android:id="@+id/txtcheckoutitemprice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="itemPrice"
-        app:layout_constraintStart_toEndOf="@+id/txtcheckoutitemname"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/txtcheckoutitemamount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:textColor="#000000"
+            android:layout_marginTop="05dp"
+            android:layout_marginLeft="38dp"
+            android:text="Amount" />
 
-    <TextView
-        android:id="@+id/txtcheckoutitemamount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="itemAmount"
-        app:layout_constraintStart_toEndOf="@+id/txtcheckoutitemprice"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/txtcheckoutitemafteramount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:textColor="#000000"
+            android:layout_marginTop="05dp"
+            android:layout_marginLeft="35dp"
+            android:text="Total" />
 
-    <View
-        android:layout_width="1dp"
-        android:layout_height="47dp"
-        android:layout_marginEnd="152dp"
-        android:background="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginEnd="16dp"
-        android:background="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/txtcheckoutitemafteramount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:text="itemAfter"
-        app:layout_constraintStart_toEndOf="@+id/txtcheckoutitemamount"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btncheckoutitemdelete"
-        android:layout_width="62dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/button_background_blue"
-        android:paddingLeft="0dp"
-        android:text="Remove"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/btncheckoutitemdelete"
+            android:layout_width="24dp"
+            android:layout_height="25dp"
+            android:layout_column="1"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/cart_remove"
+            android:src="@drawable/ic_baseline_delete_forever_24" />
+    </TableRow>
+</TableLayout>

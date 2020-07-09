@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -122,7 +123,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             //Menu Elements
             ImageView imageitempicture;
             TextView itemname, itemprice, itemingredient;
-            Button btnCheckoutDelete;
+            ImageButton btnCheckoutDelete;
             LinearLayout linearLayout;
             //Checkout Elements
             TextView checkoutItemName, checkoutItemPrice, checkoutItemAmount, checkoutItemAfterAmount;
