@@ -14,13 +14,11 @@ public class RegisterTestCase {
     @Test
     public void RegisterTest(){
 
-
         user newuser = new user("DumanShahi","9849532863","suman1234@gmail.com"
         ,"1234","null",null);
         userRegister UserRegister = new userRegister(newuser);
         boolean userRegistration = UserRegister.userRegistration();
         assertTrue(userRegistration);
-
     }
 
     @Test

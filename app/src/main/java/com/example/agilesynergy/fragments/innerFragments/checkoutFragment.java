@@ -10,10 +10,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.agilesynergy.classes.userPurchase;
 import com.example.agilesynergy.global.global;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.TextSwitcher;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agilesynergy.R;
@@ -22,7 +29,23 @@ import com.example.agilesynergy.adapter.RecyclerAdapter;
 public class checkoutFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private Button btnPurchase;
+    private TextView tvPurchase, tvCounter;
+    private LinearLayout linearLayout;
+
+    private CountDownTimer countDownTimer = new CountDownTimer(10000, 1000) {
+
+        public void onTick(long millisUntilFinished) {
+            tvCounter.setText("Remaining Time to Cancel : " + millisUntilFinished / 1000);
+        }
+        public void onFinish() {
+            new userPurchase().userPurchaseFood();
+            Toast.makeText(getContext(), "Purchased Successfully", Toast.LENGTH_SHORT).show();
+            getActivity().getSupportFragmentManager().popBackStackImmediate();
+            global.ItemLists.clear();
+            tvCounter.setText("Order in Progress!");
+        }
+    };
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,20 +54,35 @@ public class checkoutFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_checkout, container, false);
 
-        btnPurchase = view.findViewById(R.id.purchase);
-        final userPurchase userPurchase = new userPurchase();
-        btnPurchase.setOnClickListener(new View.OnClickListener() {
+        final Animation fadingIn = AnimationUtils.loadAnimation(getContext(), R.anim.fadein);
+        tvPurchase = view.findViewById(R.id.tvpurchase);
+        tvCounter = view.findViewById(R.id.tvcounter);
+        linearLayout = view.findViewById(R.id.linearlayoutpurchase);
+        tvCounter.setVisibility(View.GONE); //Making the timer textview invisible at initiation
+
+
+//        final userPurchase userPurchase = new userPurchase();
+        linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (global.ItemLists.size() > 0) {
-                    if (userPurchase.userPurchaseFood()) {
-                        Toast.makeText(getContext(), "Purchased Successfully", Toast.LENGTH_SHORT).show();
+
+                    if (tvPurchase.getText().toString().toLowerCase().equals("purchase")) {
+
+                        tvPurchase.setText("Cancel");
+                        tvCounter.setVisibility(View.VISIBLE);
+                        countDownTimer.start();
+                        linearLayout.startAnimation(fadingIn);
+                    } else {
+                        countDownTimer.cancel();
+                        tvCounter.setVisibility(View.GONE);
+                        tvPurchase.setText("Purchase");
+                        linearLayout.startAnimation(fadingIn);
                     }
                 }
             }
         });
-
-        FragmentManager fm= getActivity().getSupportFragmentManager();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
 
         recyclerView = view.findViewById(R.id.recyclerviewcheckout);
         try {
@@ -60,4 +98,5 @@ public class checkoutFragment extends Fragment {
         }
         return view;
     }
+
 }
