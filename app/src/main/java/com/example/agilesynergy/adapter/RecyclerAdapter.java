@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -18,6 +20,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieComposition;
+import com.airbnb.lottie.LottieDrawable;
 import com.example.agilesynergy.R;
 import com.example.agilesynergy.fragments.HomeFragment;
 import com.example.agilesynergy.fragments.innerFragments.ItemFragment;
@@ -64,13 +69,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final RecyclerViewHolder holder, final int position) {
         switch (location_Fragment) {
             case "menu":
                 final item item = listItems.get(position);
                 holder.itemname.setText(item.getItemname());
                 holder.itemprice.setText(item.getItemprice());
-                holder.itemingredient.setText(item.getItemingredient());
                 String imagePath = global.imagePath + item.getItempicture();
                 Picasso.get().load(imagePath).into(holder.imageitempicture);
                 holder.linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +85,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                         fm.beginTransaction().replace(R.id.frame_container, new ItemFragment()).
                                 setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_right).
                                 addToBackStack(null).commit();
+                    }
+                });
+
+                final boolean[] isHearted = {true};
+                holder.btnHeart.setPadding(-150,-150,-150,-150);
+                holder.btnHeart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (isHearted[0]) {
+                            holder.btnHeart.setSpeed(1f);
+                            holder.btnHeart.playAnimation();
+
+                        } else {
+                            holder.btnHeart.setSpeed(-1f);
+                            holder.btnHeart.playAnimation();
+                        }
+                        isHearted[0] =!isHearted[0];
                     }
                 });
                 break;
@@ -127,9 +148,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         //Menu Elements
         ImageView imageitempicture;
-        TextView itemname, itemprice, itemingredient;
+        TextView itemname, itemprice;
         ImageButton btnCheckoutDelete;
         LinearLayout linearLayout;
+        LottieAnimationView btnHeart;
         //Checkout Elements
         TextView checkoutItemName, checkoutItemPrice, checkoutItemAmount, checkoutItemAfterAmount;
 
@@ -140,8 +162,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     imageitempicture = itemView.findViewById(R.id.imageviewmenupicture);
                     itemname = itemView.findViewById(R.id.itemmenuname);
                     itemprice = itemView.findViewById(R.id.itemmenuprice);
-                    itemingredient = itemView.findViewById(R.id.itemmenuingredient);
                     linearLayout = itemView.findViewById(R.id.linearmenu);
+                    btnHeart=itemView.findViewById(R.id.animationheart); //use later
                     break;
                 case "checkout":
                     checkoutItemName = itemView.findViewById(R.id.txtcheckoutitemname);
