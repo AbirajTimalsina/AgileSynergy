@@ -31,21 +31,28 @@ public class checkoutFragment extends Fragment {
     private RecyclerView recyclerView;
     private TextView tvPurchase, tvCounter;
     private LinearLayout linearLayout;
-
     private CountDownTimer countDownTimer = new CountDownTimer(10000, 1000) {
 
         public void onTick(long millisUntilFinished) {
             tvCounter.setText("Remaining Time to Cancel : " + millisUntilFinished / 1000);
         }
+
         public void onFinish() {
-            new userPurchase().userPurchaseFood();
-            Toast.makeText(getContext(), "Purchased Successfully", Toast.LENGTH_SHORT).show();
-            getActivity().getSupportFragmentManager().popBackStackImmediate();
-            global.ItemLists.clear();
-            tvCounter.setText("Order in Progress!");
+            boolean isPurchased = new userPurchase().userPurchaseFood();
+            if (isPurchased) {
+                Toast.makeText(getContext(), "Purchased Successfully", Toast.LENGTH_SHORT).show();
+                getActivity().getSupportFragmentManager().popBackStackImmediate();
+                global.ItemLists.clear();
+                tvCounter.setText("Order in Progress!");
+            } else {
+                Toast.makeText(getContext(), "There was a problem making a purchase", Toast.LENGTH_LONG).show();
+                tvCounter.setVisibility(View.GONE);
+                tvPurchase.setText("Purchase");
+                linearLayout.startAnimation(fadeAnimation());
+            }
+
         }
     };
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,8 +60,6 @@ public class checkoutFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_checkout, container, false);
-
-        final Animation fadingIn = AnimationUtils.loadAnimation(getContext(), R.anim.fadein);
         tvPurchase = view.findViewById(R.id.tvpurchase);
         tvCounter = view.findViewById(R.id.tvcounter);
         linearLayout = view.findViewById(R.id.linearlayoutpurchase);
@@ -72,12 +77,12 @@ public class checkoutFragment extends Fragment {
                         tvPurchase.setText("Cancel");
                         tvCounter.setVisibility(View.VISIBLE);
                         countDownTimer.start();
-                        linearLayout.startAnimation(fadingIn);
+                        linearLayout.startAnimation(fadeAnimation());
                     } else {
                         countDownTimer.cancel();
                         tvCounter.setVisibility(View.GONE);
                         tvPurchase.setText("Purchase");
-                        linearLayout.startAnimation(fadingIn);
+                        linearLayout.startAnimation(fadeAnimation());
                     }
                 }
             }
@@ -97,6 +102,10 @@ public class checkoutFragment extends Fragment {
             e.printStackTrace();
         }
         return view;
+    }
+
+    public Animation fadeAnimation() {
+        return AnimationUtils.loadAnimation(getContext(), R.anim.fadein);
     }
 
 }
