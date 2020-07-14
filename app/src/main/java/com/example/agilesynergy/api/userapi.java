@@ -16,6 +16,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
@@ -42,4 +43,9 @@ public interface userapi {
 
     @GET("users/me")
     Call<user> getUserDetails(@Header("Authorization") String token);
+
+    @Multipart
+    @POST("uploads")
+    Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
+
 }

@@ -1,5 +1,8 @@
 package com.example.agilesynergy.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.agilesynergy.LoginActivity;
 import com.example.agilesynergy.R;
 import com.example.agilesynergy.api.userapi;
 import com.example.agilesynergy.global.global;
@@ -39,11 +43,28 @@ public class ProfileFragment extends Fragment {
         tvfullname = view.findViewById(R.id.tvfullname);
         tvemail = view.findViewById(R.id.tvemail);
         tvphoneno = view.findViewById(R.id.tvphoneno);
-        btnedit = view.findViewById(R.id.btnEdit);
+        btnedit = view.findViewById(R.id.btnlogout);
         btnedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Log Out!").
+                        setMessage("You sure, that you want to logout?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent logout = new Intent(getContext(), LoginActivity.class);
+                        startActivity(logout);
+                    }
+                });
+                builder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert11 = builder.create();
+                alert11.show();
             }
         });
         loadcurrentuser();
@@ -62,10 +83,9 @@ public class ProfileFragment extends Fragment {
                 }
                 User = response.body();
                 if (response.body() != null) {
-
-                    String imgPath = null;
-                    imgPath = global.imagePath + response.body().getProfile_image();
-                    Picasso.get().load(imgPath).into(imguser);
+                    String imagepath = null;
+                    imagepath = global.imagePath + response.body().getProfile_image();
+                    Picasso.get().load(imagepath).into(imguser);
                 }
                 tvfullname.setText(response.body().getFullname());
                 tvemail.setText(response.body().getEmail());
