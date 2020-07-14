@@ -112,7 +112,9 @@ public class HomeFragment extends Fragment {
                     public void run() {
                         swipeLayout.setRefreshing(false);
                     }
-                }, 5000);
+                }, 2000);
+
+
             }
         });
 

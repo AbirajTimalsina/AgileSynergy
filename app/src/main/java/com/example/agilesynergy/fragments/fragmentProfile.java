@@ -1,5 +1,7 @@
 package com.example.agilesynergy.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.agilesynergy.LoginActivity;
 import com.example.agilesynergy.R;
 import com.example.agilesynergy.api.userapi;
 import com.example.agilesynergy.global.global;
@@ -26,7 +29,7 @@ import retrofit2.Response;
 public class fragmentProfile extends Fragment {
     ImageView imguser;
     private TextView tvfullname, tvemail,tvphoneno;
-Button btnedit;
+Button btnlogout;
     user User;
 //sheela
 
@@ -40,10 +43,28 @@ imguser=view.findViewById(R.id.imguser);
 tvfullname=view.findViewById(R.id.tvfullname);
         tvemail=view.findViewById(R.id.tvemail);
        tvphoneno=view.findViewById(R.id.tvphoneno);
-btnedit=view.findViewById(R.id.btnEdit);
-btnedit.setOnClickListener(new View.OnClickListener() {
+btnlogout=view.findViewById(R.id.btnlogout);
+btnlogout.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Log Out!").
+                setMessage("You sure, that you want to logout?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent logout = new Intent(getContext(), LoginActivity.class);
+                startActivity(logout);
+            }
+        });
+        builder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert11 = builder.create();
+        alert11.show();
 
     }
 });

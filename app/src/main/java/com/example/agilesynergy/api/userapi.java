@@ -3,19 +3,23 @@ package com.example.agilesynergy.api;
 import com.example.agilesynergy.models.user;
 import com.example.agilesynergy.models.userForgotPassword;
 import com.example.agilesynergy.response.ResponseUser;
+import com.facebook.internal.ImageResponse;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 
 public interface userapi {
 
@@ -37,4 +41,9 @@ public interface userapi {
 
     @GET("users/me")
     Call<user> getUserDetails(@Header("Authorization") String token);
+
+    @Multipart
+    @POST("uploads")
+    Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
+
 }

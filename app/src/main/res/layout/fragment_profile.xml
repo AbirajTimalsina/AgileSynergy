@@ -3,61 +3,139 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#03DAC5"
     android:orientation="vertical"
     tools:context=".fragments.ProfileFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_marginTop="50dp"
         android:id="@+id/imguser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="163dp"
+        android:layout_height="187dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="238dp"
+        android:layout_marginBottom="484dp"
         android:src="@drawable/user" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Fullname"
-        android:textSize="20sp"
-        android:id="@+id/tvfullname"
-        android:layout_below="@+id/imguser"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
-        />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvemail"
-        android:hint="Email"
-        android:textSize="20sp"
-        android:layout_below="@+id/tvfullname"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        />
+    <LinearLayout
+        android:layout_width="201dp"
+        android:layout_height="276dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="389dp"
+        android:background="@drawable/profile_bg_radius"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvphoneno"
-        android:hint="Phone no"
-        android:textSize="20sp"
-        android:layout_below="@+id/tvemail"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        />
+        <TextView
+            android:id="@+id/tvfullname"
+            style="@style/pdetails"
+            android:hint="Fullname"
+             />
+
+        <TextView
+            android:id="@+id/tvemail"
+            style="@style/pdetails"
+            android:hint="Email"
+           />
+
+        <TextView
+            android:id="@+id/tvphoneno"
+            style="@style/pdetails"
+            android:hint="Phone no" />
+
+        <TextView
+            android:id="@+id/tvaddress"
+            style="@style/pdetails"
+            android:hint="Address" />
+
+        <TextView
+            android:id="@+id/tvgender"
+            style="@style/pdetails"
+            android:hint="Gender" />
+    </LinearLayout>
 
     <Button
-        android:layout_width="match_parent"
-
-        android:background="@drawable/button_background_blue"
+        android:id="@+id/btnuppassword"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnEdit"
-        android:text="Edit Profile"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_below="@id/tvphoneno"
-        android:layout_marginTop="20dp"
-        />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="219dp"
+        android:layout_marginEnd="228dp"
+        android:layout_marginBottom="442dp"
+        android:background="@drawable/button_background_blue"
+        android:backgroundTint="#fff"
+        android:text="Change Password" />
+
+    <Button
+        android:id="@+id/btnlogout"
+        android:layout_width="130dp"
+        android:layout_height="47dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="275dp"
+        android:layout_marginEnd="253dp"
+        android:layout_marginBottom="390dp"
+        android:height="20dp"
+        android:background="@drawable/button_background_blue"
+        android:backgroundTint="@color/whiteTextColor"
+        android:text="Logout" />
+
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="4dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="360dp"
+        android:background="#fff" />
+
+    <TextView
+        android:layout_width="195dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="94dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="327dp"
+        android:text="Purchase History"
+        android:textColor="#000"
+        android:textSize="25dp" />
+
+    <View
+        android:id="@+id/v1"
+        android:layout_width="fill_parent"
+        android:layout_height="4dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="317dp"
+        android:background="#fff" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/v1"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="76dp"
+        android:background="#fff" />
 
 
 </RelativeLayout>
