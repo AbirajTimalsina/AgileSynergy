@@ -3,6 +3,7 @@ package com.example.agilesynergy.adapter;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
@@ -24,9 +26,11 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieComposition;
 import com.airbnb.lottie.LottieDrawable;
 import com.example.agilesynergy.R;
+import com.example.agilesynergy.classes.feedbackClass;
 import com.example.agilesynergy.fragments.HomeFragment;
 import com.example.agilesynergy.fragments.innerFragments.ItemFragment;
 import com.example.agilesynergy.global.global;
+import com.example.agilesynergy.models.feedbackModel;
 import com.example.agilesynergy.models.item;
 import com.squareup.picasso.Picasso;
 
@@ -88,20 +92,35 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     }
                 });
 
+                final long[] mLastClickTime = {0};
                 final boolean[] isHearted = {true};
-                holder.btnHeart.setPadding(-150,-150,-150,-150);
+                holder.btnHeart.setPadding(-150, -150, -150, -150);
                 holder.btnHeart.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        //giving validation to get clicked only after 1 second passes.
+                        if (SystemClock.elapsedRealtime() - mLastClickTime[0] < 2000) {
+                            Toast.makeText(mcontext, "Please refrain from clicking Repeatedly.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        mLastClickTime[0] = SystemClock.elapsedRealtime();
+
                         if (isHearted[0]) {
                             holder.btnHeart.setSpeed(1f);
-                            holder.btnHeart.playAnimation();
+                            if(new feedbackClass(new feedbackModel(holder.itemname.getText().toString(),"yes",null)).
+                                    postFeedback()){
+                                Toast.makeText(mcontext, "Updated", Toast.LENGTH_SHORT).show();
+                            }
 
                         } else {
                             holder.btnHeart.setSpeed(-1f);
-                            holder.btnHeart.playAnimation();
+                            if(new feedbackClass(new feedbackModel(holder.itemname.getText().toString(),"no",null)).
+                                    postFeedback()){
+                                Toast.makeText(mcontext, "Updated", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                        isHearted[0] =!isHearted[0];
+                        holder.btnHeart.playAnimation();
+                        isHearted[0] = !isHearted[0];
                     }
                 });
                 break;
@@ -163,7 +182,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     itemname = itemView.findViewById(R.id.itemmenuname);
                     itemprice = itemView.findViewById(R.id.itemmenuprice);
                     linearLayout = itemView.findViewById(R.id.linearmenu);
-                    btnHeart=itemView.findViewById(R.id.animationheart); //use later
+                    btnHeart = itemView.findViewById(R.id.animationheart); //use later
                     break;
                 case "checkout":
                     checkoutItemName = itemView.findViewById(R.id.txtcheckoutitemname);
