@@ -81,7 +81,6 @@ public class MenuFragment extends Fragment {
             MenuItems.put(Item.getItemname(), Item.get_id()); //(key, value)
         }
 
-
         ArrayAdapter arrayAdapterCountry = new ArrayAdapter<>(getActivity(),
                 android.R.layout.select_dialog_item, new ArrayList(MenuItems.keySet()));
         autocompletetextmenusearch.setAdapter(arrayAdapterCountry);
@@ -106,10 +105,7 @@ public class MenuFragment extends Fragment {
             }
         });
 
-
-
         return view;
-
 
     }
 }
