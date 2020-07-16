@@ -1,5 +1,6 @@
 package com.example.agilesynergy.api;
 
+import com.example.agilesynergy.models.purchasehistory;
 import com.example.agilesynergy.models.user;
 import com.example.agilesynergy.models.userForgotPassword;
 import com.example.agilesynergy.response.ResponseUser;
@@ -8,6 +9,7 @@ import com.facebook.internal.ImageResponse;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -45,5 +47,7 @@ public interface userapi {
     @Multipart
     @POST("uploads")
     Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
+
+
 
 }

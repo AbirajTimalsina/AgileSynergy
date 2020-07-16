@@ -12,5 +12,8 @@
     <string name="title_profile">Profile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="password_Description">Passwords keep your
+        accounts secure and safe. Try to remember your password.
+        Try to change your password every 60 days</string>
 
 </resources>

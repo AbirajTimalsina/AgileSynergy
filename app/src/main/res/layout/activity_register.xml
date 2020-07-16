@@ -55,52 +55,86 @@
                     android:layout_margin="10dp"
                     android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/editTextName"
-                        style="@style/modifiedEditText"
-                        android:hint="Full Name"
-                        android:inputType="textPersonName"
-                        android:maxLines="1" />
 
-                    <EditText
-                        android:id="@+id/editTextphonenumber"
-                        style="@style/modifiedEditText"
-                        android:hint="@string/login_number_hint"
-                        android:inputType="textPersonName"
-                        android:maxLines="1" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:id="@+id/editTextName"
+                            style="@style/modifiedEditText"
+                            android:hint="Full Name"
+                            android:inputType="textPersonName"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-                    <EditText
-                        android:id="@+id/editTextEmail"
-                        style="@style/modifiedEditText"
-                        android:hint="@string/login_email_hint"
-                        android:maxLines="1" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:id="@+id/editTextphonenumber"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/login_number_hint"
+                            android:inputType="textPersonName"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:id="@+id/editTextEmail"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/login_email_hint"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <EditText
-                            android:id="@+id/editTextPassword"
-                            style="@style/modifiedEditTextColorRed"
-                            android:hint="@string/login_password_hint"
-                            android:inputType="numberPassword"
-                            android:maxLength="4"
-                            android:maxLines="1" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/editPas"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:passwordToggleEnabled="true">
+
+                            <EditText
+                                android:id="@+id/editTextPassword"
+                                style="@style/modifiedEditTextColorRed"
+                                android:hint="@string/login_password_hint"
+                                android:inputType="numberPassword"
+                                android:maxLength="4"
+                                android:maxLines="1" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
 
                         <Spinner
                             android:id="@+id/SpinnerQuestion"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/editTextPassword" />
+                            android:layout_below="@+id/editPas" />
 
-                        <EditText
-                            android:id="@+id/editTextAnswer"
-                            style="@style/modifiedEditTextColorRed"
-                            android:layout_below="@+id/SpinnerQuestion"
-                            android:hint="Please enter you answer here"
-                            android:inputType="textPersonName"
-                            android:maxLines="1" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/SpinnerQuestion">
+
+                            <EditText
+                                android:id="@+id/editTextAnswer"
+                                style="@style/modifiedEditTextColorRed"
+                                android:layout_below="@+id/SpinnerQuestion"
+                                android:hint="Please enter you answer here"
+                                android:inputType="textPersonName"
+                                android:maxLines="1" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
 
                     </RelativeLayout>
 
