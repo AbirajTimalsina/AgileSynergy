@@ -1,13 +1,19 @@
 package com.example.agilesynergy.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class user implements Serializable {
 
     private String fullname, phonenumber, email, password, profile_image;
     private qa qa;
+    @SerializedName("purchase")
+    private List<purchasehistory> PurchaseHistoryresponse;
+
 
     public user(String fullname, String phonenumber, String email, String password, String profile_image, qa qa) {
         this.fullname = fullname;
@@ -16,6 +22,18 @@ public class user implements Serializable {
         this.password = password;
         this.profile_image = profile_image;
         this.qa = qa;
+    }
+
+    public user(List<purchasehistory> purchaseHistoryresponse) {
+        PurchaseHistoryresponse = purchaseHistoryresponse;
+    }
+
+    public List<purchasehistory> getPurchaseHistoryresponse() {
+        return PurchaseHistoryresponse;
+    }
+
+    public void setPurchaseHistoryresponse(List<purchasehistory> purchaseHistoryresponse) {
+        PurchaseHistoryresponse = purchaseHistoryresponse;
     }
 
     public user() {

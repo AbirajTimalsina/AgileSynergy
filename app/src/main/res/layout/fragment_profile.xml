@@ -125,6 +125,7 @@
         android:background="#fff" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/phrecyclehsitory"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/v1"
@@ -134,6 +135,5 @@
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="76dp"
         android:background="#fff" />
-
 
 </RelativeLayout>

@@ -98,7 +98,7 @@
 
     <style name="modifiedEditText" parent="parent">
         <item name="android:textSize">@dimen/newsMoreTextSize</item>
-        <item name="android:backgroundTint">@color/primaryTextColor</item>
+
     </style>
 
     <style name="modifiedEditTextColorRed" parent="parent">
@@ -124,6 +124,7 @@
         <item name="android:textColor">#000</item>
         <item name="android:layout_margin">8dp</item>
     </style>
+
 
 
 </resources>
