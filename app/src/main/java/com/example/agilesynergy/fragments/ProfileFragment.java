@@ -87,6 +87,7 @@ public class ProfileFragment extends Fragment {
             }
         });
         loadcurrentuser();
+        getActivity().finish();
         return view;
     }
 
@@ -98,7 +99,6 @@ public class ProfileFragment extends Fragment {
             public void onResponse(Call<user> call, Response<user> response) {
                 if (!response.isSuccessful()) {
                     Toast.makeText(getContext(), "Code " + response.code(), Toast.LENGTH_SHORT).show();
-
                     return;
                 }
                 User = response.body();
@@ -112,7 +112,7 @@ public class ProfileFragment extends Fragment {
                 tvphoneno.setText(response.body().getPhonenumber());
 
                 // Purchase History
-                purchasehistoryList = response.body().getPurchaseHistoryresponse();
+                purchasehistoryList = response.body().getPurchase();
                 purchasehistoryAdapter = new purchasehistoryAdapter(getContext(), purchasehistoryList);
                 phrecyclehsitory.setAdapter(purchasehistoryAdapter);
                 phrecyclehsitory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
