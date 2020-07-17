@@ -113,7 +113,6 @@ public class ProfileFragment extends Fragment {
 
                 // Purchase History
                 purchasehistoryList = response.body().getPurchaseHistoryresponse();
-                Log.d(TAG, "Number of movies received: " + purchasehistoryList.size());
                 purchasehistoryAdapter = new purchasehistoryAdapter(getContext(), purchasehistoryList);
                 phrecyclehsitory.setAdapter(purchasehistoryAdapter);
                 phrecyclehsitory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
