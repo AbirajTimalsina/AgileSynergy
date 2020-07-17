@@ -1,30 +1,46 @@
 package com.example.agilesynergy;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.content.CursorLoader;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.agilesynergy.api.userapi;
 import com.example.agilesynergy.classes.StrictModeClass;
 import com.example.agilesynergy.classes.userRegister;
+import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.qa;
 import com.example.agilesynergy.models.user;
 
+
+
+
+import java.io.File;
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
+import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
     CircularProgressButton cirRegisterButton;
@@ -47,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
         editTextPhonenumber = findViewById(R.id.editTextphonenumber);
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextAnswer = findViewById(R.id.editTextAnswer);
+
         spinnerQuestions = findViewById(R.id.SpinnerQuestion);
 
         ArrayAdapter<String> arrayAdapterQuestions = new ArrayAdapter<>(this, android.R.layout.select_dialog_item, questions);
@@ -57,6 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 register();
+
             }
         });
     }
@@ -70,6 +88,9 @@ public class RegisterActivity extends AppCompatActivity {
                 + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
                 + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
     }
+
+
+
 
     private void register() {
         validation();
@@ -126,6 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(editTextPassword.getText())) {
             editTextPassword.setError("Please enter valid Password");
             editTextPassword.requestFocus();
+
             return;
         } else if (isValidEmailId(editTextEmail.getText().toString().trim())) {
             //doing nothing

@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginBLL loginBLL = new LoginBLL(usrnumber, usrpassword);
 
 
-        if (loginBLL.checkUser(usrnumber, usrpassword)) {
+        if (loginBLL.checkUser()) {
 
 
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
