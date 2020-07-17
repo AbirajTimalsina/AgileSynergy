@@ -29,6 +29,7 @@ import com.example.agilesynergy.R;
 import com.example.agilesynergy.classes.feedbackClass;
 import com.example.agilesynergy.fragments.HomeFragment;
 import com.example.agilesynergy.fragments.innerFragments.ItemFragment;
+import com.example.agilesynergy.fragments.innerFragments.checkoutFragment;
 import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.feedbackModel;
 import com.example.agilesynergy.models.item;
@@ -107,15 +108,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
                         if (isHearted[0]) {
                             holder.btnHeart.setSpeed(1f);
-                            if(new feedbackClass(new feedbackModel(holder.itemname.getText().toString(),"yes",null)).
-                                    postFeedback()){
+                            if (new feedbackClass(new feedbackModel(holder.itemname.getText().toString(), "yes", null)).
+                                    postFeedback()) {
                                 Toast.makeText(mcontext, "Updated", Toast.LENGTH_SHORT).show();
                             }
 
                         } else {
                             holder.btnHeart.setSpeed(-1f);
-                            if(new feedbackClass(new feedbackModel(holder.itemname.getText().toString(),"no",null)).
-                                    postFeedback()){
+                            if (new feedbackClass(new feedbackModel(holder.itemname.getText().toString(), "no", null)).
+                                    postFeedback()) {
                                 Toast.makeText(mcontext, "Updated", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -142,6 +143,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                         notifyDataSetChanged();
                         if (listObjects.size() == 0) {
                             fm.popBackStackImmediate();  //returns to previous fragment, granted it was added to stack.
+                            checkoutFragment.countDownTimer.cancel();
                         }
                     }
                 });
