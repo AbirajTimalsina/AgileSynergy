@@ -65,7 +65,7 @@ public class MenuFragment extends Fragment {
 
                 FragmentManager fm = getActivity().getSupportFragmentManager();
 
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), itemResponse.body(), null, fm, "menu");
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), itemResponse.body(), null, fm, "menu");
                 recyclerView.setAdapter(recyclerAdapter);
                 LinearLayoutManager layoutManager
                         = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -80,7 +80,6 @@ public class MenuFragment extends Fragment {
         for (item Item : global.itemList) {
             MenuItems.put(Item.getItemname(), Item.get_id()); //(key, value)
         }
-
 
         ArrayAdapter arrayAdapterCountry = new ArrayAdapter<>(getActivity(),
                 android.R.layout.select_dialog_item, new ArrayList(MenuItems.keySet()));
@@ -97,7 +96,7 @@ public class MenuFragment extends Fragment {
                     }
                 }
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), SearchItemlist,
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), SearchItemlist,
                         null, fm, "menu");
                 searchrecycle.setAdapter(recyclerAdapter);
                 LinearLayoutManager layoutManager
@@ -106,10 +105,7 @@ public class MenuFragment extends Fragment {
             }
         });
 
-
-
         return view;
-
 
     }
 }
