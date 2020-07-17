@@ -18,6 +18,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tabcounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="default"
+                />
 
             <ImageButton
                 android:id="@+id/checkoutButton"

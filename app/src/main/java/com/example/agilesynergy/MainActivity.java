@@ -10,8 +10,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,19 +26,26 @@ import android.widget.Toast;
 
 import com.example.agilesynergy.classes.StrictModeClass;
 import com.example.agilesynergy.classes.checkoutService;
+import com.example.agilesynergy.classes.userPurchase;
 import com.example.agilesynergy.fragments.FavouriteFragment;
 import com.example.agilesynergy.fragments.HomeFragment;
 import com.example.agilesynergy.fragments.MenuFragment;
 import com.example.agilesynergy.fragments.ProfileFragment;
+import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.helper.BottomNavigationHider;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
+    public static Context contextMainActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MainActivity.contextMainActivity=getApplicationContext();
 
         checkoutService abc = new checkoutService(this, this.getSupportFragmentManager());
         abc.startService();
