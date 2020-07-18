@@ -88,8 +88,8 @@ public class LoginActivity extends AppCompatActivity {
             etnumber.setText("");
             etpass.setText("");
             etnumber.setVisibility(View.VISIBLE);
-            etnumber.setBackgroundColor(Color.BLUE);
-            etpass.setBackgroundColor(Color.BLUE);
+            etnumber.setBackgroundColor(Color.RED);
+            etpass.setBackgroundColor(Color.RED);
         }
 
     }

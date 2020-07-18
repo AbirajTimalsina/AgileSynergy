@@ -32,7 +32,7 @@ public class forgotPasswordUpdate {
     public Boolean UpdateForgottenPassword() {
 
         userapi userapi = global.getInstance().create(userapi.class);
-        user user = new user(null, null, email, null, null, null);
+        user user = new user(null, null, email, null, null, null,null, null);
         Call<user> userCall = userapi.GetForgottenUserData(user);
 
 

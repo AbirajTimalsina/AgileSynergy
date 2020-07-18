@@ -1,5 +1,6 @@
 package com.example.agilesynergy.api;
 
+import com.example.agilesynergy.models.feedbackModel;
 import com.example.agilesynergy.models.user;
 import com.example.agilesynergy.models.userForgotPassword;
 import com.example.agilesynergy.response.ResponseUser;
@@ -21,7 +22,7 @@ public interface userapi {
 
     @POST("users/signup")
     Call<ResponseUser> userRegister(@Body user user);
-    
+
     @POST("users/userforgotpassword")
     Call<user> GetForgottenUserData(@Body user user);
 
@@ -37,4 +38,7 @@ public interface userapi {
 
     @GET("users/me")
     Call<user> getUserDetails(@Header("Authorization") String token);
+
+    @POST("users/feedback")
+    Call<Void> postFeedBack(@Header("Authorization") String token,@Body feedbackModel feedbackModel);
 }

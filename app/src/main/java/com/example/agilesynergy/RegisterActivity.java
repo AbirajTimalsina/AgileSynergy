@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -73,19 +74,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void register() {
         validation();
-
-//        SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putString("Full Name", editTextName.getText().toString());
-//        editor.putString("Email", editTextEmail.getText().toString());
-//        editor.putString("Phone Number", editTextPhonenumber.getText().toString());
-//        editor.putString("Password", editTextPassword.getText().toString());
-//        editor.commit();
-
         qa qa= new qa(spinnerQuestions.getSelectedItem().toString(),editTextAnswer.getText().toString());
-
         user user= new user(editTextName.getText().toString(),editTextPhonenumber.getText().toString(),
-                editTextEmail.getText().toString(),editTextPassword.getText().toString(),null,qa);
+                editTextEmail.getText().toString(),editTextPassword.getText().toString(),null,qa,null, null);
+
 
         userRegister userRegister= new userRegister(user);
         StrictModeClass.StrictMode();

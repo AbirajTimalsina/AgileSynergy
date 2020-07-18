@@ -11,7 +11,7 @@ public class LoginTest {
    boolean expected=true;
    @Test
     public  void Login() {
-       LoginBLL loginBLL=new LoginBLL("9875149998","1234");
+       LoginBLL loginBLL=new LoginBLL("098765432","54321");
        if(loginBLL.checkUser()){
            actual=true;
        }

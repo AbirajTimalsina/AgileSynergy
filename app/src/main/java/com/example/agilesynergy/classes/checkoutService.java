@@ -27,12 +27,12 @@ public class checkoutService extends Service {
 
     Activity mActivity;
     FragmentManager fm;
-   //context and activity
+    //context and activity
 
     //getcontext   getactivity.
     public checkoutService(Activity mActivity, FragmentManager fm) {
         this.mActivity = mActivity;
-        this.fm=fm;
+        this.fm = fm;
     }
 
     @Nullable
@@ -49,13 +49,14 @@ public class checkoutService extends Service {
             public void run() {
                 if (global.ItemLists.size() == 0) {
                     btnCheckout.setVisibility(View.GONE); //if list 0 then don't show me
-                }
-                else if (global.ItemLists.size() > 0) {
+                } else if (global.ItemLists.size() > 0) {
                     btnCheckout.setVisibility(View.VISIBLE); //if list is more than zero then show me.
                     btnCheckout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            fm.beginTransaction().replace(R.id.frame_container, new checkoutFragment()).addToBackStack(null).
+
+                            fm.beginTransaction().replace(R.id.frame_container, new checkoutFragment()).
+                                    addToBackStack(null).setCustomAnimations(R.anim.enter_from_right,R.anim.exit_from_right).
                                     attach(new checkoutFragment()).detach(new checkoutFragment()).commit();
                         }
                     });

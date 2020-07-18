@@ -52,8 +52,6 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
     public fastfoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_fastfood, parent, false);
-
-
         return new fastfoodViewHolder(view);
     }
 
