@@ -4,14 +4,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,13 +24,11 @@ import com.example.agilesynergy.models.purchasehistory;
 import com.example.agilesynergy.models.user;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 public class ProfileFragment extends Fragment {
 
@@ -87,43 +83,34 @@ public class ProfileFragment extends Fragment {
             }
         });
         loadcurrentuser();
-        getActivity().finish();
+
         return view;
     }
 
     private void loadcurrentuser() {
         userapi Userapi = global.getInstance().create(userapi.class);
         Call<user> userCall = Userapi.getUserDetails(global.token);
-        userCall.enqueue(new Callback<user>() {
-            @Override
-            public void onResponse(Call<user> call, Response<user> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(getContext(), "Code " + response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                User = response.body();
-                if (response.body() != null) {
-                    String imagepath = null;
-                    imagepath = global.imagePath + response.body().getProfile_image();
-                    Picasso.get().load(imagepath).into(imguser);
-                }
-                tvfullname.setText(response.body().getFullname());
-                tvemail.setText(response.body().getEmail());
-                tvphoneno.setText(response.body().getPhonenumber());
+        try {
+            Response<user> profileresponse = userCall.execute();
 
-                // Purchase History
-                purchasehistoryList = response.body().getPurchase();
-                purchasehistoryAdapter = new purchasehistoryAdapter(getContext(), purchasehistoryList);
-                phrecyclehsitory.setAdapter(purchasehistoryAdapter);
-                phrecyclehsitory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-
+            if (profileresponse.isSuccessful()) {
+                String imagepath = null;
+                imagepath = global.imagePath + profileresponse.body().getProfile_image();
+                Picasso.get().load(imagepath).into(imguser);
             }
+            tvfullname.setText(profileresponse.body().getFullname());
+            tvemail.setText(profileresponse.body().getEmail());
+            tvphoneno.setText(profileresponse.body().getPhonenumber());
 
-            @Override
-            public void onFailure(Call<user> call, Throwable t) {
-                Toast.makeText(getContext(), "Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            // Purchase History
+            purchasehistoryList = profileresponse.body().getPurchase();
+            purchasehistoryAdapter = new purchasehistoryAdapter(getContext(), purchasehistoryList);
+            phrecyclehsitory.setAdapter(purchasehistoryAdapter);
+            phrecyclehsitory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
