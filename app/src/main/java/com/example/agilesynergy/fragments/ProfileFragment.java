@@ -87,7 +87,7 @@ public class ProfileFragment extends Fragment {
             }
         });
         loadcurrentuser();
-        getActivity().finish();
+        getActivity();
         return view;
     }
 
