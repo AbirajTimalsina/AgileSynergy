@@ -110,14 +110,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                             holder.btnHeart.setSpeed(1f);
                             if (new feedbackClass(new feedbackModel(holder.itemname.getText().toString(), "yes", null)).
                                     postFeedback()) {
-                                Toast.makeText(mcontext, "Updated", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mcontext, "Added to favourite", Toast.LENGTH_SHORT).show();
                             }
 
                         } else {
                             holder.btnHeart.setSpeed(-1f);
                             if (new feedbackClass(new feedbackModel(holder.itemname.getText().toString(), "no", null)).
                                     postFeedback()) {
-                                Toast.makeText(mcontext, "Updated", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mcontext, "Remove from favourite", Toast.LENGTH_SHORT).show();
                             }
                         }
                         holder.btnHeart.playAnimation();
