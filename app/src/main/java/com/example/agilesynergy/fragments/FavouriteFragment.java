@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,7 +19,6 @@ import com.example.agilesynergy.models.user;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FavouriteFragment extends Fragment {
@@ -38,29 +36,18 @@ public class FavouriteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favourite, container, false);
 
         fav_recycleview = view.findViewById(R.id.fav_recycleview);
-
         userapi Userapi = global.getInstance().create(userapi.class);
         Call<user> userCall = Userapi.getUserDetails(global.token);
+        try {
+           Response<user> favouriteresponse = userCall.execute();
+            feedbackModels = favouriteresponse.body().getFeedback();
+            favouriteAdapter = new favouriteAdapter(getContext(), feedbackModels);
+            fav_recycleview.setAdapter(favouriteAdapter);
+            fav_recycleview.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        userCall.enqueue(new Callback<user>() {
-            @Override
-            public void onResponse(Call<user> call, Response<user> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(getContext(), "Code " + response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                User = response.body();
-                feedbackModels = response.body().getFeedback();
-                favouriteAdapter = new favouriteAdapter(getContext(), feedbackModels);
-                fav_recycleview.setAdapter(favouriteAdapter);
-                fav_recycleview.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-            }
-
-            @Override
-            public void onFailure(Call<user> call, Throwable t) {
-                Toast.makeText(getContext(), "Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
         return view;
     }
 }
