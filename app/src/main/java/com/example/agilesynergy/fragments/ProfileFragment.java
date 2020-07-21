@@ -37,8 +37,6 @@ public class ProfileFragment extends Fragment {
     Button btnlogout;
 
     RecyclerView phrecyclehsitory;
-    user User;
-
     List<purchasehistory> purchasehistoryList;
     purchasehistoryAdapter purchasehistoryAdapter;
 
@@ -83,7 +81,6 @@ public class ProfileFragment extends Fragment {
             }
         });
         loadcurrentuser();
-
         return view;
     }
 
