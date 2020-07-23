@@ -25,6 +25,7 @@ public class RegisterTestCase {
     public void PasswordUpadte(){
 
         forgotPasswordUpdate passwordForgot = new forgotPasswordUpdate("s@gmail.com","What is yours first pets name?","tiger","5678");
+
         boolean UpdatePassword = passwordForgot.UpdateForgottenPassword();
         assertTrue(UpdatePassword);
 
