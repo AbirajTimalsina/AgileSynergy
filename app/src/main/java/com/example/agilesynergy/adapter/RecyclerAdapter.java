@@ -1,5 +1,6 @@
 package com.example.agilesynergy.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -45,17 +46,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     private Context mcontext;
     private List<item> listItems;
-    private ArrayList<JSONObject> listObjects = new ArrayList<>();
+    private ArrayList<JSONObject> listObjects;
     private FragmentManager fm;
     private String location_Fragment;
 
+    Dialog dialog;
     public RecyclerAdapter(Context mcontext, List<item> listItems, ArrayList<JSONObject> listObjects,
-                           FragmentManager fm, String location_Fragment) {
+                           FragmentManager fm, String location_Fragment, Dialog dialog) {
         this.mcontext = mcontext;
         this.listItems = listItems;
         this.listObjects = listObjects;
         this.fm = fm;
         this.location_Fragment = location_Fragment;
+        this.dialog=dialog;
     }
 
     @NonNull
@@ -112,9 +115,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                                     postFeedback()) {
                                 Toast.makeText(mcontext, "Updated", Toast.LENGTH_SHORT).show();
                             }
-
                         } else {
-                            holder.btnHeart.setSpeed(-1f);
+                            holder.btnHeart.setSpeed(-1f); //reversing animation with negative
                             if (new feedbackClass(new feedbackModel(holder.itemname.getText().toString(), "no", null)).
                                     postFeedback()) {
                                 Toast.makeText(mcontext, "Updated", Toast.LENGTH_SHORT).show();
@@ -142,8 +144,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                         listObjects.remove(position);
                         notifyDataSetChanged();
                         if (listObjects.size() == 0) {
-                            fm.popBackStackImmediate();  //returns to previous fragment, granted it was added to stack.
-                            checkoutFragment.countDownTimer.cancel();
+//                            fm.popBackStackImmediate();  //returns to previous fragment, granted it was added to stack.
+                            dialog.dismiss();
                         }
                     }
                 });
