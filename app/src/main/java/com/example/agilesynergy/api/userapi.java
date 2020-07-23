@@ -4,11 +4,13 @@ import com.example.agilesynergy.models.feedbackModel;
 import com.example.agilesynergy.models.user;
 import com.example.agilesynergy.models.userForgotPassword;
 import com.example.agilesynergy.response.ResponseUser;
+import com.facebook.internal.ImageResponse;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -17,6 +19,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 
 public interface userapi {
 
@@ -25,6 +28,8 @@ public interface userapi {
 
     @POST("users/userforgotpassword")
     Call<user> GetForgottenUserData(@Body user user);
+    @POST("upload")
+    Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
 
     @PUT("users/userforgotpassword")
     Call<userForgotPassword> updateForgottenUser(@Body userForgotPassword user);
