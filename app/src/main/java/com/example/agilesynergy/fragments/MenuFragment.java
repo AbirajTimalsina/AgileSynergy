@@ -61,7 +61,7 @@ public class MenuFragment extends Fragment {
 
                 FragmentManager fm = getActivity().getSupportFragmentManager();
 
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), itemResponse.body(), null, fm, "menu");
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), itemResponse.body(), null, fm, "menu", null);
                 recyclerView.setAdapter(recyclerAdapter);
                 LinearLayoutManager layoutManager
                         = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -93,7 +93,7 @@ public class MenuFragment extends Fragment {
                 }
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), SearchItemlist,
-                        null, fm, "menu");
+                        null, fm, "menu", null);
                 searchrecycle.setAdapter(recyclerAdapter);
                 LinearLayoutManager layoutManager
                         = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

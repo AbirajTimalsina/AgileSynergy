@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".fragments.innerFragments.checkoutFragment">
 
@@ -104,13 +104,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+
         android:layout_marginBottom="80dp">
 
         <LinearLayout
             android:id="@+id/linearlayoutpurchase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:background="@drawable/purchase_bg"
             android:orientation="horizontal">
 
@@ -128,17 +129,36 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_margin="05dp"
+
                 android:src="@drawable/purchase_icon" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvcounter"
+        <LinearLayout
+            android:id="@+id/linearlayoutcancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linearlayoutpurchase"
-            android:layout_centerHorizontal="true"
-            android:text="timer" />
+            android:layout_marginLeft="210dp"
+            android:background="@drawable/button_rounded"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvcancel"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/defaulttextview01"
+                android:background="@drawable/button_rounded"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Cancel"
+                android:textColor="#fff" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
+                android:src="@drawable/purchase_icon" />
+        </LinearLayout>
+
     </RelativeLayout>
 
 </RelativeLayout>
