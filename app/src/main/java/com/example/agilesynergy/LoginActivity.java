@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,14 +18,11 @@ import android.widget.Toast;
 import com.example.agilesynergy.classes.LoginBLL;
 import com.example.agilesynergy.classes.StrictModeClass;
 
-import kotlin.jvm.internal.MagicApiIntrinsics;
-
 public class LoginActivity extends AppCompatActivity {
 
     EditText etnumber, etpass;
-    TextView etForget;
     Button loginbutton;
-    TextView txtForget;
+    TextView etforget;
 
     private NotificationManagerCompat notificationManagerCompat;
 
@@ -39,15 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etnumber = findViewById(R.id.etnumber);
         etpass = findViewById(R.id.etPassword);
-        etForget=findViewById(R.id.etforget);
-        etForget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, ForgotPassword.class));
-            }
-        });
+        etforget = findViewById(R.id.etforget);
         loginbutton = findViewById(R.id.btnuserlogin);
-
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,8 +56,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        etforget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
 
     }
+
+
 
     private void Userlogin() {
         StrictModeClass.StrictMode();
@@ -77,8 +77,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         if (loginBLL.checkUser()) {
-
-
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             Toast.makeText(LoginActivity.this, "Redirecting... ", Toast.LENGTH_SHORT).show();
             startActivity(intent);
@@ -90,9 +88,8 @@ public class LoginActivity extends AppCompatActivity {
             etnumber.setText("");
             etpass.setText("");
             etnumber.setVisibility(View.VISIBLE);
-            etnumber.setBackgroundColor(Color.BLUE);
-            etpass.setBackgroundColor(Color.BLUE);
-
+            etnumber.setBackgroundColor(Color.RED);
+            etpass.setBackgroundColor(Color.RED);
         }
 
     }
@@ -102,4 +99,6 @@ public class LoginActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
 
     }
+
+
 }
