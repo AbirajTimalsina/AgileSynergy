@@ -27,6 +27,7 @@ import static org.hamcrest.Matchers.allOf;
 
 public class UserPurchaseTest {
     @Rule
+    //
     public ActivityTestRule<LoginActivity> testRule =
             new ActivityTestRule<>(LoginActivity.class);
 
