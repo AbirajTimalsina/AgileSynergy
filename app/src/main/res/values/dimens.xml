@@ -7,4 +7,6 @@
     <dimen name="loginViewsMargin">20dp</dimen>
     <dimen name="list_item_spacing">16dp</dimen>
     <dimen name="list_item_spacing_half">8dp</dimen>
+    <dimen name="dialogFragmentHeight">600dp</dimen>
+    <dimen name="dialogFragmentWidth">380dp</dimen>
 </resources>

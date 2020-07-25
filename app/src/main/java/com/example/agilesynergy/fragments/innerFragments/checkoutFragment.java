@@ -40,17 +40,6 @@ public class checkoutFragment extends DialogFragment {
 
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new Dialog(getActivity(), getTheme()) {
-            @Override
-            public void onBackPressed() {
-                Toast.makeText(getContext(), "Please USE the cancel button.", Toast.LENGTH_SHORT).show();
-            }
-        };
-    }
-
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -58,11 +47,14 @@ public class checkoutFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_checkout, container, false);
         linearLayoutPurchase = view.findViewById(R.id.linearlayoutpurchase);
         linearLayoutCancel = view.findViewById(R.id.linearlayoutcancel);
-
+        int width = getResources().getDimensionPixelSize(R.dimen.dialogFragmentWidth);
+        int height = getResources().getDimensionPixelSize(R.dimen.dialogFragmentHeight);
+        getDialog().getWindow().setLayout(width, height);
         linearLayoutCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getDialog().dismiss();
+                global.ItemLists.clear();
             }
         });
 
