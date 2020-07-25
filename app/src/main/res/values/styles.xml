@@ -133,7 +133,7 @@
 
 <!--        <item name="android:windowFullscreen">true</item>-->
         <item name="android:windowIsFloating">false</item>
-<!--        <item name="android:windowBackground">@drawable/my_custom_dialog_background</item>-->
+        <item name="android:windowBackground">#ffffff</item>
         <!--        <item name="android:colorBackgroundCacheHint">@null</item>-->
     </style>
 
