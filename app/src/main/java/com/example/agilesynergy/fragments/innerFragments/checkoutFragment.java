@@ -1,5 +1,8 @@
 package com.example.agilesynergy.fragments.innerFragments;
 
+import android.app.ActionBar;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.agilesynergy.MainActivity;
 import com.example.agilesynergy.api.itemapi;
 import com.example.agilesynergy.classes.userPurchase;
+import com.example.agilesynergy.fragments.HomeFragment;
+import com.example.agilesynergy.fragments.MenuFragment;
 import com.example.agilesynergy.global.global;
 
 import android.os.CountDownTimer;
@@ -18,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +36,7 @@ public class checkoutFragment extends Fragment {
     private RecyclerView recyclerView;
     private static TextView tvPurchase, tvCounter;
     private TextView tabCounter;
+    ImageButton checkoutbackbutton;
     private static LinearLayout linearLayout;
 
     public static CountDownTimer countDownTimer = new CountDownTimer(10000, 1000) {
@@ -63,6 +70,19 @@ public class checkoutFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_checkout, container, false);
         tvPurchase = view.findViewById(R.id.tvpurchase);
         tvCounter = view.findViewById(R.id.tvcounter);
+
+        checkoutbackbutton = view.findViewById(R.id.checkoutbackbutton);
+        checkoutbackbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new HomeFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_container, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
         linearLayout = view.findViewById(R.id.linearlayoutpurchase);
         if (global.counter > 0) {
@@ -105,6 +125,8 @@ public class checkoutFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
         return view;
     }
 

@@ -18,6 +18,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface userapi {
 
@@ -42,4 +43,8 @@ public interface userapi {
 
     @POST("users/feedback")
     Call<Void> postFeedBack(@Header("Authorization") String token,@Body feedbackModel feedbackModel);
+
+    @DELETE("/users/{id}/feedback/{feedbackid}")
+    Call<user> deletefavouirtelist(@Header("Authorization") String token, @Path("id") String userid, @Path("feedbackid") String feedbackid);
+
 }

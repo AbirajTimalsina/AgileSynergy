@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+
+
+
 //        // attaching bottom sheet behaviour - hide / show on scroll
 //        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigation.getLayoutParams();
 //        layoutParams.setBehavior(new BottomNavigationHider());
@@ -103,9 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_from_left);
             }
             this.position = position;
-            transaction.addToBackStack(null);
-            transaction.detach(fragment);
-            transaction.attach(fragment);
             transaction.commit();
         }
 
