@@ -14,4 +14,9 @@
     <color name="primaryTextColor">#11CFC5</color>
     <color name="primaryTextRedColor">#c71100</color>
     <color name="primaryTextGrayColor">#8AC5C0BF</color>
+
+
+
+    <color name="opaque_red">#ff3a2f </color>
+    <color name="translucent_red">#656565</color>
 </resources>

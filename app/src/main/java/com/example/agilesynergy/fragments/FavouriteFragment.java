@@ -24,10 +24,9 @@ import retrofit2.Response;
 public class FavouriteFragment extends Fragment {
 
     RecyclerView fav_recycleview;
-
-    user User;
     List<feedbackModel> feedbackModels;
     favouriteAdapter favouriteAdapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

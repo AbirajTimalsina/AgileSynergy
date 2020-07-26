@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class ProfileFragment extends Fragment {
     ImageView imguser;
     private TextView tvfullname, tvemail, tvphoneno, tvaddress;
     Button btnlogout;
-
+    ImageButton changepp;
     RecyclerView phrecyclehsitory;
     List<purchasehistory> purchasehistoryList;
     purchasehistoryAdapter purchasehistoryAdapter;
@@ -45,7 +46,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        final View view = inflater.inflate(R.layout.fragment_profile, container, false);
         imguser = view.findViewById(R.id.imguser);
         tvfullname = view.findViewById(R.id.tvfullname);
         tvemail = view.findViewById(R.id.tvemail);
@@ -53,6 +54,8 @@ public class ProfileFragment extends Fragment {
         tvaddress = view.findViewById(R.id.tvaddress);
         phrecyclehsitory = view.findViewById(R.id.phrecyclehsitory);
         btnlogout = view.findViewById(R.id.btnlogout);
+        changepp = view.findViewById(R.id.changepp);
+        loadcurrentuser();
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +83,6 @@ public class ProfileFragment extends Fragment {
                 alert11.show();
             }
         });
-        loadcurrentuser();
         return view;
     }
 
@@ -109,6 +111,6 @@ public class ProfileFragment extends Fragment {
             e.printStackTrace();
         }
 
-
     }
+
 }

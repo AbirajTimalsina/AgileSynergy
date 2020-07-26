@@ -1,17 +1,10 @@
 package com.example.agilesynergy.adapter;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,12 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airbnb.lottie.LottieAnimationView;
-import com.airbnb.lottie.LottieComposition;
-import com.airbnb.lottie.LottieDrawable;
 import com.example.agilesynergy.R;
 import com.example.agilesynergy.classes.feedbackClass;
-import com.example.agilesynergy.fragments.HomeFragment;
 import com.example.agilesynergy.fragments.innerFragments.ItemFragment;
 import com.example.agilesynergy.fragments.innerFragments.checkoutFragment;
 import com.example.agilesynergy.global.global;
@@ -45,7 +34,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     private Context mcontext;
     private List<item> listItems;
-    private ArrayList<JSONObject> listObjects = new ArrayList<>();
+    private ArrayList<JSONObject> listObjects;
     private FragmentManager fm;
     private String location_Fragment;
 
@@ -80,6 +69,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                 final item item = listItems.get(position);
                 holder.itemname.setText(item.getItemname());
                 holder.itemprice.setText(item.getItemprice());
+                holder.itemmitemmenuingredient.setText(item.getItemingredient());
                 String imagePath = global.imagePath + item.getItempicture();
                 Picasso.get().load(imagePath).into(holder.imageitempicture);
                 holder.linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -92,36 +82,48 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                                 addToBackStack(null).commit();
                     }
                 });
-
-                final long[] mLastClickTime = {0};
-                final boolean[] isHearted = {true};
-                holder.btnHeart.setPadding(-150, -150, -150, -150);
+//
+//                final long[] mLastClickTime = {0};
+//                final boolean[] isHearted = {true};
+//                holder.btnHeart.setPadding(-150, -150, -150, -150);
                 holder.btnHeart.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //giving validation to get clicked only after 1 second passes.
-                        if (SystemClock.elapsedRealtime() - mLastClickTime[0] < 2000) {
-                            Toast.makeText(mcontext, "Please refrain from clicking Repeatedly.", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        mLastClickTime[0] = SystemClock.elapsedRealtime();
+                        if (new feedbackClass(new feedbackModel(null, holder.itemname.getText().toString(), "yes", null)).
+                                postFeedback()) {
 
-                        if (isHearted[0]) {
-                            holder.btnHeart.setSpeed(1f);
-                            if (new feedbackClass(new feedbackModel(holder.itemname.getText().toString(), "yes", null)).
-                                    postFeedback()) {
-                                Toast.makeText(mcontext, "Added to favourite", Toast.LENGTH_SHORT).show();
-                            }
+                            holder.btnHeart.setBackgroundResource(R.drawable.ic_favorite_red_24dp);
+                            Toast.makeText(mcontext, "Added to favourite", Toast.LENGTH_SHORT).show();
 
                         } else {
-                            holder.btnHeart.setSpeed(-1f);
-                            if (new feedbackClass(new feedbackModel(holder.itemname.getText().toString(), "no", null)).
-                                    postFeedback()) {
-                                Toast.makeText(mcontext, "Remove from favourite", Toast.LENGTH_SHORT).show();
-                            }
+                            holder.btnHeart.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24);
+                            Toast.makeText(mcontext, "Remove from favourite", Toast.LENGTH_SHORT).show();
                         }
-                        holder.btnHeart.playAnimation();
-                        isHearted[0] = !isHearted[0];
+
+
+                        //giving validation to get clicked only after 1 second passes.
+//                        if (SystemClock.elapsedRealtime() - mLastClickTime[0] < 2000) {
+//                            Toast.makeText(mcontext, "Please refrain from clicking Repeatedly.", Toast.LENGTH_SHORT).show();
+//                            return;
+//                        }
+//                        mLastClickTime[0] = SystemClock.elapsedRealtime();
+//
+//                        if (isHearted[0]) {
+//                            holder.btnHeart.setSpeed(1f);
+//                            if (new feedbackClass(new feedbackModel(null,holder.itemname.getText().toString(), "yes", null)).
+//                                    postFeedback()) {
+//                                Toast.makeText(mcontext, "Added to favourite", Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                        } else {
+//                            holder.btnHeart.setSpeed(-1f);
+//                            if (new feedbackClass(new feedbackModel(null,holder.itemname.getText().toString(), "no", null)).
+//                                    postFeedback()) {
+//                                Toast.makeText(mcontext, "Remove from favourite", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                        holder.btnHeart.playAnimation();
+//                        isHearted[0] = !isHearted[0];
                     }
                 });
                 break;
@@ -169,10 +171,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         //Menu Elements
         ImageView imageitempicture;
-        TextView itemname, itemprice;
+        TextView itemname, itemprice, itemmitemmenuingredient;
         ImageButton btnCheckoutDelete;
         LinearLayout linearLayout;
-        LottieAnimationView btnHeart;
+        Button btnHeart;
         //Checkout Elements
         TextView checkoutItemName, checkoutItemPrice, checkoutItemAmount, checkoutItemAfterAmount;
 
@@ -183,6 +185,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     imageitempicture = itemView.findViewById(R.id.imageviewmenupicture);
                     itemname = itemView.findViewById(R.id.itemmenuname);
                     itemprice = itemView.findViewById(R.id.itemmenuprice);
+                    itemmitemmenuingredient = itemView.findViewById(R.id.itemmitemmenuingredient);
                     linearLayout = itemView.findViewById(R.id.linearmenu);
                     btnHeart = itemView.findViewById(R.id.animationheart); //use later
                     break;

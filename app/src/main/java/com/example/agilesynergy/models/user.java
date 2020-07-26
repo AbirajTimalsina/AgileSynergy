@@ -1,20 +1,18 @@
 package com.example.agilesynergy.models;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class user implements Serializable {
 
-    private String fullname, phonenumber, email, password, profile_image;
+    private String _id, fullname, phonenumber, email, password, profile_image;
     private qa qa;
     private ArrayList<feedbackModel> feedback;
     private ArrayList<purchasehistory> purchase;
 
-    public user(String fullname, String phonenumber, String email, String password, String profile_image, com.example.agilesynergy.models.qa qa, ArrayList<feedbackModel> feedback, ArrayList<purchasehistory> purchase) {
+
+    public user(String _id, String fullname, String phonenumber, String email, String password, String profile_image, com.example.agilesynergy.models.qa qa, ArrayList<feedbackModel> feedback, ArrayList<purchasehistory> purchase) {
+        this._id = _id;
         this.fullname = fullname;
         this.phonenumber = phonenumber;
         this.email = email;
@@ -23,6 +21,13 @@ public class user implements Serializable {
         this.qa = qa;
         this.feedback = feedback;
         this.purchase = purchase;
+    }
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getFullname() {
