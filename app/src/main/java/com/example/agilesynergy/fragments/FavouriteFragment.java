@@ -26,6 +26,7 @@ public class FavouriteFragment extends Fragment {
     RecyclerView fav_recycleview;
     List<feedbackModel> feedbackModels;
     favouriteAdapter favouriteAdapter;
+    user user;
 
 
     @Override

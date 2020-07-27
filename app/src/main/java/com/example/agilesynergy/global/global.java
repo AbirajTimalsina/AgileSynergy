@@ -21,6 +21,7 @@ public class global {
     public static String token = "Bearer ";
     public static String imagePath = Base_URL + "uploads/";
 
+
     public static item item;
     public static List<item> itemList;
     public static ArrayList<JSONObject> ItemLists = new ArrayList<>(); //0

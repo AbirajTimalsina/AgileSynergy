@@ -45,6 +45,6 @@ public interface userapi {
     Call<Void> postFeedBack(@Header("Authorization") String token,@Body feedbackModel feedbackModel);
 
     @DELETE("/users/{id}/feedback/{feedbackid}")
-    Call<user> deletefavouirtelist(@Header("Authorization") String token, @Path("id") String userid, @Path("feedbackid") String feedbackid);
+    Call<Void> deletefavouirtelist(@Header("Authorization") String token, @Path("id") String userid, @Path("feedbackid") String feedbackid);
 
 }
