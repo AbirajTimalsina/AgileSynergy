@@ -1,38 +1,38 @@
 package com.example.agilesynergy.fragments.innerFragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.example.agilesynergy.R;
+import com.example.agilesynergy.fragments.MenuFragment;
 import com.example.agilesynergy.global.global;
-import com.example.agilesynergy.models.item;
-import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class ItemFragment extends Fragment implements View.OnClickListener {
 
     private TextView itemName, itemPrice, itemingredient, txtItemAmount;
     private ImageView itemPicture;
-    private item item;
+    private ImageButton imageBackButton;
     private Button btnAdd, btnSubtract, btnOrder;
     private Integer Amount;
     private JSONObject itemList = new JSONObject();
+
+    public ItemFragment(){
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +55,20 @@ public class ItemFragment extends Fragment implements View.OnClickListener {
         itemingredient.setText(global.item.getItemingredient());
         String imagePath = global.imagePath + global.item.getItempicture();
         Picasso.get().load(imagePath).into(itemPicture);
+        imageBackButton = view.findViewById(R.id.backbutton);
+        imageBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new MenuFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_container, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+
         return view;
     }
 

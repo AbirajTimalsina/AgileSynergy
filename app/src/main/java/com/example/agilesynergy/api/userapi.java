@@ -4,13 +4,11 @@ import com.example.agilesynergy.models.feedbackModel;
 import com.example.agilesynergy.models.user;
 import com.example.agilesynergy.models.userForgotPassword;
 import com.example.agilesynergy.response.ResponseUser;
-import com.facebook.internal.ImageResponse;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -20,7 +18,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
-import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface userapi {
 
@@ -29,8 +27,6 @@ public interface userapi {
 
     @POST("users/userforgotpassword")
     Call<user> GetForgottenUserData(@Body user user);
-    @POST("upload")
-    Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
 
     @PUT("users/userforgotpassword")
     Call<userForgotPassword> updateForgottenUser(@Body userForgotPassword user);
@@ -47,4 +43,8 @@ public interface userapi {
 
     @POST("users/feedback")
     Call<Void> postFeedBack(@Header("Authorization") String token,@Body feedbackModel feedbackModel);
+
+    @DELETE("/users/{id}/feedback/{feedbackid}")
+    Call<Void> deletefavouirtelist(@Header("Authorization") String token, @Path("id") String userid, @Path("feedbackid") String feedbackid);
+
 }
