@@ -111,13 +111,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
                         if (isHearted[0]) {
                             holder.btnHeart.setSpeed(1f);
-                            if (new feedbackClass(new feedbackModel(holder.itemname.getText().toString(), "yes", null)).
+                            if (new feedbackClass(new feedbackModel(holder.itemname.getText().toString(), "yes", null,null)).
                                     postFeedback()) {
                                 Toast.makeText(mcontext, "Updated", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             holder.btnHeart.setSpeed(-1f); //reversing animation with negative
-                            if (new feedbackClass(new feedbackModel(holder.itemname.getText().toString(), "no", null)).
+                            if (new feedbackClass(new feedbackModel(holder.itemname.getText().toString(), "no", null,null)).
                                     postFeedback()) {
                                 Toast.makeText(mcontext, "Updated", Toast.LENGTH_SHORT).show();
                             }
