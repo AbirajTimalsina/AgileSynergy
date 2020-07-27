@@ -3,7 +3,7 @@ package com.example.agilesynergy.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class user implements Serializable {
+public class user{
 
     private String _id, fullname, phonenumber, email, password, profile_image;
     private qa qa;
@@ -22,6 +22,8 @@ public class user implements Serializable {
         this.feedback = feedback;
         this.purchase = purchase;
     }
+
+
     public String get_id() {
         return _id;
     }

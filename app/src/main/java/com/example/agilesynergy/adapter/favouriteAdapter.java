@@ -19,9 +19,11 @@ import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.feedbackModel;
 import com.example.agilesynergy.models.user;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Response;
 
 public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favouriteViewHolder> {
 
@@ -30,9 +32,11 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
     List<feedbackModel> feedbackModelList;
 
 
+
     public favouriteAdapter(Context mcontext, List<feedbackModel> feedbackModelList) {
         this.mcontext = mcontext;
         this.feedbackModelList = feedbackModelList;
+
     }
 
     @NonNull
@@ -44,7 +48,8 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
 
     @Override
     public void onBindViewHolder(@NonNull final favouriteViewHolder holder, int position) {
-           final user user = new user("5ee3b65d3cbdee3dcc402c8b",null,null,null,null,null,null,null,null);
+        // final user user = new user("5ee3b65d3cbdee3dcc402c8b",null,null,null,null,null,null,null,null);
+
         final feedbackModel feedbackModel = feedbackModelList.get(position);
         holder.tvitemname.setText(feedbackModel.getItemname());
         holder.btnfav.setOnClickListener(new View.OnClickListener() {
@@ -57,10 +62,12 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         userapi userapi = global.getInstance().create(userapi.class);
-                        Call<user> dltfav = userapi.deletefavouirtelist(global.token, user.get_id(), feedbackModel.get_id());
+                        Call<user> userCall = userapi.getUserDetails(global.token);
                         try{
+                            Response<user> profileresponse = userCall.execute();
+                            Call<Void> dltfav = userapi.deletefavouirtelist(global.token, profileresponse.body().get_id(), feedbackModel.get_id());
                              dltfav.execute();
-                            Toast.makeText(view.getContext(), "Sucessfully Removed ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(view.getContext(), "Successfully Removed ", Toast.LENGTH_SHORT).show();
 
                         }catch (Exception e){
                             e.printStackTrace();

@@ -138,12 +138,12 @@
 
     <ImageButton
         android:id="@+id/changepp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="281dp"
-        android:layout_marginBottom="495dp"
+        android:layout_marginEnd="252dp"
+        android:layout_marginBottom="507dp"
         android:src="@drawable/ic_baseline_restaurant_menu_24" />
 
 
