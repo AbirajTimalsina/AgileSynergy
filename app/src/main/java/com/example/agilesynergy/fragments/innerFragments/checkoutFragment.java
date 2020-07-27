@@ -38,7 +38,6 @@ public class checkoutFragment extends DialogFragment {
     private RecyclerView recyclerView;
     private LinearLayout linearLayoutPurchase, linearLayoutCancel;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
