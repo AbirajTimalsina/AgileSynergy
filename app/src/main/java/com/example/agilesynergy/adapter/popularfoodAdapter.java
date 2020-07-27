@@ -35,7 +35,6 @@ public class popularfoodAdapter extends RecyclerView.Adapter<popularfoodAdapter.
         this.popularfoodModelList = popularfoodModelList;
     }
 
-
     @NonNull
     @Override
     public popularfoodviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

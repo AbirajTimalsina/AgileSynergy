@@ -88,26 +88,26 @@ public class HomeFragment extends Fragment {
         regularfood();
 
 
-        //Refreshing
-        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
-        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
-                        android.R.color.holo_green_light,
-                        android.R.color.holo_orange_light,
-                        android.R.color.holo_red_light);
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeLayout.setRefreshing(false);
-                    }
-                }, 2000);
-
-
-            }
-        });
+//        //Refreshing
+//        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
+//        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+//                        android.R.color.holo_green_light,
+//                        android.R.color.holo_orange_light,
+//                        android.R.color.holo_red_light);
+//
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        swipeLayout.setRefreshing(false);
+//                    }
+//                }, 2000);
+//
+//
+//            }
+//        });
 
 
         return view;
@@ -144,7 +144,7 @@ public class HomeFragment extends Fragment {
                 List<regularfoodModel> regularfoodModelList1 = response.body();
                 regularfoodAdapter = new regularfoodAdapter(getContext(), regularfoodModelList1);
                 regularrecycleview.setAdapter(regularfoodAdapter);
-                regularrecycleview.setLayoutManager(new GridLayoutManager(getContext(), 3, LinearLayoutManager.VERTICAL, false));
+                regularrecycleview.setLayoutManager(new GridLayoutManager(getContext(),3, LinearLayoutManager.VERTICAL, false));
             }
 
             @Override
