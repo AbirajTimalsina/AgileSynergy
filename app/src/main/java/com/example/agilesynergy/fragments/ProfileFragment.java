@@ -95,7 +95,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 selectImage(getActivity());
-                saveImageOnly();
+//                saveImageOnly();
             }
         });
         btnlogout.setOnClickListener(new View.OnClickListener() {
