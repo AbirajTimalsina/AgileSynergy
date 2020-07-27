@@ -128,6 +128,14 @@
         <item name="android:paddingLeft">5dp</item>
     </style>
 
+    <style name="checkoutFragmentXY" parent="android:Theme.Holo.Dialog" >
+<!--        <item name="android:windowNoTitle">true</item>-->
+
+<!--        <item name="android:windowFullscreen">true</item>-->
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">#ffffff</item>
+        <!--        <item name="android:colorBackgroundCacheHint">@null</item>-->
+    </style>
 
 <!--    profiledesgin-->
 

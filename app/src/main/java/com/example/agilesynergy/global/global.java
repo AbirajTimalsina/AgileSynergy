@@ -22,7 +22,6 @@ public class global {
     public static item item;
     public static List<item> itemList;
     public static ArrayList<JSONObject> ItemLists = new ArrayList<>(); //0
-    public static int counter=0;
 
     public static Retrofit getInstance() {
         Retrofit retrofit = new Retrofit.Builder()
