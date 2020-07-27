@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -55,9 +56,14 @@ public class checkoutService extends Service {
                         @Override
                         public void onClick(View view) {
 
-                            fm.beginTransaction().replace(R.id.frame_container, new checkoutFragment()).
-                                    addToBackStack(null).setCustomAnimations(R.anim.enter_from_right,R.anim.exit_from_right).
-                                    attach(new checkoutFragment()).detach(new checkoutFragment()).commit();
+                            checkoutFragment checkoutFragment= new checkoutFragment();
+                            checkoutFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.checkoutFragmentXY);
+                            checkoutFragment.show(fm,"checkoutFragment");
+
+
+//                            fm.beginTransaction().replace(R.id.frame_container, new checkoutFragment()).
+//                                    addToBackStack(null).setCustomAnimations(R.anim.enter_from_right,R.anim.exit_from_right).
+//                                    attach(new checkoutFragment()).detach(new checkoutFragment()).commit();
                         }
                     });
                 }

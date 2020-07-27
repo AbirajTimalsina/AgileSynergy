@@ -6,7 +6,6 @@ import com.example.agilesynergy.models.userCRUD;
 import com.example.agilesynergy.models.userForgotPassword;
 import com.example.agilesynergy.response.ResponseImage;
 import com.example.agilesynergy.response.ResponseUser;
-import com.facebook.internal.ImageResponse;
 
 import org.json.JSONObject;
 
@@ -24,6 +23,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface userapi {
 
@@ -40,14 +40,6 @@ public interface userapi {
     @POST("users/login")
     Call<ResponseUser> checklogin(@Field("phonenumber") String phonenumber, @Field("password") String password);
 
-    @PUT("users/me")
-    Call<userCRUD> updateuser(@Header("Authorization") String token, @Body userCRUD UserCRUD);
-
-
-    @Multipart
-    @POST("upload")
-    Call<ResponseImage> uploadpic(@Part MultipartBody.Part img);
-
     @PUT("users/purchaseupdate")
     Call<JSONObject> userPurchase(@Header("Authorization") String token, @Body ArrayList<JSONObject> CustomUserObj);
 
@@ -56,4 +48,16 @@ public interface userapi {
 
     @POST("users/feedback")
     Call<Void> postFeedBack(@Header("Authorization") String token,@Body feedbackModel feedbackModel);
+
+    @PUT("users/me")
+    Call<userCRUD> updateuser(@Header("Authorization") String token, @Body userCRUD UserCRUD);
+
+
+    @Multipart
+    @POST("upload")
+    Call<ResponseImage> uploadpic(@Part MultipartBody.Part img);
+
+    @DELETE("/users/{id}/feedback/{feedbackid}")
+    Call<Void> deletefavouirtelist(@Header("Authorization") String token, @Path("id") String userid, @Path("feedbackid") String feedbackid);
+
 }
