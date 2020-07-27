@@ -116,7 +116,7 @@ public class checkoutFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerviewcheckout);
         try {
             RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), null,
-                    global.ItemLists, fm, "checkout");
+                    global.ItemLists, fm, "checkout",null);
             recyclerView.setAdapter(recyclerAdapter);
             LinearLayoutManager layoutManager
                     = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

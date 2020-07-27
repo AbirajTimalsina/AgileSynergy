@@ -45,7 +45,7 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final favouriteViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final favouriteViewHolder holder, final int position) {
         final feedbackModel feedbackModel = feedbackModelList.get(position);
         holder.tvitemname.setText(feedbackModel.getItemname());
         holder.btnfav.setOnClickListener(new View.OnClickListener() {
@@ -63,16 +63,12 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
                             Response<user> deletefavouriteresponse = dltusrfav.execute();
                             Call<Void> dltfav = userapi.deletefavouirtelist(global.token, deletefavouriteresponse.body().get_id(), feedbackModel.get_id());
                             dltfav.execute();
+                            feedbackModelList.remove(position);
+                            notifyDataSetChanged();
                             Toast.makeText(view.getContext(), "Successfully Removed ", Toast.LENGTH_SHORT).show();
-
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
-//                        if (new feedbackClass(new feedbackModel(null,holder.tvitemname.getText().toString(), "no", null)).
-//                                postFeedback()) {
-//                            Toast.makeText(view.getContext(), "Sucessfully Removed ", Toast.LENGTH_SHORT).show();
-//                        }
 
                     }
                 });

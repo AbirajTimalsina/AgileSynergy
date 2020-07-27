@@ -18,5 +18,5 @@
 
 
     <color name="opaque_red">#ff3a2f </color>
-    <color name="translucent_red">#656565</color>
+<!--    <color name="translucent_red">#656565</color>-->
 </resources>
