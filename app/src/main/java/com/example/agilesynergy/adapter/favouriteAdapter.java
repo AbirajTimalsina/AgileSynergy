@@ -62,10 +62,10 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         userapi userapi = global.getInstance().create(userapi.class);
-                        Call<user> userCall = userapi.getUserDetails(global.token);
+                        Call<user> dltusrfav = userapi.getUserDetails(global.token);
                         try{
-                            Response<user> profileresponse = userCall.execute();
-                            Call<Void> dltfav = userapi.deletefavouirtelist(global.token, profileresponse.body().get_id(), feedbackModel.get_id());
+                            Response<user> deletefavouriteresponse = dltusrfav.execute();
+                            Call<Void> dltfav = userapi.deletefavouirtelist(global.token, deletefavouriteresponse.body().get_id(), feedbackModel.get_id());
                              dltfav.execute();
                             Toast.makeText(view.getContext(), "Successfully Removed ", Toast.LENGTH_SHORT).show();
 
