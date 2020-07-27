@@ -54,7 +54,14 @@
 
     <style name="loginButton" parent="viewParent">
         <item name="android:background">@drawable/button_background_blue</item>
+    </style>
 
+    <style name="addToCartButton" parent="viewParent">
+        <item name="android:background">@drawable/addtocart</item>
+    </style>
+
+    <style name="addButton" parent="viewParent">
+        <item name="android:background">@drawable/plus</item>
     </style>
 
     <style name="registerButton">
