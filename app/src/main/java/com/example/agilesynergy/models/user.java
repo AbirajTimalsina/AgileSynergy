@@ -9,21 +9,28 @@ import java.util.List;
 
 public class user implements Serializable {
 
-    private String fullname, phonenumber, email, password, profile_image;
+    private String fullname, phonenumber, email, password, address, gender, profile_image;
     private qa qa;
     private ArrayList<feedbackModel> feedback;
     private ArrayList<purchasehistory> purchase;
 
-    public user(String fullname, String phonenumber, String email, String password, String profile_image, com.example.agilesynergy.models.qa qa, ArrayList<feedbackModel> feedback, ArrayList<purchasehistory> purchase) {
+
+    public user(String fullname, String phonenumber, String email, String password, String address, String gender, String profile_image, com.example.agilesynergy.models.qa qa, ArrayList<feedbackModel> feedback, ArrayList<purchasehistory> purchase) {
         this.fullname = fullname;
         this.phonenumber = phonenumber;
         this.email = email;
         this.password = password;
+        this.address = address;
+        this.gender = gender;
         this.profile_image = profile_image;
         this.qa = qa;
         this.feedback = feedback;
         this.purchase = purchase;
     }
+
+    public user() {
+    }
+
 
     public String getFullname() {
         return fullname;
@@ -57,6 +64,22 @@ public class user implements Serializable {
         this.password = password;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public String getProfile_image() {
         return profile_image;
     }
@@ -76,7 +99,7 @@ public class user implements Serializable {
     public ArrayList<feedbackModel> getFeedback() {
         return feedback;
     }
-//ahjshahjsahjsa
+
     public void setFeedback(ArrayList<feedbackModel> feedback) {
         this.feedback = feedback;
     }
