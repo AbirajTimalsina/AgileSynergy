@@ -97,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
         validation();
         qa qa= new qa(spinnerQuestions.getSelectedItem().toString(),editTextAnswer.getText().toString());
         user user= new user(null, editTextName.getText().toString(),editTextPhonenumber.getText().toString(),
-                editTextEmail.getText().toString(),editTextPassword.getText().toString(),null,qa,null, null);
+                editTextEmail.getText().toString(),editTextPassword.getText().toString(),null,null,null,qa,null, null);
 
         userRegister userRegister= new userRegister(user);
         StrictModeClass.StrictMode();
