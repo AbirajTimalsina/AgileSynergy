@@ -224,6 +224,7 @@ public class ProfileFragment extends Fragment {
             Response<user> profileresponse = userCall.execute();
 
             if (profileresponse.isSuccessful()) {
+                global.user = profileresponse.body();
                 String imagepath = null;
                 imagepath = global.imagePath + profileresponse.body().getProfile_image();
                 Picasso.get().load(imagepath).into(imguser);

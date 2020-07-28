@@ -57,8 +57,8 @@ public class checkoutService extends Service {
                         public void onClick(View view) {
 
                             checkoutFragment checkoutFragment= new checkoutFragment();
-                            checkoutFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.checkoutFragmentXY);
-                            checkoutFragment.show(fm,"checkoutFragment");
+                           // checkoutFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.checkoutFragmentXY);
+                           // checkoutFragment.show(fm,"checkoutFragment");
 
 
 //                            fm.beginTransaction().replace(R.id.frame_container, new checkoutFragment()).
