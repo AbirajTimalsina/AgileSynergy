@@ -31,12 +31,9 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
     Context mcontext;
     List<feedbackModel> feedbackModelList;
 
-
-
     public favouriteAdapter(Context mcontext, List<feedbackModel> feedbackModelList) {
         this.mcontext = mcontext;
         this.feedbackModelList = feedbackModelList;
-
     }
 
     @NonNull
@@ -68,7 +65,7 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
                             Call<Void> dltfav = userapi.deletefavouirtelist(global.token, deletefavouriteresponse.body().get_id(), feedbackModel.get_id());
                              dltfav.execute();
                              feedbackModelList.remove(position);
-                              notifyDataSetChanged();
+                             notifyDataSetChanged();
                             Toast.makeText(view.getContext(), "Successfully Removed ", Toast.LENGTH_SHORT).show();
 
                         }catch (Exception e){
@@ -92,7 +89,6 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
                 alert11.show();
             }
         });
-
 
     }
 
