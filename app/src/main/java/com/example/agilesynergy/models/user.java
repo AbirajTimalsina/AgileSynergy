@@ -1,24 +1,35 @@
 package com.example.agilesynergy.models;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class user implements Serializable {
+public class user{
 
-    private String fullname, phonenumber, email, password, profile_image;
+    private String _id, fullname, phonenumber, email, password, profile_image;
     private qa qa;
+    private ArrayList<feedbackModel> feedback;
+    private ArrayList<purchasehistory> purchase;
 
-    public user(String fullname, String phonenumber, String email, String password, String profile_image, qa qa) {
+
+    public user(String _id, String fullname, String phonenumber, String email, String password, String profile_image, com.example.agilesynergy.models.qa qa, ArrayList<feedbackModel> feedback, ArrayList<purchasehistory> purchase) {
+        this._id = _id;
         this.fullname = fullname;
         this.phonenumber = phonenumber;
         this.email = email;
         this.password = password;
         this.profile_image = profile_image;
         this.qa = qa;
+        this.feedback = feedback;
+        this.purchase = purchase;
     }
 
-    public user() {
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getFullname() {
@@ -61,11 +72,27 @@ public class user implements Serializable {
         this.profile_image = profile_image;
     }
 
-    public qa getQa() {
+    public com.example.agilesynergy.models.qa getQa() {
         return qa;
     }
 
-    public void setQa(qa qa) {
+    public void setQa(com.example.agilesynergy.models.qa qa) {
         this.qa = qa;
+    }
+
+    public ArrayList<feedbackModel> getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(ArrayList<feedbackModel> feedback) {
+        this.feedback = feedback;
+    }
+
+    public ArrayList<purchasehistory> getPurchase() {
+        return purchase;
+    }
+
+    public void setPurchase(ArrayList<purchasehistory> purchase) {
+        this.purchase = purchase;
     }
 }

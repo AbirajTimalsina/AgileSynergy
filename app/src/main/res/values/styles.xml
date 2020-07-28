@@ -7,6 +7,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="AppTheme.ActionBar.Transparent" parent="AppTheme">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="colorPrimary">@android:color/transparent</item>
+    </style>
+
     <!--    Login Sytem-->
 
     <style name="textview">
@@ -47,7 +54,14 @@
 
     <style name="loginButton" parent="viewParent">
         <item name="android:background">@drawable/button_background_blue</item>
+    </style>
 
+    <style name="addToCartButton" parent="viewParent">
+        <item name="android:background">@drawable/addtocart</item>
+    </style>
+
+    <style name="addButton" parent="viewParent">
+        <item name="android:background">@drawable/plus</item>
     </style>
 
     <style name="registerButton">
@@ -98,7 +112,7 @@
 
     <style name="modifiedEditText" parent="parent">
         <item name="android:textSize">@dimen/newsMoreTextSize</item>
-        <item name="android:backgroundTint">@color/primaryTextColor</item>
+
     </style>
 
     <style name="modifiedEditTextColorRed" parent="parent">
@@ -113,6 +127,24 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:paddingLeft">5dp</item>
     </style>
+
+    <style name="checkoutFragmentXY" parent="android:Theme.Holo.Dialog" >
+
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">#ffffff</item>
+
+    </style>
+
+<!--    profiledesgin-->
+
+    <style name="pdetails" parent="parent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#000</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
 
 
 </resources>

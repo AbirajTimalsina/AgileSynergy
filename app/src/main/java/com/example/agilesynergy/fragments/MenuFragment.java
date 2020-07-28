@@ -1,23 +1,18 @@
 package com.example.agilesynergy.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agilesynergy.R;
 import com.example.agilesynergy.adapter.RecyclerAdapter;
@@ -31,9 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 
 public class MenuFragment extends Fragment {
@@ -45,6 +38,9 @@ public class MenuFragment extends Fragment {
     TextView etName;
     private Map<String, String> MenuItems;
 
+    public MenuFragment() {
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,7 +49,7 @@ public class MenuFragment extends Fragment {
 
         autocompletetextmenusearch = view.findViewById(R.id.autocompletetextmenusearch);
         etName = view.findViewById(R.id.etName);
-        searchrecycle=view.findViewById(R.id.searchrecycle);
+        searchrecycle = view.findViewById(R.id.searchrecycle);
         MenuItems = new HashMap<>();
         recyclerView = view.findViewById(R.id.recyclerviewmenu);
         itemapi itemapi = global.getInstance().create(itemapi.class);
@@ -65,7 +61,7 @@ public class MenuFragment extends Fragment {
 
                 FragmentManager fm = getActivity().getSupportFragmentManager();
 
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), itemResponse.body(), null, fm, "menu");
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), itemResponse.body(), null, fm, "menu", null);
                 recyclerView.setAdapter(recyclerAdapter);
                 LinearLayoutManager layoutManager
                         = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -80,7 +76,6 @@ public class MenuFragment extends Fragment {
         for (item Item : global.itemList) {
             MenuItems.put(Item.getItemname(), Item.get_id()); //(key, value)
         }
-
 
         ArrayAdapter arrayAdapterCountry = new ArrayAdapter<>(getActivity(),
                 android.R.layout.select_dialog_item, new ArrayList(MenuItems.keySet()));
@@ -97,19 +92,16 @@ public class MenuFragment extends Fragment {
                     }
                 }
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), SearchItemlist,
-                        null, fm, "menu");
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), SearchItemlist,
+                        null, fm, "menu", null);
                 searchrecycle.setAdapter(recyclerAdapter);
                 LinearLayoutManager layoutManager
                         = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-               searchrecycle.setLayoutManager(layoutManager);
+                searchrecycle.setLayoutManager(layoutManager);
             }
         });
-
-
-
+        getActivity().closeContextMenu();
         return view;
-
 
     }
 }

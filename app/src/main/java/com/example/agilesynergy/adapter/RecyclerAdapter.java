@@ -1,27 +1,27 @@
 package com.example.agilesynergy.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agilesynergy.R;
-import com.example.agilesynergy.fragments.HomeFragment;
+import com.example.agilesynergy.classes.feedbackClass;
 import com.example.agilesynergy.fragments.innerFragments.ItemFragment;
+import com.example.agilesynergy.fragments.innerFragments.checkoutFragment;
 import com.example.agilesynergy.global.global;
+import com.example.agilesynergy.models.feedbackModel;
 import com.example.agilesynergy.models.item;
 import com.squareup.picasso.Picasso;
 
@@ -30,125 +30,181 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder>  {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
 
 
-        private Context mcontext;
-        private List<item> listItems;
-        private ArrayList<JSONObject> listObjects = new ArrayList<>();
-        private FragmentManager fm;
-        private String location_Fragment;
-        public RecyclerAdapter(Context mcontext, List<item> listItems, ArrayList<JSONObject> listObjects,
-                               FragmentManager fm, String location_Fragment) {
-            this.mcontext = mcontext;
-            this.listItems = listItems;
-            this.listObjects = listObjects;
-            this.fm = fm;
-            this.location_Fragment = location_Fragment;
+    private Context mcontext;
+    private List<item> listItems;
+    private ArrayList<JSONObject> listObjects;
+    private FragmentManager fm;
+    private String location_Fragment;
+    Dialog dialog;
+
+    public RecyclerAdapter(Context mcontext, List<item> listItems, ArrayList<JSONObject> listObjects,
+                           FragmentManager fm, String location_Fragment, Dialog dialog) {
+        this.mcontext = mcontext;
+        this.listItems = listItems;
+        this.listObjects = listObjects;
+        this.fm = fm;
+        this.location_Fragment = location_Fragment;
+        this.dialog = dialog;
+    }
+
+    @NonNull
+    @Override
+    public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = null;
+        switch (location_Fragment) {
+            case "menu":
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_items, parent, false);
+                break;
+            case "checkout":
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.checkout_item, parent, false);
+                break;
         }
-        @NonNull
-        @Override
-        public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = null;
-            switch (location_Fragment) {
-                case "menu":
-                    view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_items, parent, false);
-                    break;
-                case "checkout":
-                    view = LayoutInflater.from(parent.getContext()).inflate(R.layout.checkout_item, parent, false);
-                    break;
-            }
-            return new RecyclerViewHolder(view);
-        }
+        return new RecyclerViewHolder(view);
+    }
 
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerViewHolder holder, final int position) {
-            switch (location_Fragment) {
-                case "menu":
-                    final item item = listItems.get(position);
-                    holder.itemname.setText(item.getItemname());
-                    holder.itemprice.setText(item.getItemprice());
-                    holder.itemingredient.setText(item.getItemingredient());
-                    String imagePath = global.imagePath + item.getItempicture();
-                    Picasso.get().load(imagePath).into(holder.imageitempicture);
-                    holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            //bundle Arguments is not working.
+    @Override
+    public void onBindViewHolder(@NonNull final RecyclerViewHolder holder, final int position) {
+        switch (location_Fragment) {
+            case "menu":
+                final item item = listItems.get(position);
+                holder.itemname.setText(item.getItemname());
+                holder.itemprice.setText(item.getItemprice());
+                holder.itemmitemmenuingredient.setText(item.getItemingredient());
+                String imagePath = global.imagePath + item.getItempicture();
+                Picasso.get().load(imagePath).into(holder.imageitempicture);
+                holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //bundle Arguments is not working.
+                        global.item = item;
+                        fm.beginTransaction().replace(R.id.frame_container, new ItemFragment()).
+                                setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_right).
+                                addToBackStack(null).commit();
+                    }
+                });
+//
+//                final long[] mLastClickTime = {0};
+//                final boolean[] isHearted = {true};
+//                holder.btnHeart.setPadding(-150, -150, -150, -150);
+                holder.btnHeart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (new feedbackClass(new feedbackModel(null, holder.itemname.getText().toString(), "yes", null)).
+                                postFeedback()) {
 
-                            global.item = item;
+                            holder.btnHeart.setBackgroundResource(R.drawable.ic_favorite_red_24dp);
+                            Toast.makeText(mcontext, "Added to favourite", Toast.LENGTH_SHORT).show();
 
-                            fm.beginTransaction().replace(R.id.frame_container, new ItemFragment()).addToBackStack(null).commit();
+                        } else {
+                            holder.btnHeart.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24);
+                            Toast.makeText(mcontext, "Remove from favourite", Toast.LENGTH_SHORT).show();
                         }
-                    });
-                    break;
-                case "checkout":
-                    JSONObject items = listObjects.get(position);
-                    holder.checkoutItemName.setText(items.optString("itemname").toString());
-                    holder.checkoutItemPrice.setText(items.optString("itemprice").toString());
-                    holder.checkoutItemAmount.setText(items.optString("itemamount").toString());
-                    Integer Price, Amount, afterAmount;
-                    Price = Integer.parseInt(items.optString("itemprice").toString());
-                    Amount = Integer.parseInt(items.optString("itemamount").toString());
-                    afterAmount = Price * Amount;
-                    holder.checkoutItemAfterAmount.setText(Integer.toString(afterAmount));
 
-                    holder.btnCheckoutDelete.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            listObjects.remove(position);
-                            notifyDataSetChanged();
-                            if (listObjects.size() == 0) {
-                                fm.beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
-                            }
+
+                        //giving validation to get clicked only after 1 second passes.
+//                        if (SystemClock.elapsedRealtime() - mLastClickTime[0] < 2000) {
+//                            Toast.makeText(mcontext, "Please refrain from clicking Repeatedly.", Toast.LENGTH_SHORT).show();
+//                            return;
+//                        }
+//                        mLastClickTime[0] = SystemClock.elapsedRealtime();
+//
+//                        if (isHearted[0]) {
+//                            holder.btnHeart.setSpeed(1f);
+//                            if (new feedbackClass(new feedbackModel(null,holder.itemname.getText().toString(), "yes", null)).
+//                                    postFeedback()) {
+//                                Toast.makeText(mcontext, "Added to favourite", Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                        } else {
+//                            holder.btnHeart.setSpeed(-1f);
+//                            if (new feedbackClass(new feedbackModel(null,holder.itemname.getText().toString(), "no", null)).
+//                                    postFeedback()) {
+//                                Toast.makeText(mcontext, "Remove from favourite", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                        holder.btnHeart.playAnimation();
+//                        isHearted[0] = !isHearted[0];
+                    }
+                });
+                break;
+            case "checkout":
+                JSONObject items = listObjects.get(position);
+                holder.checkoutItemName.setText(items.optString("itemname"));
+                holder.checkoutItemPrice.setText(items.optString("itemprice"));
+                holder.checkoutItemAmount.setText(items.optString("itemamount"));
+                Integer Price, Amount, afterAmount;
+                Price = Integer.parseInt(items.optString("itemprice"));
+                Amount = Integer.parseInt(items.optString("itemamount"));
+                afterAmount = Price * Amount;
+                holder.checkoutItemAfterAmount.setText(Integer.toString(afterAmount));
+
+                holder.btnCheckoutDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        listObjects.remove(position);
+                        notifyDataSetChanged();
+                        if (listObjects.size() == 0) {
+//                            fm.popBackStackImmediate();  //returns to previous fragment, granted it was added to stack.
+//                            checkoutFragment.countDownTimer.cancel();
+                            dialog.dismiss();
                         }
-                    });
-                    break;
-            }
+                    }
+                });
+                break;
         }
-        int listCount = 0;
-        @Override
-        public int getItemCount() {
+    }
+
+    private int listCount = 0;
+
+    @Override
+    public int getItemCount() {
+        switch (location_Fragment) {
+            case "menu":
+                listCount = listItems.size();
+                break;
+            case "checkout":
+                listCount = listObjects.size();
+                break;
+        }
+        return listCount;
+    }
+
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
+        //Menu Elements
+        ImageView imageitempicture;
+        TextView itemname, itemprice, itemmitemmenuingredient;
+        ImageButton btnCheckoutDelete;
+        LinearLayout linearLayout;
+        Button btnHeart;
+        //Checkout Elements
+        TextView checkoutItemName, checkoutItemPrice, checkoutItemAmount, checkoutItemAfterAmount;
+
+        public RecyclerViewHolder(@NonNull View itemView) {
+            super(itemView);
             switch (location_Fragment) {
                 case "menu":
-                    listCount = listItems.size();
+                    imageitempicture = itemView.findViewById(R.id.imageviewmenupicture);
+                    itemname = itemView.findViewById(R.id.itemmenuname);
+                    itemprice = itemView.findViewById(R.id.itemmenuprice);
+                    itemmitemmenuingredient = itemView.findViewById(R.id.itemmenuingredient);
+                    linearLayout = itemView.findViewById(R.id.linearmenu);
+                    btnHeart = itemView.findViewById(R.id.animationheart); //use later
                     break;
                 case "checkout":
-                    listCount = listObjects.size();
+                    checkoutItemName = itemView.findViewById(R.id.txtcheckoutitemname);
+                    checkoutItemPrice = itemView.findViewById(R.id.txtcheckoutitemprice);
+                    checkoutItemAmount = itemView.findViewById(R.id.txtcheckoutitemamount);
+                    checkoutItemAfterAmount = itemView.findViewById(R.id.txtcheckoutitemafteramount);
+                    btnCheckoutDelete = itemView.findViewById(R.id.btncheckoutitemdelete);
                     break;
             }
-            return listCount;
-        }
-        public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-            //Menu Elements
-            ImageView imageitempicture;
-            TextView itemname, itemprice, itemingredient;
-            ImageButton btnCheckoutDelete;
-            LinearLayout linearLayout;
-            //Checkout Elements
-            TextView checkoutItemName, checkoutItemPrice, checkoutItemAmount, checkoutItemAfterAmount;
-            public RecyclerViewHolder(@NonNull View itemView) {
-                super(itemView);
-                switch (location_Fragment) {
-                    case "menu":
-                        imageitempicture = itemView.findViewById(R.id.imageviewmenupicture);
-                        itemname = itemView.findViewById(R.id.itemmenuname);
-                        itemprice = itemView.findViewById(R.id.itemmenuprice);
-                        itemingredient = itemView.findViewById(R.id.itemmenuingredient);
-                        linearLayout = itemView.findViewById(R.id.linearmenu);
-                        break;
-                    case "checkout":
-                        checkoutItemName = itemView.findViewById(R.id.txtcheckoutitemname);
-                        checkoutItemPrice = itemView.findViewById(R.id.txtcheckoutitemprice);
-                        checkoutItemAmount = itemView.findViewById(R.id.txtcheckoutitemamount);
-                        checkoutItemAfterAmount = itemView.findViewById(R.id.txtcheckoutitemafteramount);
-                        btnCheckoutDelete = itemView.findViewById(R.id.btncheckoutitemdelete);
-                        break;
-                }
 
-            }
-
-            }
         }
+
+    }
+}
 
 

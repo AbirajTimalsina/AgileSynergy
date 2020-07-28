@@ -20,40 +20,20 @@ public class item  {
         return _id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
-    }
-
     public String getItemname() {
         return itemname;
-    }
-
-    public void setItemname(String itemname) {
-        this.itemname = itemname;
     }
 
     public String getItemprice() {
         return itemprice;
     }
 
-    public void setItemprice(String itemprice) {
-        this.itemprice = itemprice;
-    }
-
     public String getItemingredient() {
         return itemingredient;
     }
 
-    public void setItemingredient(String itemingredient) {
-        this.itemingredient = itemingredient;
-    }
-
     public String getItempicture() {
         return itempicture;
-    }
-
-    public void setItempicture(String itempicture) {
-        this.itempicture = itempicture;
     }
 
 
