@@ -112,7 +112,7 @@ public class checkoutFragment extends Fragment {
             }
         });
         FragmentManager fm = getActivity().getSupportFragmentManager();
-
+//sagsaaf
         recyclerView = view.findViewById(R.id.recyclerviewcheckout);
         try {
             RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), null,
