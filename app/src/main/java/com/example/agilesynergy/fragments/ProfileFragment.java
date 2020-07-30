@@ -112,10 +112,10 @@ public class ProfileFragment extends Fragment {
                 tvphoneno.setText(response.body().getPhonenumber());
 
                 // Purchase History
-                purchasehistoryList = response.body().getPurchase();
-                purchasehistoryAdapter = new purchasehistoryAdapter(getContext(), purchasehistoryList);
-                phrecyclehsitory.setAdapter(purchasehistoryAdapter);
-                phrecyclehsitory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+//                purchasehistoryList = response.body().getPurchase();
+//                purchasehistoryAdapter = new purchasehistoryAdapter(getContext(), purchasehistoryList);
+//                phrecyclehsitory.setAdapter(purchasehistoryAdapter);
+//                phrecyclehsitory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
             }
 
