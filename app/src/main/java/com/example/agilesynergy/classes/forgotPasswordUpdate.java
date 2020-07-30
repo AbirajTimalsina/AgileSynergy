@@ -24,10 +24,15 @@ public class forgotPasswordUpdate {
         this.password = password;
     }
 
+
+    public forgotPasswordUpdate(userForgotPassword passwordForgot) {
+    }
+
+
     public Boolean UpdateForgottenPassword() {
 
         userapi userapi = global.getInstance().create(userapi.class);
-        user user = new user(null,null, null, email, null, null, null,null, null);
+        user user = new user(null, null, email, null, null, null,null, null,null,null,null);
         Call<user> userCall = userapi.GetForgottenUserData(user);
 
 
@@ -51,6 +56,7 @@ public class forgotPasswordUpdate {
     public Boolean UpdatePassword() {
 
         userapi userapi = global.getInstance().create(userapi.class);
+
         userForgotPassword userForgotPassword = new userForgotPassword(email, password);
 
         Call<userForgotPassword> UserForgotPasswordCall = userapi.updateForgottenUser(userForgotPassword);

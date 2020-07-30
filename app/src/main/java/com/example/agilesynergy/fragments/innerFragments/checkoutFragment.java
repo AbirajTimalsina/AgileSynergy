@@ -69,7 +69,20 @@ public class checkoutFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_checkout, container, false);
         tvPurchase = view.findViewById(R.id.tvpurchase);
-        tvCounter = view.findViewById(R.id.tvcounter);
+//        tvCounter = view.findViewById(R.id.tvcounter);
+
+        checkoutbackbutton = view.findViewById(R.id.checkoutbackbutton);
+        checkoutbackbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new HomeFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_container, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
         checkoutbackbutton = view.findViewById(R.id.checkoutbackbutton);
         checkoutbackbutton.setOnClickListener(new View.OnClickListener() {
@@ -112,11 +125,11 @@ public class checkoutFragment extends Fragment {
             }
         });
         FragmentManager fm = getActivity().getSupportFragmentManager();
-
+//sagsaaf
         recyclerView = view.findViewById(R.id.recyclerviewcheckout);
         try {
             RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), null,
-                    global.ItemLists, fm, "checkout");
+                    global.ItemLists, fm, "checkout",null);
             recyclerView.setAdapter(recyclerAdapter);
             LinearLayoutManager layoutManager
                     = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

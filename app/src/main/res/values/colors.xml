@@ -5,7 +5,22 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="bgBottomNavigation">#BF0518</color>
 
+    <color name="textbackgroung">#ffffff</color>
+    <color name="tcolor">#200001</color>
+    <color name="drawerbg">#200001</color>
+    <color name="drawerfont">#72fdc81a</color>
+    <color name="white">#FFFFFF</color>
 
+    <color name="address">#2F7092</color>
+    <color name="followers">#0D5d98</color>
+    <color name="headings">#0A4364</color>
+    <color name="solidCircle">#AAFFFFFF</color>
+    <color name="circleBorder">#50FFFFFF</color>
+    <color name="gradEnd">#67EFC8</color>
+    <color name="gradStart">#63C9FF</color>
+    <color name="followersBg">#65DCE5</color>
+    <color name="followingBg">#49BEFF</color>
+    <color name="grey">#E5E5E5</color>
     <color name="darkTextColor">#020000</color>
     <color name="contentTextColor">#020000</color>
     <color name="register_bk_color">#11CFC5</color>
@@ -14,9 +29,6 @@
     <color name="primaryTextColor">#11CFC5</color>
     <color name="primaryTextRedColor">#c71100</color>
     <color name="primaryTextGrayColor">#8AC5C0BF</color>
-
-
-
     <color name="opaque_red">#ff3a2f </color>
-    <color name="translucent_red">#656565</color>
+<!--    <color name="translucent_red">#656565</color>-->
 </resources>

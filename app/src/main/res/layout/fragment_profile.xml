@@ -7,6 +7,8 @@
     android:background="#03DAC5"
     android:orientation="vertical"
     tools:context=".fragments.ProfileFragment">
+
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imguser"
         android:layout_width="163dp"
@@ -22,6 +24,8 @@
         android:src="@drawable/user" />
 
     <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/box1"
         android:layout_width="201dp"
         android:layout_height="276dp"
         android:layout_alignParentStart="true"
@@ -32,8 +36,7 @@
         android:layout_marginTop="22dp"
         android:layout_marginEnd="13dp"
         android:layout_marginBottom="415dp"
-        android:background="@drawable/profile_bg_radius"
-        android:orientation="vertical">
+        android:background="@drawable/profile_bg_radius">
 
         <TextView
             android:id="@+id/tvfullname"
@@ -59,8 +62,31 @@
             android:id="@+id/tvgender"
             style="@style/pdetails"
             android:hint="Gender" />
+
+
+
+
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/editprofile"
+        android:elevation="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle_button"
+        android:src="@drawable/ic_baseline_edit_24"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="225dp"/>
+
+    <ImageButton
+        android:id="@+id/editphoto"
+        android:elevation="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle_button"
+        android:src="@drawable/ic_edit_photo"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="110dp"/>
 
     <Button
         android:id="@+id/btnuppassword"
@@ -136,15 +162,6 @@
         android:layout_marginBottom="76dp"
         android:background="#fff" />
 
-    <ImageButton
-        android:id="@+id/changepp"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="252dp"
-        android:layout_marginBottom="507dp"
-        android:src="@drawable/ic_baseline_restaurant_menu_24" />
 
 
 </RelativeLayout>
