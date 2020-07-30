@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -23,34 +24,47 @@ import androidx.loader.content.CursorLoader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.agilesynergy.EditProfileActivity;
 import com.example.agilesynergy.LoginActivity;
 import com.example.agilesynergy.R;
 import com.example.agilesynergy.adapter.purchasehistoryAdapter;
 import com.example.agilesynergy.api.userapi;
+import com.example.agilesynergy.classes.StrictModeClass;
 import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.purchasehistory;
 import com.example.agilesynergy.models.user;
+import com.example.agilesynergy.response.ResponseImage;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+import static com.example.agilesynergy.global.global.imagePath;
 
 public class ProfileFragment extends Fragment {
 
     ImageView imguser;
-    private TextView tvfullname, tvemail, tvphoneno, tvaddress;
+    ImageButton editprofile,editphoto;
+    private TextView tvfullname, tvemail, tvphoneno, tvaddress,tvgender;
     Button btnlogout;
-    ImageButton changepp;
+    String imgPath;
+
     RecyclerView phrecyclehsitory;
+    user User;
+    private String imageName="";
+
     List<purchasehistory> purchasehistoryList;
     purchasehistoryAdapter purchasehistoryAdapter;
-    String imgPath;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,10 +76,28 @@ public class ProfileFragment extends Fragment {
         tvemail = view.findViewById(R.id.tvemail);
         tvphoneno = view.findViewById(R.id.tvphoneno);
         tvaddress = view.findViewById(R.id.tvaddress);
+        tvgender = view.findViewById(R.id.tvgender);
         phrecyclehsitory = view.findViewById(R.id.phrecyclehsitory);
         btnlogout = view.findViewById(R.id.btnlogout);
-        changepp = view.findViewById(R.id.changepp);
-        loadcurrentuser();
+        editphoto = view.findViewById(R.id.editphoto);
+        editprofile = view.findViewById(R.id.editprofile);
+
+        editprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        editphoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectImage(getActivity());
+//                saveImageOnly();
+            }
+        });
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,15 +125,8 @@ public class ProfileFragment extends Fragment {
                 alert11.show();
             }
         });
-
-        changepp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectImage(getActivity());
-            }
-        });
-
-
+        loadcurrentuser();
+        getActivity();
         return view;
     }
 
@@ -132,6 +157,8 @@ public class ProfileFragment extends Fragment {
         builder.show();
     }
 
+
+
     @SuppressLint("LongLogTag")
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -147,7 +174,7 @@ public class ProfileFragment extends Fragment {
                 case 1:
                     if (resultCode == RESULT_OK && data != null) {
                         Uri uri = data.getData();
-                       imgPath = getRealPathFromUri(uri);
+                        imgPath = getRealPathFromUri(uri);
                         imguser.setImageURI(uri);
 
                     }
@@ -167,6 +194,28 @@ public class ProfileFragment extends Fragment {
         return result;
 
     }
+    private void saveImageOnly() {
+        File file = new File(imagePath);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("image",
+                file.getName(),requestBody);
+
+        userapi Userapi = global.getInstance().create(userapi.class);
+        Call<ResponseImage> responseBodyCall = Userapi.uploadpic(body);
+
+        StrictModeClass.StrictMode();
+        //Synchronomus method
+
+        try{
+            Response<ResponseImage> imageResponseResponse = responseBodyCall.execute();
+            imageName = imageResponseResponse.body().getFilename();
+            Toast.makeText(getContext(), "Image Inserted", Toast.LENGTH_LONG).show();
+        }catch (IOException e)
+        {
+            Toast.makeText(getContext(), "Error"+e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
 
     private void loadcurrentuser() {
         userapi Userapi = global.getInstance().create(userapi.class);
@@ -175,6 +224,7 @@ public class ProfileFragment extends Fragment {
             Response<user> profileresponse = userCall.execute();
 
             if (profileresponse.isSuccessful()) {
+                global.user = profileresponse.body();
                 String imagepath = null;
                 imagepath = global.imagePath + profileresponse.body().getProfile_image();
                 Picasso.get().load(imagepath).into(imguser);
@@ -182,6 +232,8 @@ public class ProfileFragment extends Fragment {
             tvfullname.setText(profileresponse.body().getFullname());
             tvemail.setText(profileresponse.body().getEmail());
             tvphoneno.setText(profileresponse.body().getPhonenumber());
+            tvaddress.setText(profileresponse.body().getAddress());
+            tvgender.setText(profileresponse.body().getGender());
 
             // Purchase History
             purchasehistoryList = profileresponse.body().getPurchase();
@@ -193,6 +245,6 @@ public class ProfileFragment extends Fragment {
             e.printStackTrace();
         }
 
-    }
 
+    }
 }

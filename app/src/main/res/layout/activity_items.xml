@@ -76,8 +76,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="389dp"
                 android:layout_marginLeft="290dp"
-                android:background="@drawable/ic_baseline_favorite_border_24"
-                android:backgroundTint="@color/black" />
+                android:background="@drawable/ic_baseline_favorite_border_24" />
 
         </androidx.cardview.widget.CardView>
     </LinearLayout>
