@@ -4,8 +4,11 @@ import android.os.SystemClock;
 import android.view.View;
 
 import androidx.test.espresso.Espresso;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.assertion.ViewAssertions;
+import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.rule.ActivityTestRule;
 
 import org.hamcrest.Matcher;
@@ -22,14 +25,15 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
-public class userPurchaseTest {
+public class UserPurchaseTest {
     @Rule
-    public ActivityTestRule<LoginActivity> testRule = new ActivityTestRule<>(LoginActivity.class);
+    //
+    public ActivityTestRule<LoginActivity> testRule =
+            new ActivityTestRule<>(LoginActivity.class);
 
-@Test
     public void Login() {
         onView(withId(R.id.etnumber))
-                .perform(typeText("9849601684"))
+                .perform(typeText("9875149998"))
                 .perform(ViewActions.closeSoftKeyboard());
         onView(withId(R.id.etPassword))
                 .perform(typeText("1234"))
@@ -38,39 +42,39 @@ public class userPurchaseTest {
                 .perform(click());
     }
 
+    public ViewAction clickChildViewWithId(final int id) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return null;
+            }
 
-//    public void userpurchase() {
-//        Login();
-//        Matcher<View> matcher = allOf(withText("Menu"),
-//                isDescendantOfA(withId(R.id.navigation)));
-//        onView(matcher).perform(click());
-//        SystemClock.sleep(800);
-//
-//        Matcher<View> matcher1 = allOf(withText("Menu"),
-//                isDescendantOfA(withId(R.id.navigation_menu)));
-//        onView(matcher).perform(click());
-//        SystemClock.sleep(800);
-//
-//        onView(withId(R.id.recyclerviewmenu))
-//                .perform(actionOnItemAtPosition(0, click()));
-//        SystemClock.sleep(800);
-//    }
+            @Override
+            public String getDescription() {
+                return "Click on a child view with specified id.";
+            }
 
+            @Override
+            public void perform(UiController uiController, View view) {
+                View v = view.findViewById(id);
+                v.performClick();
+            }
+        };
+    }
+
+    @Test
+    public void userpurchase() {
+        Login();
+        onView(withId(R.id.fastfoodrecycleview)).perform(
+                RecyclerViewActions.actionOnItemAtPosition(0, clickChildViewWithId(R.id.btnadd)));
+        onView(withId(R.id.fastfoodrecycleview)).perform(
+                RecyclerViewActions.actionOnItemAtPosition(0, clickChildViewWithId(R.id.btncart)));
+        SystemClock.sleep(2000);
+        onView(withId(R.id.checkoutButton))
+                .perform(click());
+        SystemClock.sleep(2000);
+        onView(withId(R.id.purchase))
+                .perform(click());
+        SystemClock.sleep(2000);
+    }
 }
-//    public void checkLogin() {
-////        onView(withId(R.id.etnumber))
-////                .perform(typeText("9849601684"))
-////                .perform(ViewActions.closeSoftKeyboard());
-////        onView(withId(R.id.etPassword))
-////                .perform(typeText("1234"))
-////                .perform(ViewActions.closeSoftKeyboard());
-////        onView(withId(R.id.btnuserlogin))
-////                .perform(click());
-//
-//        onView(withId(R.id.etnumber)).perform(typeText("9849601684"));
-//        Espresso.closeSoftKeyboard();
-//        onView(withId(R.id.etPassword)).perform(typeText("1234"));
-//        Espresso.closeSoftKeyboard();
-//        onView(withId(R.id.btnuserlogin)).perform(click());
-//        onView(withId(R.id.const_layout)).check(ViewAssertions.matches(isDisplayed()));
-//    }
