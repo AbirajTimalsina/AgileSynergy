@@ -19,6 +19,7 @@ import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.feedbackModel;
 import com.example.agilesynergy.models.user;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -30,11 +31,9 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
     Context mcontext;
     List<feedbackModel> feedbackModelList;
 
-
     public favouriteAdapter(Context mcontext, List<feedbackModel> feedbackModelList) {
         this.mcontext = mcontext;
         this.feedbackModelList = feedbackModelList;
-
     }
 
     @NonNull
@@ -46,6 +45,8 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
 
     @Override
     public void onBindViewHolder(@NonNull final favouriteViewHolder holder, final int position) {
+        // final user user = new user("5ee3b65d3cbdee3dcc402c8b",null,null,null,null,null,null,null,null);
+
         final feedbackModel feedbackModel = feedbackModelList.get(position);
         holder.tvitemname.setText(feedbackModel.getItemname());
         holder.btnfav.setOnClickListener(new View.OnClickListener() {
@@ -59,16 +60,22 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
                     public void onClick(DialogInterface dialog, int which) {
                         userapi userapi = global.getInstance().create(userapi.class);
                         Call<user> dltusrfav = userapi.getUserDetails(global.token);
-                        try {
+                        try{
                             Response<user> deletefavouriteresponse = dltusrfav.execute();
                             Call<Void> dltfav = userapi.deletefavouirtelist(global.token, deletefavouriteresponse.body().get_id(), feedbackModel.get_id());
-                            dltfav.execute();
-                            feedbackModelList.remove(position);
-                            notifyDataSetChanged();
+                             dltfav.execute();
+                             feedbackModelList.remove(position);
+                             notifyDataSetChanged();
                             Toast.makeText(view.getContext(), "Successfully Removed ", Toast.LENGTH_SHORT).show();
-                        } catch (Exception e) {
+
+                        }catch (Exception e){
                             e.printStackTrace();
                         }
+
+//                        if (new feedbackClass(new feedbackModel(null,holder.tvitemname.getText().toString(), "no", null)).
+//                                postFeedback()) {
+//                            Toast.makeText(view.getContext(), "Sucessfully Removed ", Toast.LENGTH_SHORT).show();
+//                        }
 
                     }
                 });
@@ -82,7 +89,6 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.favo
                 alert11.show();
             }
         });
-
 
     }
 
