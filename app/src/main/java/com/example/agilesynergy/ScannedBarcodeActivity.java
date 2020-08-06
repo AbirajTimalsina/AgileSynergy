@@ -165,7 +165,6 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                         details = qrcode.execute("http://192.168.0.109:3000/QRscanner").get();
                         //First we will check data is retrieve successfully or not
                         Log.i("contentData", details);
-
                         JSONArray array = new JSONArray(details);
                         String name = "";
                         for (int i = 0; i < array.length(); i++) {
