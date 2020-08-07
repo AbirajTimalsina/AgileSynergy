@@ -10,6 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageButton
+            android:id="@+id/editphoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="147dp"
+            android:layout_marginEnd="244dp"
+            android:background="@drawable/circle_button"
+            android:elevation="8dp"
+            android:src="@drawable/ic_edit_photo" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imguser"
             android:layout_width="163dp"
@@ -18,7 +31,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="14dp"
-            android:layout_marginTop="-2dp"
+            android:layout_marginTop="-4dp"
             android:layout_marginEnd="234dp"
             android:src="@drawable/user" />
 
@@ -35,7 +48,6 @@
                 android:id="@+id/box1"
                 android:layout_width="203dp"
                 android:layout_height="wrap_content"
-
                 android:orientation="vertical">
 
                 <TextView
@@ -66,34 +78,18 @@
 
         </ScrollView>
 
+
         <ImageButton
             android:id="@+id/editprofile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="363dp"
-            android:layout_marginTop="226dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginTop="206dp"
+            android:layout_marginEnd="34dp"
             android:background="@drawable/circle_button"
             android:elevation="8dp"
             android:src="@drawable/ic_baseline_edit_24" />
-
-        <ImageButton
-            android:id="@+id/editphoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="156dp"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="234dp"
-            android:background="@drawable/circle_button"
-            android:elevation="8dp"
-            android:src="@drawable/ic_edit_photo" />
 
         <Button
             android:id="@+id/btnuppassword"
