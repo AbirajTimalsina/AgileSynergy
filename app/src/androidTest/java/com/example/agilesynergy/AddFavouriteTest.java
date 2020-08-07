@@ -25,7 +25,7 @@ public class AddFavouriteTest {
             new ActivityTestRule<>(LoginActivity.class);
     public void Login() {
         onView(withId(R.id.etnumber))
-                .perform(typeText("9849601684"))
+                .perform(typeText("9860560109"))
                 .perform(ViewActions.closeSoftKeyboard());
         onView(withId(R.id.etPassword))
                 .perform(typeText("1234"))

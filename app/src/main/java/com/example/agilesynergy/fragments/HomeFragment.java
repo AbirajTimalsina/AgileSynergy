@@ -1,7 +1,6 @@
 package com.example.agilesynergy.fragments;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,6 @@ import com.example.agilesynergy.adapter.newdishesAdapter;
 import com.example.agilesynergy.adapter.popularfoodAdapter;
 import com.example.agilesynergy.adapter.regularfoodAdapter;
 import com.example.agilesynergy.adapter.upcomingfoodAdapter;
-import com.example.agilesynergy.api.fastfoodApi;
 import com.example.agilesynergy.api.homeApi;
 import com.example.agilesynergy.global.global;
 import com.example.agilesynergy.models.fastfoodModel;
@@ -243,7 +241,7 @@ public class HomeFragment extends Fragment {
 
     private void fastfood() {
         fastfoodModelList = new ArrayList<>();
-        fastfoodApi fastfoodapi = global.getInstance().create(fastfoodApi.class);
+        homeApi fastfoodapi = global.getInstance().create(homeApi.class);
         Call<List<fastfoodModel>> fastfoodlistCall = fastfoodapi.getfastfooddetails();
         try {
             Response<List<fastfoodModel>> fastfoodresponse = fastfoodlistCall.execute();

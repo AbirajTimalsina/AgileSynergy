@@ -61,7 +61,7 @@ public class checkoutFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 if (global.ItemLists.size() > 0) {
-
+//aaaaa
                     //Function Containing Dialog
                     yesOrNo();
                 }
