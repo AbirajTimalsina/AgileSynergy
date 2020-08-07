@@ -10,7 +10,7 @@ import retrofit2.http.Path;
 
 public interface itemapi {
 
-      @GET("item/all")
+      @GET("item")
     Call<List<item>> getAllItem();
 
 

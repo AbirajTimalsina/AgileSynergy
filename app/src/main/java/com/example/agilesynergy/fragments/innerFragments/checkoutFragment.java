@@ -69,7 +69,7 @@ public class checkoutFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_checkout, container, false);
         tvPurchase = view.findViewById(R.id.tvpurchase);
-       tvCounter = view.findViewById(R.id.tvcounter);
+////       tvCounter = view.findViewById(R.id.tvcounter);
 
         checkoutbackbutton = view.findViewById(R.id.checkoutbackbutton);
         checkoutbackbutton.setOnClickListener(new View.OnClickListener() {
