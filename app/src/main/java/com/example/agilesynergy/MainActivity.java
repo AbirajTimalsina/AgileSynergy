@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 //        layoutParams.setBehavior(new BottomNavigationHider());
 
         // load the store fragment by default
-        loadFragment(new MenuFragment(), 2);
+        loadFragment(new HomeFragment(), 1);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
