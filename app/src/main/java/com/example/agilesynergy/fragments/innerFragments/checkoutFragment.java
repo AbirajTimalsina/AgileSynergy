@@ -4,17 +4,21 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.agilesynergy.CreateChannel.CreateChannel;
 import com.example.agilesynergy.MainActivity;
 import com.example.agilesynergy.api.itemapi;
 import com.example.agilesynergy.classes.userPurchase;
@@ -37,6 +41,7 @@ public class checkoutFragment extends DialogFragment {
 
     private RecyclerView recyclerView;
     private LinearLayout linearLayoutPurchase, linearLayoutCancel;
+    private NotificationManagerCompat notificationManagerCompat;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,6 +86,12 @@ public class checkoutFragment extends DialogFragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        //notification manager
+        notificationManagerCompat = NotificationManagerCompat.from(getContext());
+        CreateChannel channel = new CreateChannel(getContext());
+        channel.createChannel();
         return view;
     }
 
@@ -93,7 +104,14 @@ public class checkoutFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         boolean isPurchased = new userPurchase().userPurchaseFood();
                         if (isPurchased) {
-                            Toast.makeText(MainActivity.contextMainActivity, "Purchased Successfully", Toast.LENGTH_SHORT).show();
+                            Notification notification = new NotificationCompat.Builder(getContext(), CreateChannel.CHANNEL_1).
+                                    setSmallIcon(R.drawable.user)
+                                    .setContentTitle("Happy Belly")
+                                    .setContentText( "Successfully Purchase ")
+                                    .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                                    .build();
+                            notificationManagerCompat.notify(1, notification);
+
                             getDialog().dismiss();
                             global.ItemLists.clear();
                         } else {
