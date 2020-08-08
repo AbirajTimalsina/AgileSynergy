@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#03DAC5"
+    android:background="#ECE8E8"
     tools:context=".fragments.ProfileFragment">
 
     <RelativeLayout
@@ -48,7 +48,8 @@
                 android:id="@+id/box1"
                 android:layout_width="203dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <TextView
                     android:id="@+id/tvfullname"
@@ -91,33 +92,45 @@
             android:elevation="8dp"
             android:src="@drawable/ic_baseline_edit_24" />
 
-        <Button
+        <View
+            android:layout_width="120dp"
+            android:layout_height="2dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="215dp"
+            android:background="#000" />
+
+
+        <TextView
             android:id="@+id/btnuppassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+            android:layout_width="163dp"
+            android:layout_height="30dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="183dp"
+            android:layout_marginTop="185dp"
             android:layout_marginEnd="222dp"
-            android:background="@drawable/button_background_blue"
-            android:backgroundTint="#fff"
-            android:text="Change Password" />
+            android:gravity="center"
+            android:text="@string/change_password" />
 
-
-        <Button
-            android:id="@+id/btnlogout"
-            android:layout_width="130dp"
-            android:layout_height="47dp"
+        <View
+            android:layout_width="60dp"
+            android:layout_height="2dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="252dp"
+            android:background="#000" />
+
+        <TextView
+            android:id="@+id/btnlogout"
+            android:layout_width="135dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="241dp"
-            android:layout_marginEnd="250dp"
-            android:background="@drawable/button_background_blue"
-            android:backgroundTint="@color/whiteTextColor"
+            android:layout_marginTop="226dp"
+            android:layout_marginEnd="238dp"
+            android:gravity="center"
             android:text="Logout" />
 
         <View

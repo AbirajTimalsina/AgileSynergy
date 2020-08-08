@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -25,6 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agilesynergy.EditProfileActivity;
+import com.example.agilesynergy.ForgotPassword;
 import com.example.agilesynergy.LoginActivity;
 import com.example.agilesynergy.R;
 import com.example.agilesynergy.adapter.purchasehistoryAdapter;
@@ -55,7 +57,7 @@ public class ProfileFragment extends Fragment {
     ImageView imguser;
     ImageButton editprofile,editphoto;
     private TextView tvfullname, tvemail, tvphoneno, tvaddress,tvgender;
-    Button btnlogout;
+    TextView btnlogout,btnuppassword;
     String imgPath;
 
     RecyclerView phrecyclehsitory;
@@ -81,6 +83,17 @@ public class ProfileFragment extends Fragment {
         btnlogout = view.findViewById(R.id.btnlogout);
         editphoto = view.findViewById(R.id.editphoto);
         editprofile = view.findViewById(R.id.editprofile);
+        btnuppassword = view.findViewById(R.id.btnuppassword);
+//        btnuppassword.setPaintFlags(btnuppassword.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        btnuppassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
+
 
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
