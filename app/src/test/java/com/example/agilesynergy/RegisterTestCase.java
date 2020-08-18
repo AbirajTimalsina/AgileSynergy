@@ -13,9 +13,8 @@ public class RegisterTestCase {
 
     @Test
     public void RegisterTest(){
-
-        user newuser = new user("DumanShahi","9849532863","suman1234@gmail.com"
-        ,"1234","null",null,null,null,null);
+        user newuser = new user(null,"DumanShahi","9849532863","suman1234@gmail.com"
+        ,"1234","null",null,null,null,null, null);
         userRegister UserRegister = new userRegister(newuser);
         boolean userRegistration = UserRegister.userRegistration();
         assertTrue(userRegistration);
@@ -23,9 +22,7 @@ public class RegisterTestCase {
 
     @Test
     public void PasswordUpadte(){
-
         forgotPasswordUpdate passwordForgot = new forgotPasswordUpdate("s@gmail.com","What is yours first pets name?","tiger","5678");
-
         boolean UpdatePassword = passwordForgot.UpdateForgottenPassword();
         assertTrue(UpdatePassword);
 

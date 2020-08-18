@@ -18,9 +18,7 @@ public class OrderingTest {
     boolean actual = false;
 
     @Test
-
     public void orderingtest() {
-
         JSONObject itemList = new JSONObject();
         try {
             itemList.put("itemid", "1234561");
@@ -30,7 +28,6 @@ public class OrderingTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         global.ItemLists.add(itemList);
         assertNotNull(new checkoutFragment());
     }

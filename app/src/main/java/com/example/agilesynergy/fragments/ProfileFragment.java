@@ -176,7 +176,6 @@ public class ProfileFragment extends Fragment {
                         Uri uri = data.getData();
                         imgPath = getRealPathFromUri(uri);
                         imguser.setImageURI(uri);
-
                     }
                     break;
             }
