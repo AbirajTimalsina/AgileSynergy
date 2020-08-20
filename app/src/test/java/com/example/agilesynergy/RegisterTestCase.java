@@ -15,7 +15,7 @@ public class RegisterTestCase {
     public void RegisterTest(){
 
         user newuser = new user("DumanShahi","9849532863","suman1234@gmail.com"
-        ,"1234","null",null,null,null,null);
+        ,"1234","null",null,null,null,null,null,null);
         userRegister UserRegister = new userRegister(newuser);
         boolean userRegistration = UserRegister.userRegistration();
         assertTrue(userRegistration);
