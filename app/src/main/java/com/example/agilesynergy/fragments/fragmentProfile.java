@@ -40,7 +40,7 @@ imguser=view.findViewById(R.id.imguser);
 tvfullname=view.findViewById(R.id.tvfullname);
         tvemail=view.findViewById(R.id.tvemail);
        tvphoneno=view.findViewById(R.id.tvphoneno);
-btnedit=view.findViewById(R.id.btnEdit);
+btnedit=view.findViewById(R.id.editprofile);
 btnedit.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
