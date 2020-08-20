@@ -54,7 +54,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
                     EditTextForgotAnswer.getText().toString(), spinnerForgotQuestion.getSelectedItem().toString(),
                     EditTextForgotPassword.getText().toString());
             if (forgotPasswordUpdate.UpdateForgottenPassword()) {
-                Toast.makeText(this, "I was here as well", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Passwaord updated", Toast.LENGTH_SHORT).show();
             }
             else{
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
