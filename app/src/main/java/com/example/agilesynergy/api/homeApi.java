@@ -1,5 +1,6 @@
 package com.example.agilesynergy.api;
 
+import com.example.agilesynergy.models.fastfoodModel;
 import com.example.agilesynergy.models.newdishesModel;
 import com.example.agilesynergy.models.popularfoodModel;
 import com.example.agilesynergy.models.regularfoodModel;
@@ -11,6 +12,9 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface homeApi {
+
+    @GET("fastfood")
+    Call<List<fastfoodModel>> getfastfooddetails();
 
     @GET("popularfood")
     Call<List<popularfoodModel>> getpopularfooddetails();

@@ -1,87 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="-20dp">
+    android:layout_width="300dp"
+    android:layout_height="365dp"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/imageView2"
-        android:layout_width="390dp"
-        android:layout_height="300dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="2dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp">
 
-        <ImageView
-            android:id="@+id/popularfoodimage"
-            android:layout_width="217dp"
-            android:layout_height="260dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginStart="10dp"/>
-    </androidx.cardview.widget.CardView>
+    <ImageView
+        android:id="@+id/popularfoodimage"
+        android:layout_width="match_parent"
+        android:layout_height="138dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="242dp"
+        android:src="@color/black" />
+
 
     <TextView
         android:id="@+id/popufoodname"
-        android:layout_width="98dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="-150dp"
-        android:layout_marginTop="65dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="192dp"
+        android:background="@color/opaque_red"
+        android:gravity="center"
         android:text="food Name"
-        android:textColor="#000000"/>
-
-    <Button
-        android:id="@+id/btnadd"
-        android:layout_width="32dp"
-        android:layout_height="37dp"
-        style="@style/addButton"
-        android:layout_marginStart="-90dp"
-        android:layout_marginTop="134dp"
-        android:text="+"
-        android:textSize="20dp"/>
+        android:textColor="#000000"
+        android:textSize="25dp" />
 
     <TextView
-        android:id="@+id/txtquanity"
-        android:layout_width="16dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="135dp"
-        android:inputType="number"
-        android:text="0"
-        android:textColor="#000000"/>
-
-    <Button
-        android:id="@+id/btndes"
-        android:layout_width="32dp"
-        android:layout_height="37dp"
-        style="@style/addButton"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="135dp"
-        android:text="-"
-        android:textSize="25dp"/>
-
-    <Button
-        android:id="@+id/btncart"
-        android:layout_width="90dp"
-        android:layout_height="25dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="-90dp"
-        style="@style/addToCartButton"
-        android:text="Add to cart"
-        android:textSize="10dp"
-        android:textColor="#ffffff"/>
-
-    <TextView
-        android:id="@+id/popularfoodprice"
-        android:layout_width="35dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="95dp"
-        android:layout_marginStart="-70dp"
+        android:layout_width="88dp"
+        android:layout_height="33dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="154dp"
+        android:layout_marginBottom="159dp"
+        android:gravity="center"
         android:text="Price"
         android:textColor="#000000"
         android:textSize="15dp" />
-</LinearLayout>
+
+    <TextView
+        android:layout_width="88dp"
+        android:layout_height="33dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="94dp"
+        android:layout_marginBottom="159dp"
+        android:gravity="center"
+        android:text="Rs."
+        android:textColor="#000000"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/popularfoodprice"
+        android:layout_width="88dp"
+        android:layout_height="33dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="159dp"
+        android:gravity="center"
+        android:text="Price"
+        android:textColor="#000000"
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/btnadd"
+        style="@style/addButton"
+        android:layout_width="45dp"
+        android:layout_height="47dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="180dp"
+        android:layout_marginBottom="110dp"
+        android:text="+"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/txtquanity"
+        android:layout_width="50dp"
+        android:layout_height="53dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="106dp"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="0"
+        android:textColor="#000000"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btndes"
+        style="@style/addButton"
+        android:layout_width="45dp"
+        android:layout_height="47dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="109dp"
+        android:text="-"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btncart"
+        style="@style/addToCartButton"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="54dp"
+        android:text="Add to cart"
+        android:textColor="#ffffff"
+        android:textSize="15dp" />
+
+</RelativeLayout>

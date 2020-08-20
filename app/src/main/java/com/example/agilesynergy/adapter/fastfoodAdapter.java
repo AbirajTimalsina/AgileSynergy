@@ -60,9 +60,6 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
 
         final fastfoodModel fastfoodModel123 = fastfoodModelList.get(position);
 
-        Random rnd = new Random();
-        int currentColor = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-        holder.imageView.setColorFilter(currentColor);
         String imgpath = global.imagePath + fastfoodModel123.getFastfoodpicture();
         Log.e("Image path is :", "Image path is" + imgpath);
         Picasso.get().load(imgpath).into(holder.fastfoodpicture);
@@ -99,14 +96,14 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
 
     public class fastfoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView fastfoodpicture, imageView;
+        ImageView fastfoodpicture;
         TextView fastfoodname, fastfoodprice, txtquanity;
         private Button btnadd, btnminus, btncart;
         private Integer Amount;
 
         public fastfoodViewHolder(@NonNull final View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.imageView);
+
             fastfoodpicture = itemView.findViewById(R.id.fastfoodpicture);
             fastfoodname = itemView.findViewById(R.id.fastfoodname);
             fastfoodprice = itemView.findViewById(R.id.fastfoodprice);
