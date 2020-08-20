@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.agilesynergy.InvalidActivity;
 
 public class broadcastClass extends BroadcastReceiver {
 
