@@ -92,6 +92,7 @@ public class fastfoodAdapter extends RecyclerView.Adapter<fastfoodAdapter.fastfo
 
 
         return fastfoodModelList.size();
+        //commit
     }
 
     public class fastfoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
