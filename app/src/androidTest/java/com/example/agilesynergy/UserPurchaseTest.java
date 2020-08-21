@@ -20,7 +20,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 public class UserPurchaseTest {
     @Rule
-    //
     public ActivityTestRule<LoginActivity> testRule =
             new ActivityTestRule<>(LoginActivity.class);
     public void Login() {

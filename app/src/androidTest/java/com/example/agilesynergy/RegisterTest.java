@@ -16,10 +16,8 @@ import static java.util.concurrent.CompletableFuture.allOf;
 import static org.hamcrest.Matchers.anything;
 
 public class RegisterTest {
-
     @Rule
     public ActivityTestRule<RegisterActivity> testRule = new ActivityTestRule<>(RegisterActivity.class);
-
     @Test
     public void testregister()
     {
