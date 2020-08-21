@@ -1,123 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="373dp"
+    android:layout_margin="10dp">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="130dp"
-        android:layout_height="241dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/fastfood_design" />
-
-    <ImageView
-        android:id="@+id/fastfoodpicture"
-        android:layout_width="103dp"
-        android:layout_height="69dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.127"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/fastfoodname"
-        android:layout_width="102dp"
-        android:layout_height="26dp"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="textPersonName"
-        android:text="Fast Foood"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/fastfoodpicture"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="38dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="8dp"
-        android:text="Price"
-        app:layout_constraintBottom_toBottomOf="@+id/btnadd"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.26"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/fastfoodname"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/fastfoodprice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="88dp"
-        android:text="Price"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.274"
-        app:layout_constraintStart_toEndOf="@+id/price"
-        app:layout_constraintTop_toTopOf="@+id/price"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/btnadd"
-        android:layout_width="32dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="60dp"
-        android:text="+"
-        android:textSize="20dp"
-        style="@style/addButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/txtquanity"
-        android:layout_width="16dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="4dp"
-        android:gravity="center"
-        android:inputType="number"
-        android:text="0"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/btnadd"
-        app:layout_constraintTop_toBottomOf="@+id/fastfoodprice"
-        app:layout_constraintVertical_bias="0.102" />
-
-    <Button
-        android:id="@+id/btndes"
-        android:layout_width="32dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="60dp"
-        android:text="-"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        style="@style/addButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtquanity" />
-
-    <Button
-        android:id="@+id/btncart"
-        style="@style/addToCartButton"
-        android:layout_width="90dp"
-        android:layout_height="20dp"
-        android:text="Add to cart"
-        android:textSize="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtquanity"
-        app:layout_constraintVertical_bias="0.326" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="368dp"
+        android:layout_height="308dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="3dp"
+        app:cardBackgroundColor="#ddd111"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="8dp">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/fastfoodpicture"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:scaleType="fitXY"
+            tools:srcCompat="@tools:sample/avatars" />
+
+
+        <TextView
+            android:id="@+id/fastfoodname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="154dp"
+            android:background="@color/whiteTextColor"
+            android:gravity="center"
+            android:text="Fast Foood"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="38dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="190dp"
+            android:text="Price"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="38dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="190dp"
+            android:text="Rs."
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/fastfoodprice"
+            android:layout_width="38dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="202dp"
+            android:layout_marginTop="190dp"
+            android:text="Price"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btnadd"
+            style="@style/addButton"
+            android:layout_width="32dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="135dp"
+            android:layout_marginTop="215dp"
+            android:text="+"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/txtquanity"
+            android:layout_width="16dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="182dp"
+            android:layout_marginTop="225dp"
+            android:gravity="center"
+            android:inputType="number"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/btndes"
+            style="@style/addButton"
+            android:layout_width="32dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="215dp"
+            android:text="-"
+            android:textSize="20dp" />
+
+
+        <Button
+            android:id="@+id/btncart"
+            style="@style/addToCartButton"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="115dp"
+            android:layout_marginTop="260dp"
+            android:text="Add to cart"
+            android:textSize="10dp" />
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

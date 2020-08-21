@@ -22,7 +22,6 @@ public class LoginBLL {
     }
 
     public boolean checkUser(){
-
         userapi userApi = global.getInstance().create(userapi.class);
         Call<ResponseUser> usercall = userApi.checklogin(phonenumber,password);
         try{

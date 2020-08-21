@@ -16,5 +16,7 @@
         accounts secure and safe. Try to remember your password.
         Try to change your password every 60 days</string>
     <string name="item_name">Item Name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
