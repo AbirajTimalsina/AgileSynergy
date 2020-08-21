@@ -61,7 +61,7 @@ public class checkoutFragment extends DialogFragment {
                 global.ItemLists.clear();
             }
         });
-
+//
         linearLayoutPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
