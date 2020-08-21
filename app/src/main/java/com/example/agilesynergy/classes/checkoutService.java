@@ -55,15 +55,10 @@ public class checkoutService extends Service {
                     btnCheckout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
                             checkoutFragment checkoutFragment= new checkoutFragment();
                             checkoutFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.checkoutFragmentXY);
                             checkoutFragment.show(fm,"checkoutFragment");
 
-
-//                            fm.beginTransaction().replace(R.id.frame_container, new checkoutFragment()).
-//                                    addToBackStack(null).setCustomAnimations(R.anim.enter_from_right,R.anim.exit_from_right).
-//                                    attach(new checkoutFragment()).detach(new checkoutFragment()).commit();
                         }
                     });
                 }
