@@ -18,7 +18,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-public class UserPurchaseTest {
+public class AddFavouriteTest {
     @Rule
     //
     public ActivityTestRule<LoginActivity> testRule =
@@ -51,18 +51,11 @@ public class UserPurchaseTest {
         };
     }
     @Test
-    public void userpurchase() {
+    public void addfavouritetest(){
         Login();
-        onView(withId(R.id.fastfoodrecycleview)).perform(
-                RecyclerViewActions.actionOnItemAtPosition(0, clickChildViewWithId(R.id.btnadd)));
-        onView(withId(R.id.fastfoodrecycleview)).perform(
-                RecyclerViewActions.actionOnItemAtPosition(0, clickChildViewWithId(R.id.btncart)));
-        SystemClock.sleep(2000);
-        onView(withId(R.id.checkoutButton))
-                .perform(click());
-        SystemClock.sleep(2000);
-        onView(withId(R.id.tvpurchase))
-                .perform(click());
+        onView(withId(R.id.navigation_menu)).perform(click());
+        onView(withId(R.id.recyclerviewmenu)).perform(
+                RecyclerViewActions.actionOnItemAtPosition(0, clickChildViewWithId(R.id.animationheart)));
         SystemClock.sleep(2000);
     }
 }

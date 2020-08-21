@@ -6,15 +6,32 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+//creating function
 public class LoginTest {
-   boolean actual=false;
-   boolean expected=true;
-   @Test
+    boolean actual=false;
+    boolean expected=true;
+    @Test
     public  void Login() {
-       LoginBLL loginBLL=new LoginBLL("098765432","54321");
-       if(loginBLL.checkUser()){
-           actual=true;
-       }
-       assertEquals(actual,expected);
-   }
+        assertEquals(actual,expected);
+    }
+
+    //checking user
+
+//    @Test
+//    public  void LoginClass() {
+//        if(loginBLL.checkUser()){
+//            actual=true;
+//        }
+//        assertEquals(actual,expected);
+//    }
+
+    @Test
+    public  void LoginClassname() {
+        LoginBLL loginBLL=new LoginBLL("9860560109","1234");
+        if(loginBLL.checkUser()){
+            actual=true;
+        }
+        assertEquals(actual,expected);
+    }
+
 }

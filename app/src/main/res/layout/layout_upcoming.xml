@@ -1,55 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="379dp"
-        android:layout_height="249dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/upcomingfooddesign" />
-
-    <ImageView
-        android:id="@+id/upcomingimage"
-        android:layout_width="279dp"
-        android:layout_height="145dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
-        app:layout_constraintVertical_bias="0.248"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/upcomingname"
-        android:layout_width="133dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="148dp"
-        android:text="food Name"
-        android:textColor="@color/whiteTextColor"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/upcomingimage" />
-
-    <TextView
-        android:id="@+id/upcomingprice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:textColor="@color/whiteTextColor"
-        android:text="Price"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-        app:layout_constraintHorizontal_bias="0.23"
-        app:layout_constraintStart_toStartOf="@+id/imageView6" />
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="#FFE7E2E4">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="370dp"
+        android:layout_height="320dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="15dp"
+        app:cardBackgroundColor="@color/browser_actions_bg_grey"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="6dp">
+
+        <ImageView
+            android:id="@+id/upcomingimage"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:gravity="center"
+            android:scaleType="fitXY"
+            tools:srcCompat="@tools:sample/avatars" />
+
+
+        <TextView
+            android:id="@+id/upcomingname"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginTop="158dp"
+            android:gravity="center"
+            android:text="food Name"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="208dp"
+            android:text="Price"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="170dp"
+            android:layout_marginTop="208dp"
+            android:text="Rs."
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/upcomingprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="190dp"
+            android:layout_marginTop="208dp"
+            android:text="Price"
+            android:textColor="@color/black" />
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

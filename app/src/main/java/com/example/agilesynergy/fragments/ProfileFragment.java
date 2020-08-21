@@ -1,14 +1,17 @@
 package com.example.agilesynergy.fragments;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.loader.content.CursorLoader;
@@ -53,18 +59,16 @@ import static com.example.agilesynergy.global.global.imagePath;
 public class ProfileFragment extends Fragment {
 
     ImageView imguser;
-    ImageButton editprofile,editphoto;
-    private TextView tvfullname, tvemail, tvphoneno, tvaddress,tvgender;
+    ImageButton editprofile, editphoto;
+    private TextView tvfullname, tvemail, tvphoneno, tvaddress, tvgender;
     Button btnlogout;
     String imgPath;
 
     RecyclerView phrecyclehsitory;
-    user User;
-    private String imageName="";
+    private String imageName = "";
 
     List<purchasehistory> purchasehistoryList;
     purchasehistoryAdapter purchasehistoryAdapter;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,7 +89,6 @@ public class ProfileFragment extends Fragment {
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(getActivity(), EditProfileActivity.class);
                 startActivity(intent);
             }
@@ -130,6 +133,7 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+
     private void selectImage(FragmentActivity context) {
         final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
 
@@ -146,6 +150,7 @@ public class ProfileFragment extends Fragment {
                     startActivityForResult(takePicture, 0);
 
                 } else if (options[item].equals("Choose from Gallery")) {
+
                     Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(pickPhoto, 1);
 
@@ -159,7 +164,6 @@ public class ProfileFragment extends Fragment {
 
 
 
-    @SuppressLint("LongLogTag")
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -169,6 +173,7 @@ public class ProfileFragment extends Fragment {
                     if (resultCode == RESULT_OK && data != null) {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         imguser.setImageBitmap(selectedImage);
+//                        saveImageOnly();
                     }
                     break;
                 case 1:
@@ -176,7 +181,7 @@ public class ProfileFragment extends Fragment {
                         Uri uri = data.getData();
                         imgPath = getRealPathFromUri(uri);
                         imguser.setImageURI(uri);
-
+                        saveImageOnly();
                     }
                     break;
             }
@@ -194,11 +199,12 @@ public class ProfileFragment extends Fragment {
         return result;
 
     }
+
     private void saveImageOnly() {
         File file = new File(imagePath);
-        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("image",
-                file.getName(),requestBody);
+                file.getName(), requestBody);
 
         userapi Userapi = global.getInstance().create(userapi.class);
         Call<ResponseImage> responseBodyCall = Userapi.uploadpic(body);
@@ -206,13 +212,13 @@ public class ProfileFragment extends Fragment {
         StrictModeClass.StrictMode();
         //Synchronomus method
 
-        try{
+        try {
             Response<ResponseImage> imageResponseResponse = responseBodyCall.execute();
             imageName = imageResponseResponse.body().getFilename();
             Toast.makeText(getContext(), "Image Inserted", Toast.LENGTH_LONG).show();
-        }catch (IOException e)
-        {
-            Toast.makeText(getContext(), "Error"+e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            Toast.makeText(getContext(), "Error" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            Log.e("Error ", "Error is " + e.getLocalizedMessage());
             e.printStackTrace();
         }
     }

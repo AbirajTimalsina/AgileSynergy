@@ -26,10 +26,10 @@ public class LoginTest {
 
     public void Login() {
         onView(withId(R.id.etnumber))
-                .perform(typeText("098765432"))
+                .perform(typeText("9860560109"))
                 .perform(ViewActions.closeSoftKeyboard());
         onView(withId(R.id.etPassword))
-                .perform(typeText("54321"))
+                .perform(typeText("1234"))
                 .perform(ViewActions.closeSoftKeyboard());
         onView(withId(R.id.btnuserlogin))
                 .perform(click());
