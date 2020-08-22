@@ -140,7 +140,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                 Amount = Integer.parseInt(items.optString("itemamount"));
                 afterAmount = Price * Amount;
                 holder.checkoutItemAfterAmount.setText(Integer.toString(afterAmount));
-
+//holder
                 holder.btnCheckoutDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
